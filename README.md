@@ -3,7 +3,7 @@
 Welcome to the repository for my professional design portfolio. I am a Communication Design student at NIFT Kannur, focused on building thoughtful, interactive, and visually striking experiences.
 
 ## 🚀 Live Site
-View the live portfolio at: [https://rehanjose.github.io/](https://rehanjose.github.io/)
+View the live portfolio at: [https://rehanjose.com/](https://rehanjose.com/)
 
 ---
 
