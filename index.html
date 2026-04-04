@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REHAN JOSE</title>
+    <link rel="icon" type="image/png" href="Homepage Assets/logo.png">
+
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Preloader with Skip Button -->
+    <div id="preloader" class="preloader">
+        <button id="skip-button" class="skip-button">Skip Intro</button>
+    </div>
+
+    <!-- Navigation (Outside main-content so it's always visible) -->
+    <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 navbar-visible">
+
+        <!-- Theme Toggle — floats to the right of the nav pill -->
+        <button id="theme-toggle" class="theme-toggle theme-toggle--floating hidden"
+            aria-label="Toggle light/dark mode">
+            <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
+            <i data-lucide="sun" class="theme-icon theme-icon-sun  w-4 h-4"></i>
+        </button>
+
+        <nav
+            class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html"><img src="Homepage%20Assets/logo.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo"></a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#home" data-section="home"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
+                    <a href="#about" data-section="about"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
+                    <a href="#projects" data-section="projects"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
+                    <a href="#contact" data-section="contact"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="RehanJoseResume.pdf" target="_blank"
+                        class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white"><i data-lucide="menu"
+                            class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+    </div>
+
+    <!-- Mobile Menu Overlay (Outside main-content so it's always accessible) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-content">
+            <button id="mobile-menu-close" class="mobile-menu-close">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <nav class="mobile-nav">
+                <a href="#home" class="mobile-nav-link">Home</a>
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#projects" class="mobile-nav-link">Projects</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
+                <a href="RehanJoseResume.pdf" target="_blank" class="mobile-nav-link mobile-nav-resume">
+                    <span>Resume</span>
+                    <i data-lucide="download" class="w-5 h-5"></i>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <!-- Top Left: Malayalam Welcome -->
+                <div class="hero-welcome-left">
+                    <h2 class="malayalam-text">നമസ്കാരം</h2>
+                    <p class="welcome-subtitle">(Welcome in Malayalam)</p>
+                </div>
+
+                <!-- Bottom Left: Skills -->
+                <div class="hero-skills-left">
+                    <p>UI/UX</p>
+                    <p>Visual Communication</p>
+                    <p>Storytelling</p>
+                </div>
+
+                <!-- Center: Profile Image with Caption -->
+                <div class="hero-image">
+                    <div class="photo-wrapper">
+                        <img src="Homepage%20Assets/profile.jpg" alt="Rehan Jose" class="profile-photo grayscale">
+                        <img src="Homepage%20Assets/profilec.jpg" alt="Rehan Jose" class="profile-photo colorful">
+                    </div>
+                    <p class="photo-caption">'Almost Confident'</p>
+                </div>
+
+                <!-- Top Right: Quote -->
+                <div class="hero-quote-right">
+                    <p>I like building things that<br>feel sharp, thoughtful,<br>and a little unexpected.</p>
+                </div>
+
+                <!-- Bottom Right: Name -->
+                <div class="hero-name-right">
+                    <h1>I'm<br>REHAN<br>JOSE</h1>
+                </div>
+            </div>
+
+            <!-- Swipe Down Indicator -->
+            <div class="swipe-indicator">
+                <div class="swipe-line"></div>
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                <span class="scroll-text">SCROLL DOWN</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-overflow-wrapper">
+                <div class="about-container">
+                    <h3 class="about-text" id="about-text">A Junior Year Communication Design student from NIFT Kannur,
+                        constantly experimenting, questioning, and figuring things out.</h3>
+                    <a href="#" class="know-more-link hidden" id="about-link">
+                        <span>Know more about me</span>
+                        <i data-lucide="arrow-right" class="arrow-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <!-- Projects Header with Category List -->
+            <div class="projects-header-wrapper">
+                <div class="projects-header-left">
+                    <h2 class="projects-title">PROJECTS</h2>
+                    <p class="projects-subtitle">A curated collection of my work across design disciplines</p>
+                </div>
+
+                <!-- 
+                <div class="category-dropdown-wrapper">
+                    <label for="category-select" class="category-label">My Design Spectrum</label>
+                    <select id="category-select" class="category-dropdown">
+                        <option value="editorial">Editorial / Publication</option>
+                        <option value="3d-spatial">3D &amp; Spatial Design</option>
+                    </select>
+                </div>
+-->
+            </div>
+
+            <div class="projects-container">
+                <div class="projects-grid">
+                    <!-- Project 1 — Dinely -->
+                    <div class="project-card" data-category="ui-ux" data-glow="140, 140, 140" data-glow-override
+                        onclick="showComingSoon('Dinely', 'Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full case study coming soon.')">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/dinely%20thumbnail.png" alt="Dinely project thumbnail"
+                                class="project-thumbnail zoomed">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Dinely</h3>
+                            <p class="project-description">Helping individuals and groups effortlessly decide where to
+                                eat by aligning<br>preferences, dietary needs, and choices.</p>
+                            <div class="project-tags">
+                                <span class="tag">Product Design</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Case Study</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 — STRYDE -->
+                    <div class="project-card" data-category="experience-design" data-glow="255, 255, 255"
+                        data-glow-override onclick="window.location.href='projects/Stryde/stryde.html'">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/STRYDE.png" alt="STRYDE project thumbnail"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">STRYDE</h3>
+                            <p class="project-description">Reimagining sports viewing through an immersive, stadium-like
+                                theatre experience.</p>
+                            <div class="project-tags">
+                                <span class="tag">Case Study</span>
+                                <span class="tag">Experience Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 — AlexaBot -->
+                    <div class="project-card mt-12" data-category="3d-spatial" data-glow="255, 255, 255"
+                        data-glow-override onclick="window.location.href='projects/AlexaBot/alexabot.html'">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">AlexaBot</h3>
+                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with
+                                personality.</p>
+                            <div class="project-tags">
+                                <span class="tag">3D Modeling</span>
+                                <span class="tag">Product Design</span>
+                                <span class="tag">Fusion 360</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 — Beyond Jerseys -->
+                    <div class="project-card mt-12" data-category="editorial" data-glow="255, 255, 255"
+                        data-glow-override onclick="window.location.href='projects/BeyondJerseys/beyond-jerseys.html'">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/beyond-jerseys-thumbnail.jpg"
+                                alt="Beyond Jerseys project thumbnail" class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Beyond Jerseys</h3>
+                            <p class="project-description">A visual glossary exploring the culture and aesthetics of
+                                sports fashion.</p>
+                            <div class="project-tags">
+                                <span class="tag">Editorial Design</span>
+                                <span class="tag">Visual Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+
+            <img src="Homepage%20Assets/contact-us.png" alt="Contact Us" class="contact-image reveal-up">
+
+            <!-- Big headline -->
+            <div class="contact-headline-wrap reveal-up">
+                <h2 class="contact-headline">strategy? visuals?</h2>
+                <h2 class="contact-headline contact-headline--italic">or a crazy idea at 2AM?</h2>
+            </div>
+
+            <!-- Subtext -->
+            <p class="contact-subtext reveal-up">
+                I'm always open to conversations about design,<br>
+                collaboration, and creative experiments.
+            </p>
+
+            <!-- Email CTA -->
+            <a href="mailto:rehanjose11@gmail.com" class="contact-email reveal-up">
+                rehanjose11@gmail.com
+            </a>
+
+            <!-- Social Links -->
+            <nav class="contact-socials reveal-up" aria-label="Social links">
+                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank"
+                    class="contact-social-link">LinkedIn</a>
+                <span class="contact-social-sep">·</span>
+                <a href="https://www.behance.net/rehanjose" target="_blank" class="contact-social-link">Behance</a>
+                <span class="contact-social-sep">·</span>
+                <a href="https://joserehan.wordpress.com/" target="_blank" class="contact-social-link">WordPress</a>
+                <span class="contact-social-sep">·</span>
+                <a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank"
+                    class="contact-social-link">Instagram</a>
+            </nav>
+
+            <!-- Footer Text -->
+            <div class="contact-footer reveal-up">
+                <p>&copy; REHAN JOSE 2026 ALL RIGHTS RESERVED</p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Coming Soon Model -->
+    <div id="coming-soon-modal" class="coming-soon-modal" onclick="closeComingSoon()">
+        <div class="cs-modal-content" onclick="event.stopPropagation()">
+            <h2 class="cs-modal-title" id="cs-modal-title">Dinely</h2>
+            <p class="cs-modal-text" id="cs-modal-text">
+                Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full
+                case study coming soon.
+            </p>
+            <button class="cs-modal-close-btn" onclick="closeComingSoon()">Got it</button>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
