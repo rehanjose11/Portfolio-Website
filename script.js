@@ -672,3 +672,31 @@ document.addEventListener('keydown', (e) => {
 
 applyGlowColors();
 
+// --- PROJECT CARDS SCROLL REVEAL ANIMATION ---
+const projectCardsReveal = document.querySelectorAll('.project-card');
+
+const projectCardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Get all visible (not hidden) cards and find stagger index
+            const allVisibleCards = Array.from(projectCardsReveal).filter(c => !c.classList.contains('hidden'));
+            const cardIndex = allVisibleCards.indexOf(entry.target);
+            const delay = cardIndex >= 0 ? cardIndex * 150 : 0;
+
+            setTimeout(() => {
+                entry.target.classList.add('is-visible');
+            }, delay);
+
+            projectCardObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+});
+
+projectCardsReveal.forEach(card => {
+    projectCardObserver.observe(card);
+});
+

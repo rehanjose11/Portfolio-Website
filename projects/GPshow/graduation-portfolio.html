@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graduation Showcase 2026 — Branding & Promotion</title>
+
+  <!-- External Dependencies -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400;500;700&f[]=gambarino@400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Abel&family=Archivo+Black&family=Cormorant:wght@400;500;600;700&family=Gloock&family=Lexend:wght@200;300;400;500;600&family=Roboto:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="graduation-portfolio.css">
+  <style>
+    /* ── NAVBAR & PORTFOLIO UI OVERRIDES ── */
+    #navbar-container, #mobile-menu, #navbar-container *, a.fixed.top-6, .mobile-nav-link {
+        font-family: 'Space Mono', monospace !important;
+    }
+    .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 10000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+        display: flex;
+        opacity: 1;
+    }
+    .mobile-menu-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .mobile-nav-link {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center px-4 navbar-visible" style="z-index: 999;">
+        <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="../../index.html"><img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="../../index.html#home" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
+                    <a href="../../index.html#about" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
+                    <a href="../../index.html#projects" class="nav-link active text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
+                    <a href="../../index.html#contact" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="../../RehanJoseResume.pdf" target="_blank" class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Project Title Badge -->
+    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="fixed top-6 left-4 lg:left-12 z-[1001] flex items-center px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white shadow-xl text-xs font-bold uppercase tracking-widest font-mono cursor-pointer hover:bg-white hover:text-black hover:border-transparent transition-all duration-300" style="margin-top: 8px;">
+        <span>GRADUATION SHOWCASE</span>
+    </a>
+
+    <!-- Floating Back Button -->
+    <a href="../../index.html#projects" class="fixed top-6 right-4 lg:right-12 z-[1001] flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 shadow-xl text-xs font-bold uppercase tracking-widest" style="margin-top: 8px;">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Back</span>
+    </a>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-content">
+            <button id="mobile-menu-close" class="mobile-menu-close"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <nav class="mobile-nav">
+                <a href="../../index.html#home" class="mobile-nav-link">Home</a>
+                <a href="../../index.html#about" class="mobile-nav-link">About</a>
+                <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="../../index.html#contact" class="mobile-nav-link">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+  <!-- ═══════════════════════════════════
+     HERO
+═══════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        Branding & Promotion
+        <span>·</span>
+        NIFT Kannur
+      </div>
+
+      <h1 class="hero-title">
+        Graduation
+        <span class="line2">Showcase</span>
+        <span class="line3">2026 — Brand Identity</span>
+      </h1>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-meta">
+        <div class="meta-item">
+          <label>Client</label>
+          <span>NIFT Kannur</span>
+        </div>
+        <div class="meta-item">
+          <label>Scope</label>
+          <span>Brand Identity & Promotion</span>
+        </div>
+        <div class="meta-item">
+          <label>Year</label>
+          <span>2026</span>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     01 — PROJECT OVERVIEW
+═══════════════════════════════════ -->
+  <div class="chapter">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">01</span> Project Overview</div>
+      <h2 class="ch-heading reveal">A unified identity for<br>multidisciplinary design showcase.</h2>
+      <p class="ch-sub reveal">The Graduation Showcase is NIFT Kannur's annual event celebrating the culmination of
+        student work across seven disciplines. The brief called for a single cohesive brand that could represent
+        diversity
+        without fragmentation — convergence as its core principle.</p>
+
+      <div class="brief-grid reveal">
+        <div class="brief-card">
+          <div class="bc-label">The Brief</div>
+          <p class="bc-text">Design a <strong>unified event brand</strong> for the 2026 Graduation Showcase that
+            encompasses displays, exhibitions, installations, audio-visual presentations, and fashion shows from all UG
+            & PG departments. The identity must reflect <strong>convergence, transition</strong>, and the professional
+            evolution of the graduating batch — working across print, digital, and large-format applications.</p>
+        </div>
+        <div class="brief-card" style="background: var(--surface2);">
+          <div class="bc-label">Scope of Work</div>
+          <p class="bc-text" style="font-size:14px; line-height:2;">Logo system & variations<br>Colour & typography
+            guide<br>Print collateral (7+ items)<br>Digital / social media<br>Large format & merchandise<br>Brand manual
+            & GP booklet</p>
+        </div>
+      </div>
+
+      <div class="stats-row reveal" style="margin-top:2px;">
+        <div class="stat-card">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Departments represented</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">40<span>+</span></div>
+          <div class="stat-label">Logo sketches generated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Competitor brands studied</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12<span>+</span></div>
+          <div class="stat-label">Brand touchpoints designed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     02 — RESEARCH: COMPETITIVE ANALYSIS
+═══════════════════════════════════ -->
+  <div class="chapter">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">02</span> Research</div>
+      <h2 class="ch-heading reveal">Competitive Analysis</h2>
+      <p class="ch-sub reveal">Before conceptualising, we studied six peer graduation show identities to understand the
+        visual language of academic showcase branding — identifying patterns and gaps to inform a differentiated
+        direction.</p>
+
+      <!-- Row 1 -->
+      <div class="competitor-row reveal">
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/1.jpg" alt="DDS IDC 2023 Logo"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">DDS IDC · 2023</div>
+            <h4>Design Degree Show 2023</h4>
+            <ul class="comp-points">
+              <li>Modular geometric shapes — unity and diversity</li>
+              <li>Clean minimal style — versatile across scales</li>
+              <li>Grid structure reflects academic precision</li>
+              <li>Abstract form keeps identity non-literal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/2.jpg" alt="NID Ahmedabad Convocation Logo"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">NID Ahmedabad </div>
+            <h4>43rd Convocation</h4>
+            <ul class="comp-points">
+              <li>Simple geometric forms — students converging</li>
+              <li>Abstract minimal — easy to scale across mediums</li>
+              <li>Structured layout reflects design discipline</li>
+              <li>Timeless non-literal approach — adaptable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/3.jpg" alt="UHK Degree Show 2020 Branding"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">University of Hong Kong · 2019–20</div>
+            <h4>Degree Show 2020</h4>
+            <ul class="comp-points">
+              <li>Abstract calendar markings — academic year</li>
+              <li>Monochrome + orange accent — clarity and impact</li>
+              <li>Concept-driven non-literal — flexible and timeless</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="competitor-row-2 reveal" style="margin-top:2px;">
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/4.png" alt="UAL MAISD Graduation Show Posters"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">UAL MAISD · 2023–24</div>
+            <h4>Graduation Show</h4>
+            <ul class="comp-points">
+              <li>Programme name as bold spatial graphic</li>
+              <li>Neutral design supports diverse student work</li>
+              <li>Abstract format — digital and physical adaptable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/5.png" alt="UCA Grad Show 2024–25 Identity"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">UCA · 2024–25</div>
+            <h4>Grad Show</h4>
+            <ul class="comp-points">
+              <li>Modular geometric forms — no literal imagery</li>
+              <li>Minimal style — scales across large event formats</li>
+              <li>Abstract shape — versatile and easy to adapt</li>
+              <li>Strong memorability through simplicity</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-img"
+            style="overflow: hidden; padding: 24px; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center;">
+            <img src="Competitive Analysis/6.png" alt="NIFT Hyderabad Spectrum 23"
+              style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          </div>
+          <div class="competitor-body">
+            <div class="comp-org">NIFT Hyderabad · Spectrum 23</div>
+            <h4>College Fest Identity</h4>
+            <ul class="comp-points">
+              <li>Bold playful abstract — lively college-fest energy</li>
+              <li>Simple geometry — flexible across all formats</li>
+              <li>Non-literal design — visually consistent</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key findings -->
+      <div class="reveal"
+        style="background: var(--surface2); padding: 48px 48px 40px; margin-top: 80px; border-left: 2px solid var(--teal);">
+        <div
+          style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:16px;">
+          Key Takeaways from Analysis</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:32px;">
+          <div>
+            <div style="font-size:14px; font-weight:500; color:#fff; margin-bottom:8px;">Abstract over Literal</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.7;">All strong identities avoided literal
+              graduation imagery (caps, scrolls) in favour of abstract forms that carry conceptual meaning.</div>
+          </div>
+          <div>
+            <div style="font-size:14px; font-weight:500; color:#fff; margin-bottom:8px;">Scalability is Critical</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.7;">Logos must work from 4cm badge to full
+              auditorium backdrop — minimal forms with strong silhouettes win at all sizes.</div>
+          </div>
+          <div>
+            <div style="font-size:14px; font-weight:500; color:#fff; margin-bottom:8px;">Conceptual Anchoring</div>
+            <div style="font-size:12px; color:var(--muted); line-height:1.7;">The best identities have a clear
+              conceptual rationale that extends across all applications and can be articulated simply.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     03 — WORD CLOUD METHOD
+═══════════════════════════════════ -->
+  <div class="chapter" style="padding-top: 40px;">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">03</span> Ideation — Method 1</div>
+      <h2 class="ch-heading reveal">Word Cloud Method</h2>
+      <p class="ch-sub reveal">We began ideation with a radial word cloud anchored on two nodes — "NIFT Kannur" and
+        "Graduation Show" — branching outward to capture raw associations before filtering them into conceptual
+        directions.</p>
+
+      <div class="wordcloud-wrap reveal">
+        <div class="wordcloud-heading">The Mind Map</div>
+        <p class="wordcloud-desc">Starting from the two core nodes, we expanded outward across themes of connection,
+          structure, celebration, process, and visual form. This free-association phase produced over 60 raw keywords
+          that would feed the next stage of ideation.</p>
+
+        <!-- Word cloud image -->
+        <div class="wordcloud-photo"
+          style="overflow: hidden; padding: 24px; background: transparent; display: flex; align-items: center; justify-content: center; min-height: 480px; margin: 0 -32px;">
+          <img src="wordcloud.PNG" alt="Word Cloud Mind Map"
+            style="max-width: 100%; max-height: 100%; object-fit: contain; display: block; transform: translateX(-50px);">
+        </div>
+
+        <div class="wordcloud-keywords" style="margin-top:40px;">
+          <span class="keyword-pill kp-teal">Convergence</span>
+          <span class="keyword-pill kp-teal">Intersection</span>
+          <span class="keyword-pill kp-teal">Network</span>
+          <span class="keyword-pill kp-teal">Growth</span>
+          <span class="keyword-pill kp-teal">Runway</span>
+          <span class="keyword-pill kp-teal">Fashion Show</span>
+          <span class="keyword-pill kp-teal">Red Carpet</span>
+          <span class="keyword-pill kp-teal">Symbiosis</span>
+          <span class="keyword-pill kp-teal">Handshake</span>
+          <span class="keyword-pill kp-teal">Reflection</span>
+          <span class="keyword-pill kp-teal">Sketch</span>
+          <span class="keyword-pill kp-teal">Pavement</span>
+          <span class="keyword-pill kp-teal">Columns</span>
+          <span class="keyword-pill kp-teal">Visual Hierarchy</span>
+          <span class="keyword-pill kp-teal">Symmetry</span>
+          <span class="keyword-pill kp-teal">3-D</span>
+          <span class="keyword-pill kp-teal">Negative / Positive</span>
+          <span class="keyword-pill kp-teal">Soul</span>
+          <span class="keyword-pill kp-teal">Community Circle</span>
+          <span class="keyword-pill kp-teal">Backstage</span>
+          <span class="keyword-pill kp-teal">Spotlight</span>
+          <span class="keyword-pill kp-teal">Correction</span>
+          <span class="keyword-pill kp-teal">Blueprint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     04 — DARIEL FITZKEE METHOD
+═══════════════════════════════════ -->
+  <div class="chapter" style="padding-top: 40px;">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">04</span> Ideation — Method 2</div>
+      <h2 class="ch-heading reveal">Dariel Fitzkee Method</h2>
+      <p class="ch-sub reveal">The second ideation phase used the Dariel Fitzkee combinatorial method — structuring
+        keywords into six axes and systematically pairing concepts across columns to generate unexpected conceptual
+        directions for logo development.</p>
+
+      <div class="fitzkee-wrap reveal">
+        <div class="fitzkee-heading">Six-Axis Concept Matrix</div>
+        <p class="fitzkee-desc">Each column represents a core theme. Reading across rows generates concept combinations
+          — for example: "NIFT @ 40 + Runway + Venn Diagram + Viewers + Path + Spectrum" creates a directional brief for
+          a logo that is academic, performative, and multidimensional.</p>
+
+        <table class="fitzkee-table">
+          <thead>
+            <tr>
+              <th>NIFT Kannur</th>
+              <th>GP Elements</th>
+              <th>Connection</th>
+              <th>Show</th>
+              <th>Process</th>
+              <th>7 Departments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NIFT @ 40</td>
+              <td>Runway</td>
+              <td>Venn Diagram</td>
+              <td>Viewers</td>
+              <td>Path</td>
+              <td>Spectrum</td>
+            </tr>
+            <tr>
+              <td>People</td>
+              <td>Props</td>
+              <td>Intersection</td>
+              <td>Screen</td>
+              <td>Growth</td>
+              <td>Heptagon</td>
+            </tr>
+            <tr>
+              <td>Departments</td>
+              <td>Applaud</td>
+              <td>Network</td>
+              <td>Spotlight</td>
+              <td>Continuum</td>
+              <td>Streams</td>
+            </tr>
+            <tr>
+              <td>Concentric</td>
+              <td>Medal</td>
+              <td>Handshake</td>
+              <td>Field</td>
+              <td>Prototype</td>
+              <td>Branches</td>
+            </tr>
+            <tr>
+              <td>Education</td>
+              <td>Puzzle</td>
+              <td>Knot</td>
+              <td>Screening</td>
+              <td>Blueprint</td>
+              <td>Facets</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div
+          style="margin-top:32px; padding:24px 28px; background:rgba(106,197,165,0.06); border:0.5px solid rgba(106,197,165,0.15); border-radius:4px;">
+          <div
+            style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:10px;">
+            How we used this matrix</div>
+          <p style="font-size:13px; color:var(--muted); line-height:1.7;">By combining concepts across different
+            columns, we generated 30+ unique conceptual combinations — each suggesting a different visual direction. The
+            strongest combinations (Growth + Intersection + Spectrum; Convergence + Branches + Path) directly influenced
+            the final logo concept of an organic form that both divides and unites.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     05 — SKETCH EXPLORATIONS
+═══════════════════════════════════ -->
+  <div class="chapter" style="padding-top: 40px;">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">05</span> Ideation — Sketch Phase</div>
+      <h2 class="ch-heading reveal">Sketch Explorations</h2>
+      <p class="ch-sub reveal">Armed with the conceptual directions from both methods, we generated over 40 logo
+        sketches — exploring abstract organic forms, geometric systems, typographic marks, and symbolic icons before
+        narrowing to five strong directions.</p>
+
+      <div class="reveal" style="margin-bottom: 64px;">
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-family: var(--fd); font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 12px;">Round
+            1 — Word Cloud Sketches</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 680px;">The first round of
+            sketching directly responded to the raw word cloud associations. Concepts explored
+            included balance marks (scales), concentric systems, eye forms, overlapping letter-forms, dot-network
+            patterns, and fluid organic shapes. All sketches were kept in black and white to focus on form without the
+            distraction of colour.</p>
+        </div>
+
+        <!-- Main sketch photo -->
+        <div class="sketch-main-photo"
+          style="display: flex; align-items: center; justify-content: center; margin: 0 -80px;">
+          <img src="Sketch Exploration/1.png" alt="Round 1 — Word Cloud Sketches"
+            style="width: 100%; height: auto; display: block; filter: grayscale(1) contrast(4) invert(1); mix-blend-mode: screen; opacity: 0.95;">
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top: 80px;">
+        <div style="margin-bottom: 32px;">
+          <h3 style="font-family: var(--fd); font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 12px;">Round
+            2 — Dariel Fitzkee Sketches</h3>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 680px;">The second round used the
+            structured Fitzkee combinations as prompts. This produced more unexpected
+            directions — snowflake branching structures, interlocking puzzle forms, network nodes with edges, spiral
+            growth forms, and the concentric double-target motif. Several of these informed the final direction.</p>
+        </div>
+
+        <div class="sketch-main-photo"
+          style="display: flex; align-items: center; justify-content: center; margin: 0 -80px;">
+          <img src="Sketch Exploration/DARIEL.png" alt="Round 2 — Dariel Fitzkee Sketches"
+            style="width: 100%; height: auto; display: block; filter: grayscale(1) contrast(4) invert(1); mix-blend-mode: screen; opacity: 0.95;">
+        </div>
+      </div>
+
+      <!-- Selected sketches -->
+      <div class="sketch-selected-label reveal">Selected Sketches — Shortlisted 5</div>
+      <div class="sketch-selected reveal">
+        <div class="sketch-thumb"
+          style="background: transparent; position: relative; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+          <img src="Sketch Exploration/selected-1.png" alt="Organic Fluid Form"
+            style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; filter: invert(1); mix-blend-mode: screen;">
+          <div class="sk-label" style="position: absolute; bottom: 12px; left: 16px; color: #fff;">Organic Fluid Form
+          </div>
+        </div>
+        <div class="sketch-thumb"
+          style="background: transparent; position: relative; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+          <img src="Sketch Exploration/selected-2.png" alt="Snowflake Burst"
+            style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; filter: invert(1); mix-blend-mode: screen;">
+          <div class="sk-label" style="position: absolute; bottom: 12px; left: 16px; color: #fff;">Snowflake Burst</div>
+        </div>
+        <div class="sketch-thumb"
+          style="background: transparent; position: relative; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+          <img src="Sketch Exploration/selected-3.png" alt="Geometric Cross"
+            style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; filter: invert(1); mix-blend-mode: screen;">
+          <div class="sk-label" style="position: absolute; bottom: 12px; left: 16px; color: #fff;">Geometric Cross</div>
+        </div>
+        <div class="sketch-thumb"
+          style="background: transparent; position: relative; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+          <img src="Sketch Exploration/selected-4.png" alt="Wireframe Type"
+            style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; filter: invert(1); mix-blend-mode: screen;">
+          <div class="sk-label" style="position: absolute; bottom: 12px; left: 16px; color: #fff;">Wireframe Type</div>
+        </div>
+        <div class="sketch-thumb"
+          style="background: transparent; position: relative; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+          <img src="Sketch Exploration/selected-5.png" alt="Concentric Circles"
+            style="width: 100%; height: 100%; object-fit: contain; padding: 16px; box-sizing: border-box; filter: invert(1); mix-blend-mode: screen;">
+          <div class="sk-label" style="position: absolute; bottom: 12px; left: 16px; color: #fff;">Concentric Circles
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     06 — FONT EXPLORATIONS
+═══════════════════════════════════ -->
+  <div class="chapter tight-bottom" style="padding-top: 40px;">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">06</span> Research — Typography</div>
+      <h2 class="ch-heading reveal">Font Explorations</h2>
+      <p class="ch-sub reveal">Two strategic directions were evaluated for the typographic voice — a Serif/Sans pairing
+        for a more refined editorial feel, and a Sans/Sans pairing for a clean, contemporary system. Both were tested at
+        logo scale and body copy size.</p>
+
+      <div class="font-explore-grid reveal">
+        <!-- Option A -->
+        <div class="font-group">
+          <div class="fg-type-label">Primary Serif · Secondary Sans</div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0;">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 1<strong
+                style="display:block; margin-top:4px;">Gambarino + Neue Montreal</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Gambarino', serif; font-size: 32px; color: #fff; line-height: 1; display: block;">Gambarino</span>
+              <span
+                style="font-family:'Neue Montreal', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block;">Neue
+                Montreal</span>
+            </div>
+          </div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 2<strong
+                style="display:block; margin-top:4px;">Cormorant + Graphik</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Cormorant', serif; font-size: 32px; color: #fff; line-height: 1; display: block;">Cormorant</span>
+              <span
+                style="font-family:'Graphik', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block;">Graphik</span>
+            </div>
+          </div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 3<strong
+                style="display:block; margin-top:4px;">Gloock + Abel</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Gloock', serif; font-size: 32px; color: #fff; line-height: 1; display: block;">Gloock</span>
+              <span
+                style="font-family:'Abel', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block; letter-spacing: 0.02em;">Abel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Option B -->
+        <div class="font-group" style="background:var(--surface2);">
+          <div class="fg-type-label b">Primary Sans · Secondary Sans</div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0;">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 1<strong
+                style="display:block; margin-top:4px;">Archivo Black + Roboto</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Archivo Black', sans-serif; font-size: 32px; color: #fff; line-height: 1; display: block;">Archivo
+                Black</span>
+              <span
+                style="font-family:'Roboto', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block;">Roboto</span>
+            </div>
+          </div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 2<strong
+                style="display:block; margin-top:4px;">Lexend + Satoshi</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Lexend', sans-serif; font-weight:500; font-size: 32px; color: #fff; line-height: 1; display: block;">Lexend</span>
+              <span
+                style="font-family:'Satoshi', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block;">Satoshi</span>
+            </div>
+          </div>
+          <div class="font-item"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="font-item-meta" style="text-align: left; margin: 0;">Combination 3<strong
+                style="display:block; margin-top:4px;">Space Grotesk + Söhne</strong></div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+              <span
+                style="font-family:'Space Grotesk', sans-serif; font-weight:700; font-size: 32px; color: #fff; line-height: 1; display: block;">Space
+                Grotesk</span>
+              <span
+                style="font-family:'Söhne', sans-serif; font-size: 26px; color: #fff; line-height: 1; display: block; font-weight: 300;">Söhne</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+     07 — FINAL LOGO
+═══════════════════════════════════ -->
+  <div class="chapter tight-top">
+    <div class="chapter-inner">
+      <div class="ch-label reveal"><span class="ch-label-num">07</span> Identity Design</div>
+      <h2 class="ch-heading reveal">Final Logo</h2>
+      <p class="ch-sub reveal">The final logo is a synthesis of two selected directions, combining the organic fluid
+        form with elements of the custom typographic exploration. While the abstract shape carries forward the idea of
+        growth, transformation, and convergence, the typography subtly integrates influence from the developed custom
+        typeface, with the letter 'O' retained as a distinctive element. This integration creates a cohesive identity
+        that bridges form and type, reflecting both experimentation and refinement within the design process.</p>
+
+      <!-- Hero logo display -->
+      <div class="logo-hero-panel reveal">
+        <div class="logo-symbol"
+          style="width: 100%; max-width: 800px; margin: 0 auto; display: flex; justify-content: center;">
+          <img src="white (1) (1) (2).png" alt="Final Logo" style="max-width: 100%; height: auto; display: block;">
+        </div>
+        <p class="logo-rationale">The 'o' letterforms in the wordmark carry the colour story — cyan for guidance, yellow
+          for growth — acting as subtle anchors that connect the typography back to the icon's meaning.</p>
+      </div>
+
+      <!-- Logo rationale cards -->
+      <div class="three-col reveal" style="margin-top:2px;">
+        <div style="background:var(--surface); padding:40px 36px;">
+          <div
+            style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:16px;">
+            Form</div>
+          <p style="font-size:14px; font-weight:500; color:#fff; margin-bottom:12px; font-family:var(--fd);">Fission &
+            Germination</p>
+          <p style="font-size:13px; color:var(--muted); line-height:1.75;">The organic shape appears to simultaneously
+            split and grow — a cell dividing, a seed sprouting. Fluid structure reflects experimentation and
+            adaptability across four years of making.</p>
+        </div>
+        <div style="background:var(--surface2); padding:40px 36px;">
+          <div
+            style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--lime); margin-bottom:16px;">
+            Principle</div>
+          <p style="font-size:14px; font-weight:500; color:#fff; margin-bottom:12px; font-family:var(--fd);">Gestalt
+            Convergence</p>
+          <p style="font-size:13px; color:var(--muted); line-height:1.75;">Both the positive form and the negative space
+            within it imply convergence — multiple parts meeting at a centre. This mirrors how diverse departments come
+            together into one showcase.</p>
+        </div>
+        <div style="background:var(--surface); padding:40px 36px;">
+          <div
+            style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--cyan); margin-bottom:16px;">
+            Symbol</div>
+          <p style="font-size:14px; font-weight:500; color:#fff; margin-bottom:12px; font-family:var(--fd);">Transition
+            & Threshold</p>
+          <p style="font-size:13px; color:var(--muted); line-height:1.75;">The mark sits between states — not fully
+            split, not fully whole. This liminal quality perfectly captures the moment of graduation: no longer student,
+            not yet professional.</p>
+        </div>
+      </div>
+
+      <!-- Colour variations -->
+      <div
+        style="font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); margin:64px 0 16px; display:flex; align-items:center; gap:12px;"
+        class="reveal">
+        Colour Variations <span
+          style="flex:1; height:0.5px; background:var(--border); max-width:60px; display:block;"></span>
+      </div>
+
+      <!-- 3 colour variations: logo tinted to each palette colour, all on black bg -->
+      <div class="reveal" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;">
+        <!-- Teal: filter = brightness(0) + recolor to #6ac5a5 -->
+        <div class="logo-var-panel" style="background:#111; padding: 56px 32px;">
+          <img src="white (1) (1) (2).png"
+            style="width: 220px; height: auto;
+            filter: brightness(0) saturate(100%) invert(74%) sepia(25%) saturate(526%) hue-rotate(113deg) brightness(105%);" alt="Logo — Teal">
+          <span class="lv-name" style="color:#6ac5a5; margin-top:20px;">#6ac5a5 · Teal</span>
+        </div>
+
+        <!-- Lime: filter = brightness(0) + recolor to #e7e84a -->
+        <div class="logo-var-panel" style="background:#111; padding: 56px 32px;">
+          <img src="white (1) (1) (2).png"
+            style="width: 220px; height: auto;
+            filter: brightness(0) saturate(100%) invert(94%) sepia(44%) saturate(1200%) hue-rotate(11deg) brightness(106%);" alt="Logo — Lime">
+          <span class="lv-name" style="color:#e7e84a; margin-top:20px;">#e7e84a · Lime</span>
+        </div>
+
+        <!-- Cyan: filter = brightness(0) + recolor to #73d5e6 -->
+        <div class="logo-var-panel" style="background:#111; padding: 56px 32px;">
+          <img src="white (1) (1) (2).png"
+            style="width: 220px; height: auto;
+            filter: brightness(0) saturate(100%) invert(84%) sepia(18%) saturate(1010%) hue-rotate(162deg) brightness(104%);" alt="Logo — Cyan">
+          <span class="lv-name" style="color:#73d5e6; margin-top:20px;">#73d5e6 · Cyan</span>
+        </div>
+      </div>
+
+      <div
+        style="font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); margin:32px 0 16px; display:flex; align-items:center; gap:12px;"
+        class="reveal">
+        Monochrome Variations <span
+          style="flex:1; height:0.5px; background:var(--border); max-width:60px; display:block;"></span>
+      </div>
+
+      <!-- 2 monochrome variations: full white logo on dark, full black logo on white -->
+      <div class="reveal" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;">
+        <!-- White logo on dark -->
+        <div class="logo-var-panel" style="background:#0a0a0a; padding: 56px 32px;">
+          <img src="white (1) (1) (2).png" style="width: 220px; height: auto;
+            filter: brightness(0) invert(1);" alt="Logo — White">
+          <span class="lv-name" style="color:rgba(255,255,255,0.4); margin-top:20px;">White · On Dark</span>
+        </div>
+
+        <!-- Black logo on white -->
+        <div class="logo-var-panel" style="background:#ffffff; padding: 56px 32px;">
+          <img src="white (1) (1) (2).png" style="width: 220px; height: auto;
+            filter: brightness(0);" alt="Logo — Black">
+          <span class="lv-name" style="color:rgba(0,0,0,0.4); margin-top:20px;">Black · On Light</span>
+        </div>
+      </div>
+
+      <!-- End of Final Logo Content -->
+
+      <!-- Colour System (Merged) -->
+      <div style="margin-top: 96px;">
+        <h2 class="ch-heading reveal">Colour System</h2>
+        <p class="ch-sub reveal">The palette is built on a conceptual equation: Growth (yellow) + Guidance (cyan) =
+          Graduation (teal). Each colour carries meaning that extends beyond aesthetics into the brand narrative.</p>
+
+        <div class="colour-meaning reveal">
+          <div class="cm-card" style="background:#191f1c;">
+            <div class="cm-dot" style="background:var(--lime);"></div>
+            <h3>Growth</h3>
+            <p>Yellow represents curiosity, energy, learning, and personal evolution. The colour of the sun, of new
+              shoots, of intellectual spark — it is the student's journey.</p>
+            <div class="cm-equation" style="color:rgba(231,232,74,0.5);">#e7e84a · Lime Yellow</div>
+          </div>
+          <div class="cm-card" style="background:#161c20;">
+            <div class="cm-dot" style="background:var(--cyan);"></div>
+            <h3>Guidance</h3>
+            <p>Cyan symbolises clarity, direction, mentorship, and structure — the cool, clear light of the institution
+              and its faculty who shape the student's path toward mastery.</p>
+            <div class="cm-equation" style="color:rgba(115,213,230,0.5);">#73d5e6 · Cyan</div>
+          </div>
+          <div class="cm-card" style="background:#0e201a;">
+            <div class="cm-dot" style="background:var(--teal);"></div>
+            <h3>Graduation</h3>
+            <p>Formed through the union of yellow and cyan, teal represents balance, maturity, and transition. The
+              threshold colour — neither beginning nor end, but the transformative moment between.</p>
+            <div class="cm-equation" style="color:rgba(106,197,165,0.5);">#6ac5a5 · Teal</div>
+          </div>
+        </div>
+
+        <div class="colour-swatches reveal" style="margin-top:2px;">
+          <div class="csw" style="background:#6ac5a5;">
+            <span class="csw-name" style="color:#04342c;">Teal</span>
+            <span class="csw-hex" style="color:#04342c;">#6ac5a5</span>
+          </div>
+          <div class="csw" style="background:#e7e84a;">
+            <span class="csw-name" style="color:#412402;">Lime</span>
+            <span class="csw-hex" style="color:#412402;">#e7e84a</span>
+          </div>
+          <div class="csw" style="background:#73d5e6;">
+            <span class="csw-name" style="color:#042c53;">Cyan</span>
+            <span class="csw-hex" style="color:#042c53;">#73d5e6</span>
+          </div>
+          <div class="csw" style="background:#080808; border:0.5px solid #2a2a2a;">
+            <span class="csw-name" style="color:rgba(255,255,255,0.6);">Black</span>
+            <span class="csw-hex" style="color:rgba(255,255,255,0.3);">#000000</span>
+          </div>
+          <div class="csw" style="background:#ffffff;">
+            <span class="csw-name" style="color:#333;">White</span>
+            <span class="csw-hex" style="color:#666;">#ffffff</span>
+          </div>
+          <div class="csw" style="background:#4e4d4d;">
+            <span class="csw-name" style="color:rgba(255,255,255,0.7);">Gray</span>
+            <span class="csw-hex" style="color:rgba(255,255,255,0.35);">#4e4d4d</span>
+          </div>
+        </div>
+        <!-- End of Colour System -->
+
+        <!-- Typography System (Merged) -->
+        <div style="margin-top: 128px;">
+          <h2 class="ch-heading reveal">Typography System</h2>
+          <p class="ch-sub reveal">The type system uses Lexend — a font designed specifically for reading fluency — for
+            all
+            brand communications, with Satoshi as the warm, humanist companion for extended body copy.</p>
+
+          <!-- Selected -->
+          <div class="font-selected-wrap reveal"
+            style="padding: 32px 48px; margin: 24px 0; border-left: none; background: transparent;">
+            <h4 style="margin-bottom: 32px;">Selected Typography System</h4>
+            <div
+              style="font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:4px;">
+              Primary Sans · Secondary Sans</div>
+
+            <div
+              style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:32px; max-width: 800px;">
+
+              <!-- Lexend Column -->
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Bold</span>
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-weight:700; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Lexend</span>
+                </div>
+                <div style="width:100%; height:1px; background:rgba(255,255,255,0.1);"></div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Regular</span>
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-weight:400; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Lexend</span>
+                </div>
+                <div style="width:100%; height:1px; background:rgba(255,255,255,0.1);"></div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Light</span>
+                  <span
+                    style="font-family:'Lexend',sans-serif; font-weight:300; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Lexend</span>
+                </div>
+              </div>
+
+              <!-- Satoshi Column -->
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Bold</span>
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Satoshi</span>
+                </div>
+                <div style="width:100%; height:1px; background:rgba(255,255,255,0.1);"></div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Medium
+                    500</span>
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Satoshi</span>
+                </div>
+                <div style="width:100%; height:1px; background:rgba(255,255,255,0.1);"></div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-size:14px; color:var(--muted); font-weight:400;">Regular
+                  </span>
+                  <span
+                    style="font-family:'Satoshi',sans-serif; font-weight:400; font-size:32px; color:#fff; line-height:1; letter-spacing:-0.01em;">Satoshi</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="type-system reveal">
+            <div class="ts-card">
+              <div class="ts-label">Logo Typeface · Presentation Specification</div>
+              <div class="ts-big" style="margin-bottom: 24px;">
+                <img src="white (1) (1) (2).png" alt="Graduation Showcase Wordmark"
+                  style="max-width: 100%; height: auto; display: block;">
+              </div>
+              <p class="ts-detail" style="margin-top: 48px;">
+                <strong>LEXEND Regular</strong> — Leading: 36pts<br>
+                <strong>LEXEND Light</strong> — Logo Year Mark
+              </p>
+            </div>
+            <div class="ts-scale" style="background:var(--surface2);">
+              <div class="ts-label">Type Scale</div>
+              <div class="ts-scale-row">
+                <span class="ts-sample"
+                  style="font-family:'Bricolage Grotesque',sans-serif; font-size:36px; font-weight:700; color:#fff;">Display</span>
+                <span class="ts-meta">Lexend Bold · 36px+</span>
+              </div>
+              <div class="ts-scale-row">
+                <span class="ts-sample"
+                  style="font-family:'Lexend',sans-serif; font-size:24px; font-weight:500; color:rgba(255,255,255,0.8);">Heading</span>
+                <span class="ts-meta">Lexend Medium · 24px</span>
+              </div>
+              <div class="ts-scale-row">
+                <span class="ts-sample"
+                  style="font-family:'Lexend',sans-serif; font-size:18px; font-weight:400; color:rgba(255,255,255,0.7);">Subheading</span>
+                <span class="ts-meta">Lexend Regular · 18px</span>
+              </div>
+              <div class="ts-scale-row">
+                <span class="ts-sample"
+                  style="font-family:'Lexend',sans-serif; font-size:15px; font-weight:300; color:rgba(255,255,255,0.55);">Body
+                  copy runs here at comfortable reading size</span>
+                <span class="ts-meta">Satoshi · 15px</span>
+              </div>
+              <div class="ts-scale-row">
+                <span class="ts-sample"
+                  style="font-family:'Lexend',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.35);">LABEL
+                  / CAPTION TEXT</span>
+                <span class="ts-meta">10–11px · All caps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════
+     08 — COLLATERAL: PRINT
+═══════════════════════════════════ -->
+      <div class="chapter tight-bottom">
+        <div class="chapter-inner">
+          <div class="ch-label reveal"><span class="ch-label-num">08</span> Brand Applications</div>
+          <h2 class="ch-heading reveal">Print Collateral</h2>
+
+          <!-- GP Booklet -->
+          <div style="margin-bottom: 80px;">
+            <div class="coll-section-title reveal">GP Booklet</div>
+            <p class="coll-section-sub reveal">The graduation project booklet serves as the primary printed artefact of
+              the
+              event — a lasting catalogue of student work distributed to all attendees and industry guests.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">8 × 8 inch</span>
+              <span class="coll-spec">Square Format</span>
+              <span class="coll-spec">Hard Cover</span>
+              <span class="coll-spec">Per Department</span>
+            </div>
+            <div class="two-col reveal" style="gap: 16px;">
+              <div
+                style="min-height:400px; padding:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="GP&BM/gpcover.jpg" alt="GP Booklet — Cover Design"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </div>
+              <div
+                style="min-height:400px; padding:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="GP&BM/gpbook mockup.jpg" alt="GP Booklet — Mockup on table"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </div>
+            </div>
+
+            <!-- GP Booklet Flipbook -->
+            <div class="reveal" style="margin-top: 40px;">
+              <div
+                style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                Browse the Booklet
+                <span style="flex:1; height: 0.5px; background: rgba(255,255,255,0.1);"></span>
+                <span style="color: var(--muted); font-size: 10px;">Drag corners to flip pages</span>
+              </div>
+
+              <div id="gp-flipbook-wrap"
+                style="width:100%; display: flex; justify-content: center; align-items: center; background: #0d0d0d; padding: 48px 0; border-top: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06);">
+                <div id="gp-book" style="width: 100%; max-width: 900px;"></div>
+              </div>
+
+              <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px;">
+                <button id="gp-prev" onclick="gpFlipbook.flipPrev()"
+                  style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
+                  onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
+                  onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">←
+                  Prev</button>
+                <span id="gp-page-counter"
+                  style="font-size: 11px; color: var(--muted); letter-spacing: 0.08em; min-width: 80px; text-align: center;">1
+                  / 18</span>
+                <button id="gp-next" onclick="gpFlipbook.flipNext()"
+                  style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
+                  onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
+                  onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">Next
+                  →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brand Manual -->
+          <div style="margin-bottom: 80px;">
+            <div class="coll-section-title reveal">Brand Manual</div>
+            <p class="coll-section-sub reveal">A comprehensive identity guidelines document that ensures consistent
+              brand
+              application across all departments and touchpoints.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">8 × 8 inch</span>
+              <span class="coll-spec">Square Format</span>
+              <span class="coll-spec">Hard Cover</span>
+              <span class="coll-spec">Brand Guidelines</span>
+            </div>
+            <div class="two-col reveal" style="gap: 16px;">
+              <div
+                style="min-height:400px; padding:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="GP&BM/bmcover1.png" alt="Brand Manual — Cover Design"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </div>
+              <div
+                style="min-height:400px; padding:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="GP&BM/brand manual mockup.jpg" alt="Brand Manual — Physical Mockup"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              </div>
+            </div>
+
+            <!-- Brand Manual Flipbook -->
+            <div class="reveal" style="margin-top: 40px;">
+              <div
+                style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+                Browse the Book
+                <span style="flex:1; height: 0.5px; background: rgba(255,255,255,0.1);"></span>
+                <span style="color: var(--muted); font-size: 10px;">Drag corners to flip pages</span>
+              </div>
+
+              <div id="bm-flipbook-wrap"
+                style="width:100%; display: flex; justify-content: center; align-items: center; background: #0d0d0d; padding: 48px 0; border-top: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06);">
+                <div id="bm-book" style="width: 100%; max-width: 900px;"></div>
+              </div>
+
+              <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px;">
+                <button id="bm-prev" onclick="bmFlipbook.flipPrev()"
+                  style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
+                  onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
+                  onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">←
+                  Prev</button>
+                <span id="bm-page-counter"
+                  style="font-size: 11px; color: var(--muted); letter-spacing: 0.08em; min-width: 80px; text-align: center;">1
+                  / 40</span>
+                <button id="bm-next" onclick="bmFlipbook.flipNext()"
+                  style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
+                  onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
+                  onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">Next
+                  →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Event Poster -->
+          <div>
+            <div class="coll-section-title reveal">Event Poster</div>
+            <p class="coll-section-sub reveal">A4 department-specific posters for each of the seven graduation show
+              events,
+              maintaining brand consistency while accommodating department-specific event details.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">A4</span>
+              <span class="coll-spec">210 × 297 mm</span>
+              <span class="coll-spec">7 Variants</span>
+              <span class="coll-spec">Digital + Print</span>
+            </div>
+            <div class="two-col reveal" style="gap: 40px; justify-items: center; max-width: 900px; margin: 0 auto;">
+              <div class="photo-placeholder"
+                style="width:100%; max-width:380px; min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="untitled folder/poster 1.jpg" alt="Event Poster Design 1"
+                  style="width:100%; height:auto; display:block;">
+              </div>
+              <div class="photo-placeholder"
+                style="width:100%; max-width:380px; min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="untitled folder/poster 2.jpg" alt="Event Poster Design 2"
+                  style="width:100%; height:auto; display:block;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Invitation Card -->
+          <div style="margin-top: 80px;">
+            <div class="coll-section-title reveal">Invitation Card</div>
+            <p class="coll-section-sub reveal">Bilingual formal invitation for the chief guest,
+              faculty, and industry partners. Dark card stock with teal logo and botanical pattern border.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">Bilingual</span>
+              <span class="coll-spec">A5 Card</span>
+              <span class="coll-spec">Dark Card Stock</span>
+            </div>
+            <div class="reveal" style="display:flex; justify-content:center;">
+              <div class="photo-placeholder"
+                style="width:100%; max-width:500px; min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="untitled folder/invitation.jpg" alt="Invitation Card Design"
+                  style="width:100%; height:auto; display:block;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Auditorium Backdrop -->
+          <div style="margin-top: 80px;">
+            <div class="coll-section-title reveal">Auditorium Backdrop</div>
+            <p class="coll-section-sub reveal">Wide-format event backdrop for the main auditorium stage — featuring the
+              logo, bilingual event title, and department name. The brand pattern corners frame the composition.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">Wide Format</span>
+              <span class="coll-spec">Main Stage</span>
+              <span class="coll-spec">Bilingual Title</span>
+            </div>
+            <div class="photo-placeholder reveal"
+              style="min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+              <img src="untitled folder/auditorium backdrop_page-0001 (1).jpg" alt="Auditorium Backdrop Design"
+                style="width:100%; height:auto; display:block;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════
+     09 — COLLATERAL: STANDEES
+═══════════════════════════════════ -->
+      <div class="chapter tight-top">
+        <div class="chapter-inner">
+          <div class="ch-label reveal"><span class="ch-label-num">09</span> Brand Applications</div>
+          <h2 class="ch-heading reveal">Roll-up Standees</h2>
+          <p class="ch-sub reveal">Seven department-specific standees designed for the event entrance and display areas.
+            Each standee carries the shared brand system while featuring the individual department's show title and
+            programme details.</p>
+          <div class="coll-spec-row reveal">
+            <span class="coll-spec highlight">7 Standees</span>
+            <span class="coll-spec">One per Department</span>
+            <span class="coll-spec">Roll-up Format</span>
+            <span class="coll-spec">850 × 2000 mm</span>
+          </div>
+
+          <div class="coll-section-title reveal" style="font-size:16px; margin-bottom:16px;">Standee Designs
+          </div>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:48px;"
+            class="reveal">
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/bft standee.png" alt="Flat — Technova"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/standee td.png" alt="Flat — Tantu"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/kd standee.png" alt="Flat — Knitmoda"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/fd standee.png" alt="Flat — Fashionova"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <!-- Row 2: 3 centred -->
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/standee fc.png" alt="Flat — Communiqué"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/mfm standee.png" alt="Flat — Bottom Line"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+            <div class="photo-placeholder"
+              style="flex: 0 0 calc(25% - 10px); min-height:560px; padding:0; overflow:hidden; background:transparent; border:none;">
+              <img src="standees/flat standees/mdes standee.png" alt="Flat — Mishran"
+                style="width:100%; height:100%; object-fit:contain; display:block;">
+            </div>
+          </div>
+
+          <div class="coll-section-title reveal" style="font-size:16px; margin-bottom:16px; margin-top: 120px;">Standee
+            Mockups</div>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;" class="reveal">
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/bft mockup.jpg" alt="Technova 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/td mockup.jpg" alt="Tantu 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/kd mockup.jpg" alt="Knitmoda 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/fd mockup.jpg" alt="Fashionova 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <!-- Row 2: 3 centred -->
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/fc mockup.jpg" alt="Communiqué 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/mfm mockup.jpg" alt="Bottom Line 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+            <div class="photo-placeholder no-pattern"
+              style="flex: 0 0 calc(25% - 10px); min-height:580px; padding:0; overflow:hidden;">
+              <img src="standees/mockups/mdes mockup.jpg" alt="Mishran 2026 Standee"
+                style="width:100%; height:100%; object-fit:cover; display:block; mix-blend-mode:multiply;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════
+     10 — COLLATERAL: MERCHANDISE
+═══════════════════════════════════ -->
+      <div class="chapter tight-bottom">
+        <div class="chapter-inner">
+          <h2 class="ch-heading reveal">Merchandise & Event Items</h2>
+
+          <!-- Badges -->
+          <div style="margin-bottom:64px;">
+            <div class="coll-section-title reveal">Pin Badges</div>
+            <p class="coll-section-sub reveal">Round pin badges in three colourway variants — Teal, Lime, and White —
+              featuring the iconic 'O' and year mark.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">4 cm Diameter</span>
+              <span class="coll-spec">3 Colourways</span>
+              <span class="coll-spec">Pin-back Button</span>
+            </div>
+
+            <!-- Badge Designs - Flat -->
+            <div class="coll-section-title reveal"
+              style="font-size:15px; margin-bottom:12px; margin-top:32px; color:#fff;">Badge Designs
+            </div>
+            <div class="three-col reveal" style="gap:20px; margin-bottom:40px;">
+              <div class="photo-placeholder"
+                style="min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="badges/badge 1.png" alt="Badge Design — Teal" style="width:100%; height:auto; display:block;">
+              </div>
+              <div class="photo-placeholder"
+                style="min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="badges/badge 2.png" alt="Badge Design — Lime" style="width:100%; height:auto; display:block;">
+              </div>
+              <div class="photo-placeholder"
+                style="min-height:auto; padding:0; overflow:hidden; border:none; background:transparent;">
+                <img src="badges/badge 3.png" alt="Badge Design — White"
+                  style="width:100%; height:auto; display:block;">
+              </div>
+            </div>
+
+            <!-- Badge Mockups -->
+            <div class="coll-section-title reveal" style="font-size:15px; margin-bottom:12px; color:#fff;">
+              Badge Mockups</div>
+            <div class="three-col reveal" style="gap:20px;">
+              <div class="photo-placeholder no-pattern" style="min-height:auto; padding:0; overflow:hidden;">
+                <img src="badges/MOCKUPS/BADGE1M.png" alt="Badge Mockup 1"
+                  style="width:100%; height:auto; display:block; transform: scale(1.4);">
+              </div>
+              <div class="photo-placeholder no-pattern" style="min-height:auto; padding:0; overflow:hidden;">
+                <img src="badges/MOCKUPS/BADGE2M.png" alt="Badge Mockup 2"
+                  style="width:100%; height:auto; display:block; transform: scale(1.4);">
+              </div>
+              <div class="photo-placeholder no-pattern" style="min-height:auto; padding:0; overflow:hidden;">
+                <img src="badges/MOCKUPS/BADGE3M.png" alt="Badge Mockup 3"
+                  style="width:100%; height:auto; display:block; transform: scale(1.4);">
+              </div>
+            </div>
+          </div>
+
+          <!-- T-Shirt + Tote -->
+          <div class="two-col" style="gap:40px;">
+            <div>
+              <div class="coll-section-title reveal">Polo T-Shirt</div>
+              <p class="coll-section-sub reveal">Volunteer and staff uniform — black polo with teal logo mark on the
+                left
+                chest. The restraint of placement reflects the brand's confident minimalism.</p>
+              <div class="coll-spec-row reveal">
+                <span class="coll-spec highlight">Left Chest</span>
+                <span class="coll-spec">Black Polo</span>
+                <span class="coll-spec">Volunteer Uniform</span>
+              </div>
+              <div class="photo-placeholder no-pattern reveal"
+                style="height:clamp(420px, 60vw, 600px); padding: 0; overflow: hidden; align-items: center; justify-content: center;">
+                <img src="merchandise&eventschedule/tshirtmockup.jpg" alt="Polo T-Shirt Mockup"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block; mix-blend-mode: multiply; transform: scale(1.08); transform-origin: 50% 35%;">
+              </div>
+            </div>
+
+            <div>
+              <div class="coll-section-title reveal">Canvas Tote Bag</div>
+              <p class="coll-section-sub reveal">Natural canvas tote with horizontal logo lockup — distributed as a
+                takeaway
+                to guests, carrying the brand into everyday life beyond the event.</p>
+              <div class="coll-spec-row reveal">
+                <span class="coll-spec highlight">Canvas</span>
+                <span class="coll-spec">Horizontal Lockup</span>
+                <span class="coll-spec">Guest Takeaway</span>
+              </div>
+              <div class="photo-placeholder no-pattern reveal"
+                style="height:clamp(420px, 60vw, 600px); padding: 0; overflow: hidden; align-items: center; justify-content: center;">
+                <img src="merchandise&eventschedule/totebag.jpg" alt="Tote Bag Mockup"
+                  style="width: 100%; height: 100%; object-fit: cover; display: block; mix-blend-mode: multiply;">
+              </div>
+            </div>
+          </div>
+
+          <!-- End of Merchandise Applications -->
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════
+     11 — DIGITAL / SOCIAL MEDIA
+═══════════════════════════════════ -->
+      <div class="chapter tight-top">
+        <div class="chapter-inner">
+          <h2 class="ch-heading reveal">Digital & Social Media</h2>
+          <p class="ch-sub reveal">The brand extends across Instagram feed posts and story formats — maintaining
+            typographic
+            consistency while leveraging the motion possibilities of digital to build event anticipation.</p>
+
+          <!-- Feed Posts -->
+          <div style="margin-bottom:64px;">
+            <div class="coll-section-title reveal">Instagram Feed Posts</div>
+            <p class="coll-section-sub reveal">Four content types: invitation announcement, programme schedule, animated
+              logo reveal, and brand introduction post. All use the dark background palette with teal/lime/cyan accents.
+            </p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">1080 × 1350 px</span>
+              <span class="coll-spec">4:5 Format</span>
+              <span class="coll-spec">@niftkannur</span>
+            </div>
+            <div class="four-col reveal" style="gap:16px;">
+              <div class="photo-placeholder no-pattern"
+                style="min-height:360px; aspect-ratio:4/5; padding:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="SOCIAL%20MEDIA/INSTA%20POST/1.jpg" alt="Instagram Feed Post 1 — Invitation"
+                  style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+              </div>
+              <div class="photo-placeholder no-pattern"
+                style="min-height:360px; aspect-ratio:4/5; padding:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="SOCIAL%20MEDIA/INSTA%20POST/2.jpg" alt="Instagram Feed Post 2 — Programme"
+                  style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+              </div>
+              <div class="photo-placeholder no-pattern"
+                style="min-height:360px; aspect-ratio:4/5; padding:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="SOCIAL%20MEDIA/INSTA%20POST/3.jpg" alt="Instagram Feed Post 3 — Countdown"
+                  style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+              </div>
+              <div class="photo-placeholder no-pattern"
+                style="min-height:360px; aspect-ratio:4/5; padding:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="SOCIAL%20MEDIA/INSTA%20POST/4.jpg" alt="Instagram Feed Post 4 — Brand Intro"
+                  style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Stories -->
+          <div>
+            <div class="coll-section-title reveal">Instagram Stories</div>
+            <p class="coll-section-sub reveal">Story frames with the brand's pixel-pattern border in teal, lime, and
+              cyan —
+              designed for event coverage, BTS content, and runway photography.</p>
+            <div class="coll-spec-row reveal">
+              <span class="coll-spec highlight">1080 × 1920 px</span>
+              <span class="coll-spec">9:16 Format</span>
+              <span class="coll-spec">Pattern Border Frame</span>
+            </div>
+            <div class="three-col reveal" style="gap: 16px;">
+              <div class="photo-placeholder"
+                style="min-height:420px; padding: 14px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent; border: none;">
+                <img src="SOCIAL%20MEDIA/INSTA%20STORY/social%20media%201.png" alt="Story 1"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <div class="photo-placeholder"
+                style="min-height:420px; padding: 14px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent; border: none;">
+                <img src="SOCIAL%20MEDIA/INSTA%20STORY/social%20media%202.png" alt="Story 2"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <div class="photo-placeholder"
+                style="min-height:420px; padding: 14px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: transparent; border: none;">
+                <img src="SOCIAL%20MEDIA/INSTA%20STORY/social%20media%20frame%20final%201.png" alt="Story 3"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      <!-- FOOTER -->
+      <footer class="project-footer">
+        <div class="pfoot-left">
+          <h2 style="color: var(--teal);">Graduation Showcase 2026</h2>
+          <p>Branding & Promotion<br>Team: Amokh, Malavika, Rehan, Samrudhhi</p>
+        </div>
+      </footer>
+
+
+      <script src="graduation-portfolio.js"></script>
+
+      <!-- StPageFlip Library -->
+      <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+      <script>
+        window.addEventListener('load', function () {
+          var PF = window.St && window.St.PageFlip;
+          if (!PF) return;
+
+          var vw = window.innerWidth;
+          var isMobile = vw < 768;
+
+          // 1. BRAND MANUAL FLIPBOOK (40 Pages)
+          var bmBookEl = document.getElementById('bm-book');
+          if (bmBookEl) {
+            var bmFlipbook = new PF(bmBookEl, {
+              width: 800,
+              height: 800,
+              size: 'stretch',
+              minWidth: 300,
+              maxWidth: 1000,
+              minHeight: 300,
+              maxHeight: 1000,
+              showCover: true,
+              drawShadow: true,
+              maxShadowOpacity: 0.3,
+              usePortrait: isMobile,
+              mobileScrollSupport: true
+            });
+
+            var bmImages = [
+              "GP&BM/bmcover1.png",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0002.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0003.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0004.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0005.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0006.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0007.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0008.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0009.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0010.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0011.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0012.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0013.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0014.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0015.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0016.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0017.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0018.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0019.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0020.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0021.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0022.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0023.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0024.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0025.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0026.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0027.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0028.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0029.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0030.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0031.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0032.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0033.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0034.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0035.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0036.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0037.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0038.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0039.jpg",
+              "GP&BM/bmjpg/BRAND MANUAL_page-0040.jpg"
+            ];
+
+            bmImages.forEach(function (src) {
+              var div = document.createElement('div');
+              div.className = 'pf-page';
+              div.style.backgroundColor = 'transparent';
+              var img = document.createElement('img');
+              img.src = src;
+              img.style.width = '100%';
+              img.style.height = '100%';
+              img.style.objectFit = 'contain';
+              div.appendChild(img);
+              bmBookEl.appendChild(div);
+            });
+
+            bmFlipbook.loadFromHTML(bmBookEl.querySelectorAll('.pf-page'));
+            window.bmFlipbook = bmFlipbook;
+            bmFlipbook.on('flip', function (e) {
+              var counter = document.getElementById('bm-page-counter');
+              var p = e.data;
+              // When turning to front cover (0) or back cover, calculate visually appropriate page numbers
+              if (p === 0) p = 1;
+              if (counter) counter.textContent = p + ' / 40';
+            });
+          }
+
+          // 2. GP BOOKLET FLIPBOOK (18 Pages)
+          var gpBookEl = document.getElementById('gp-book');
+          if (gpBookEl) {
+            var gpFlipbook = new PF(gpBookEl, {
+              width: 800,
+              height: 800,
+              size: 'stretch',
+              minWidth: 300,
+              maxWidth: 1000,
+              minHeight: 300,
+              maxHeight: 1000,
+              showCover: true,
+              drawShadow: true,
+              maxShadowOpacity: 0.3,
+              usePortrait: isMobile,
+              mobileScrollSupport: true
+            });
+
+            var gpImages = [];
+            for (var i = 1; i <= 18; i++) {
+              var num = (i < 10 ? '0' : '') + (i < 100 && i >= 10 ? '0' : '') + i;
+              num = i.toString().padStart(4, '0');
+              gpImages.push("GP&BM/GPBOOKJPG/GPBOOK_page-" + num + ".jpg");
+            }
+
+            // Use the newly provided cover image for the front of the flipbook
+            if (gpImages.length > 0) {
+              gpImages[0] = "GP&BM/gpcover.jpg";
+            }
+
+            gpImages.forEach(function (src) {
+              var div = document.createElement('div');
+              div.className = 'pf-page';
+              div.style.backgroundColor = 'transparent';
+              var img = document.createElement('img');
+              img.src = src;
+              img.style.width = '100%';
+              img.style.height = '100%';
+              img.style.objectFit = 'contain';
+              div.appendChild(img);
+              gpBookEl.appendChild(div);
+            });
+
+            gpFlipbook.loadFromHTML(gpBookEl.querySelectorAll('.pf-page'));
+            window.gpFlipbook = gpFlipbook;
+
+            gpFlipbook.on('flip', function (e) {
+              var counter = document.getElementById('gp-page-counter');
+              var p = e.data;
+              if (p === 0) p = 1;
+              if (counter) counter.textContent = p + ' / 18';
+            });
+          }
+        });
+      </script>
+
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+
+            // Close when clicking a link
+            const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="book" style="width: 400px; height: 400px; background: red;"></div>
+  <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+  <script>
+    var pf = new St.PageFlip(document.getElementById('book'), {
+      width: 400, height: 400, showCover: true
+    });
+    pf.loadFromImages(['pattern.png','pattern.png','pattern.png','pattern.png']);
+    setTimeout(() => {
+        // Output canvas properties or look for white
+    }, 1000);
+  </script>
+</body>
+</html>
