@@ -1203,6 +1203,212 @@ body::after {
     padding: 8px 10px;
   }
 }
+
+/* ── PHONE-SPECIFIC — max 640px ── */
+@media (max-width: 640px) {
+
+  /* Hero section */
+  .hero {
+    min-height: 70vh;
+    padding: 80px 20px 40px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 10vw, 64px);
+    line-height: 1.08;
+  }
+
+  /* Chapters */
+  .chapter,
+  .collateral-chapter {
+    padding: 48px 16px;
+  }
+
+  .chapter-inner {
+    max-width: 100%;
+  }
+
+  .ch-heading {
+    font-size: clamp(22px, 7vw, 36px);
+    line-height: 1.2;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  .ch-sub {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* Stats row → 1 col on very small */
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 32px 20px;
+  }
+
+  .stat-num {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  /* Competitor cards */
+  .competitor-row,
+  .competitor-row-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .competitor-card {
+    border-radius: 0;
+  }
+
+  .competitor-body {
+    padding: 20px 16px;
+  }
+
+  /* Brief grid */
+  .brief-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .brief-card {
+    padding: 24px 20px;
+  }
+
+  /* Wordcloud */
+  .wordcloud-wrap {
+    padding: 32px 16px;
+  }
+
+  .wordcloud-photo {
+    min-height: 280px;
+    margin: 0;
+  }
+
+  .wordcloud-photo img {
+    transform: none !important;
+    max-width: 100%;
+  }
+
+  /* Fitzkee table → horizontally scrollable */
+  .fitzkee-wrap {
+    padding: 32px 16px;
+    overflow-x: auto;
+  }
+
+  .fitzkee-table {
+    font-size: 10px;
+    min-width: 480px;
+  }
+
+  .fitzkee-table th,
+  .fitzkee-table td {
+    padding: 8px 8px;
+    white-space: nowrap;
+  }
+
+  /* Sketch explorations */
+  .sketch-main-photo {
+    min-height: 200px;
+    margin: 0 -16px;
+  }
+
+  .sketch-selected {
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .sketch-thumb {
+    min-height: 140px;
+  }
+
+  /* Font explorations */
+  .font-explore-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .font-group {
+    padding: 28px 20px;
+  }
+
+  /* Logo section */
+  .logo-hero-panel {
+    min-height: 360px;
+    padding: 40px 16px;
+  }
+
+  /* Colour system */
+  .colour-swatches {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .colour-meaning {
+    grid-template-columns: 1fr;
+  }
+
+  .cm-card {
+    padding: 32px 20px;
+  }
+
+  /* Typography system */
+  .type-system {
+    grid-template-columns: 1fr;
+  }
+
+  .ts-card,
+  .ts-scale {
+    padding: 32px 20px;
+  }
+
+  .ts-big {
+    font-size: clamp(40px, 12vw, 72px);
+  }
+
+  /* Three-col grids */
+  .three-col {
+    grid-template-columns: 1fr;
+  }
+
+  /* Key takeaways / inline grids */
+  div[style*="grid-template-columns:repeat(3,1fr)"],
+  div[style*="grid-template-columns: repeat(3,1fr)"],
+  div[style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Section divider */
+  .section-divider {
+    margin: 0 16px;
+  }
+
+  /* Collateral chapter */
+  .coll-section-title {
+    font-size: 24px;
+  }
+
+  .coll-section-sub {
+    font-size: 13px;
+  }
+
+  /* Project footer */
+  .project-footer {
+    padding: 32px 16px 24px;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pfoot-left h2 {
+    font-size: 28px;
+  }
+
+  .pfoot-left p {
+    font-size: 14px;
+  }
+}
 /* Flipbook empty page fix */
 .st-page {
   background-color: transparent !important;

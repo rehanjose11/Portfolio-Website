@@ -166,14 +166,19 @@ body::before {
 @media (max-width: 768px) {
     .skip-button {
         bottom: 32px;
-        font-size: 10.4px;
-        padding: 6.4px 12.8px;
+        font-size: 10px;
+        padding: 6px 14px;
+        /* Ensure it's always tappable */
+        z-index: 10001;
+        pointer-events: auto !important;
     }
 
     .loader-text {
-        font-size: clamp(24px, 8vw, 48px);
-        padding: 0 16px;
+        font-size: clamp(18px, 6vw, 32px);
+        padding: 0 24px;
         text-align: center;
+        white-space: normal;
+        max-width: 90vw;
     }
 }
 
@@ -696,33 +701,78 @@ body::before {
 
 @media (max-width: 640px) {
     .hero-section {
-        padding: 96px 24px 64px;
+        padding: 96px 24px 80px;
     }
 
-    .photo-wrapper,
-    .hero-image .profile-photo {
-        width: 300px;
-        height: 300px;
+    /* ── MOBILE: re-order all hero elements into a single centered block ── */
+    .hero-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 16px;
+        min-height: auto;
     }
 
-    .hero-quote-right p {
-        font-size: 12.8px;
+    /* Force all hero children out of absolute positioning */
+    .hero-welcome-left,
+    .hero-skills-left,
+    .hero-image,
+    .hero-quote-right,
+    .hero-name-right {
+        position: static !important;
+        transform: none !important;
+        text-align: center !important;
+        align-items: center !important;
+        bottom: auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        opacity: 1 !important;
     }
+
+    /* Stack order: name → image → skills → quote → malayalam */
+    .hero-welcome-left { order: 5; }
+    .hero-image        { order: 1; }
+    .hero-name-right   { order: 2; }
+    .hero-skills-left  { order: 3; }
+    .hero-quote-right  { order: 4; max-width: 100%; }
 
     .hero-name-right h1 {
-        font-size: clamp(32px, 12vw, 56px);
+        font-size: clamp(36px, 12vw, 56px);
+        text-align: center;
+        align-self: center;
     }
 
     .hero-skills-left p {
         font-size: 0.875rem;
+        text-align: center;
+    }
+
+    .hero-quote-right p {
+        font-size: 13px;
+        text-align: center;
     }
 
     .malayalam-text {
-        font-size: clamp(1.5rem, 8vw, 2rem);
+        font-size: clamp(1.4rem, 7vw, 1.8rem);
+        text-align: center;
     }
 
+    .welcome-subtitle {
+        text-align: center;
+        transform: none;
+    }
+
+    .photo-wrapper,
+    .hero-image .profile-photo {
+        width: 240px;
+        height: 240px;
+    }
+
+    /* Push the scroll-down indicator well below the content block */
     .swipe-indicator {
-        bottom: 2rem;
+        bottom: 1rem;
+        position: absolute;
     }
 }
 
@@ -1198,6 +1248,14 @@ body::before {
         font-size: 14px;
     }
 
+    /* Fix project description word-wrap: no unwanted breaks mid-word */
+    .project-description {
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: none;
+        font-size: 13px;
+    }
+
     .category-dropdown-wrapper {
         min-width: unset;
         width: 100%;
@@ -1322,6 +1380,13 @@ body::before {
     max-width: 520px;
     padding-bottom: 24px;
     /* Added padding under description */
+}
+
+@media (max-width: 768px) {
+    .contact-subtext {
+        margin-top: 12px;
+        font-size: 13px;
+    }
 }
 
 /* --- Email CTA --- */

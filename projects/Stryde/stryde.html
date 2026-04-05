@@ -819,6 +819,261 @@
         a.fixed.top-6 {
             font-family: 'Space Mono', monospace !important;
         }
+
+        /* ══════════════════════════════════════════
+           MOBILE RESPONSIVE — all changes below are
+           ONLY applied on screens ≤ 768px
+        ══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* ── Cover ── */
+            .cover {
+                padding: 80px 24px 48px;
+                justify-content: flex-end;
+            }
+
+            .cover-center {
+                position: static;
+                transform: none;
+                margin-bottom: 32px;
+            }
+
+            .cover-title {
+                font-size: clamp(64px, 18vw, 120px);
+                line-height: 0.9;
+            }
+
+            .cover-sub {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .cover-sub p {
+                font-size: 14px;
+                max-width: 100%;
+            }
+
+            .cover-meta {
+                margin-left: 0;
+                text-align: left;
+            }
+
+            .cover-line {
+                left: 24px;
+                right: 24px;
+            }
+
+            /* ── Base section padding ── */
+            section {
+                padding: 64px 24px;
+            }
+
+            /* ── Two-col layouts → single column ── */
+            .two-col,
+            .two-col-narrow {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            /* ── Body text ── */
+            .body {
+                font-size: 14px;
+            }
+
+            /* ── Stat row ── */
+            .stat-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .stat {
+                padding: 28px 0;
+                border-right: none;
+                border-bottom: 1px solid var(--mid);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .stat-num {
+                font-size: 60px;
+            }
+
+            /* ── Comparison table → horizontally scrollable ── */
+            .compare,
+            section[style*="padding: 120px 120px"] {
+                padding: 64px 24px !important;
+            }
+
+            .compare-grid {
+                grid-template-columns: 120px repeat(3, 1fr);
+                overflow-x: auto;
+                display: block;
+                width: 100%;
+            }
+
+            /* Make comparison table scroll nicely */
+            .compare-grid {
+                display: grid;
+                grid-template-columns: 110px repeat(3, minmax(90px, 1fr));
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                font-size: 13px;
+            }
+
+            .compare-cell {
+                padding: 14px 10px;
+                font-size: 12px;
+            }
+
+            .compare-header {
+                font-size: 14px;
+            }
+
+            /* ── Big text ── */
+            .big-text {
+                font-size: clamp(24px, 6vw, 40px);
+            }
+
+            /* ── Pull quote ── */
+            .pullquote {
+                padding: 60px 24px;
+            }
+
+            .pullquote p {
+                font-size: clamp(22px, 5vw, 36px);
+            }
+
+            /* ── Principles grid → 1 col ── */
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principle {
+                padding: 32px 24px;
+            }
+
+            .principle-num {
+                font-size: 56px;
+            }
+
+            /* ── Zone sections ── */
+            .zone {
+                padding: 48px 24px 64px;
+            }
+
+            .zone-inner,
+            .zone-inner.flip {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                direction: ltr;
+            }
+
+            .zone-inner.flip > * {
+                direction: ltr;
+            }
+
+            .zone-num {
+                font-size: 72px;
+            }
+
+            .zone-title {
+                font-size: 28px;
+            }
+
+            /* ── Process strip ── */
+            .process-strip {
+                padding: 60px 24px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                border-right: none;
+                border-bottom: 1px solid var(--mid);
+                padding: 28px 0;
+            }
+
+            .step:last-child {
+                border-bottom: none;
+            }
+
+            /* ── Reflection grid → 1 col ── */
+            .reflection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reflection-cell {
+                padding: 32px 24px;
+            }
+
+            /* ── End section ── */
+            .end {
+                padding: 60px 24px;
+            }
+
+            .end-title {
+                font-size: clamp(52px, 14vw, 96px);
+            }
+
+            .end-meta {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            /* ── Secondary research 3-col grid → 1 col ── */
+            div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* ── Social listening 2-col → 1 col ── */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* ── Stat number in research cards ── */
+            div[style*="font-size: 72px"] {
+                font-size: 52px !important;
+            }
+
+            /* ── Nav float dots — hide on small screens ── */
+            .nav-float {
+                display: none;
+            }
+
+            /* ── Process carousel ── */
+            .process-carousel-item {
+                flex: 0 0 90vw;
+            }
+
+            /* ── Carousel band ── */
+            .carousel-img {
+                height: 200px;
+            }
+
+            /* ── Floor plan section ── */
+            section[style*="padding: 0"] {
+                padding: 0 !important;
+            }
+        }
+
+        /* Extra-small screens */
+        @media (max-width: 480px) {
+            .cover-title {
+                font-size: clamp(52px, 16vw, 88px);
+            }
+
+            .stat-num {
+                font-size: 48px;
+            }
+
+            .zone-num {
+                font-size: 56px;
+            }
+        }
     </style>
 </head>
 
