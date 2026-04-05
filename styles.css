@@ -730,12 +730,12 @@ body::before {
         opacity: 1 !important;
     }
 
-    /* Stack order: name → image → skills → quote → malayalam */
-    .hero-welcome-left { order: 5; }
-    .hero-image        { order: 1; }
-    .hero-name-right   { order: 2; }
-    .hero-skills-left  { order: 3; }
-    .hero-quote-right  { order: 4; max-width: 100%; }
+    /* Stack order: malayalam → image → name → skills. Quote hidden on mobile. */
+    .hero-welcome-left { order: 1; }
+    .hero-image        { order: 2; }
+    .hero-name-right   { order: 3; }
+    .hero-skills-left  { order: 4; }
+    .hero-quote-right  { display: none !important; }
 
     .hero-name-right h1 {
         font-size: clamp(36px, 12vw, 56px);
