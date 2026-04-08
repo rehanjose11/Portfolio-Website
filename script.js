@@ -640,6 +640,43 @@ function applyGlowColors() {
 }
 
 // --- COMING SOON MODAL ---
+function trackProjectView(projectLabel, onComplete) {
+    const done = typeof onComplete === 'function' ? onComplete : () => { };
+
+    if (typeof gtag !== 'function') {
+        done();
+        return;
+    }
+
+    let callbackCalled = false;
+    const safeDone = () => {
+        if (callbackCalled) return;
+        callbackCalled = true;
+        done();
+    };
+
+    gtag('event', 'project_view', {
+        event_category: 'portfolio',
+        event_label: projectLabel,
+        transport_type: 'beacon',
+        event_callback: safeDone
+    });
+
+    setTimeout(safeDone, 700);
+}
+
+function openProjectWithTracking(url, projectLabel) {
+    trackProjectView(projectLabel, () => {
+        window.location.href = url;
+    });
+}
+
+function showComingSoonTracked(title, text) {
+    trackProjectView(title, () => {
+        showComingSoon(title, text);
+    });
+}
+
 function showComingSoon(title, text) {
     const modal = document.getElementById('coming-soon-modal');
     const modalTitle = document.getElementById('cs-modal-title');
@@ -699,4 +736,3 @@ const projectCardObserver = new IntersectionObserver((entries) => {
 projectCardsReveal.forEach(card => {
     projectCardObserver.observe(card);
 });
-
