@@ -397,7 +397,7 @@ body::before {
     transition: opacity 0.8s ease-out, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     z-index: 1;
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* Solid opaque wall */
 }
 
 #main-content.visible {
@@ -772,6 +772,7 @@ body::before {
     position: relative;
     padding: 0;
     width: 100%;
+    background-color: var(--bg-color);
 }
 
 /* Wrapper to strictly contain the 3D scattering text */
@@ -895,6 +896,7 @@ body::before {
     padding: 120px 40px 36px;
     position: relative;
     width: 100%;
+    background-color: var(--bg-color);
 }
 
 
@@ -1305,6 +1307,9 @@ body::before {
 .elsewhere-section {
     padding: 80px 40px 40px;
     width: 100%;
+    background-color: var(--bg-color) !important;
+    position: relative;
+    z-index: 2;
 }
 
 .elsewhere-eyebrow {
@@ -1329,8 +1334,9 @@ body::before {
 }
 
 .elsewhere-item {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     gap: 32px;
     padding: 28px 0;
     border-bottom: 1px solid var(--border-subtle);
@@ -1449,6 +1455,7 @@ body::before {
     /* Adjusted padding so everything fits on a single screen */
     position: relative;
     text-align: center;
+    background-color: var(--bg-color);
     /* Removed gap: 36px because it forces a massive gap between the email and the socials */
 }
 
