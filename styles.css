@@ -397,7 +397,6 @@ body::before {
     transition: opacity 0.8s ease-out, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     z-index: 1;
-    background-color: var(--bg-color); /* Solid opaque wall */
 }
 
 #main-content.visible {
