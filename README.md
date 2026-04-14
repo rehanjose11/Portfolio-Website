@@ -1,58 +1,44 @@
 # REHAN JOSE - Design Portfolio
 
-Welcome to the repository for my professional design portfolio. I am a Communication Design student at NIFT Kannur, focused on building thoughtful, interactive, and visually striking experiences.
+Professional portfolio for Rehan Jose, a Communication Design student at NIFT Kannur focused on product design, UI/UX, visual systems, and storytelling-driven digital experiences.
 
-## 🚀 Live Site
-View the live portfolio at: [https://rehanjose.com/](https://rehanjose.com/)
+## Live Site
 
----
+[https://rehanjose.com/](https://rehanjose.com/)
 
-## 🏗️ Core Features
+## Core Features
 
-- **Interactive 3D Explorer**: Custom-built WebGL 3D viewer using Three.js for product design showcasing.
-- **Micro-Animations**: Smooth, premium scroll reveals and interactive UI elements.
-- **Asset Persistence**: Category selection (`editorial` vs `3d-spatial`) persists across navigation for a seamless UX.
-- **Responsive Architecture**: Fully responsive layout tailored for high-end desktop presentations.
+- Responsive multi-page portfolio built with custom layouts and interactions
+- Scroll-based reveals, hover states, and motion built with vanilla JavaScript and CSS
+- Project-specific experiences including a 3D product viewer and an editorial flipbook
+- Static deployment served through GitHub Pages with a custom domain
 
----
+## Featured Projects
 
-## 📁 Key Projects
+### AlexaBot
 
-### 🤖 AlexaBot
-*Reimagining Alexa as a modular, mobile companion.*
-- **Tech**: Fusion 360, Three.js (OBJ/MTL), GSAP-style reveals.
-- **Highlights**: Features a seamless 1400px wide image flow and a full-screen interactive 3D model with custom-mapped materials and realistic lighting.
+Reimagining Alexa as a modular, mobile companion with a browser-based 3D viewer.
 
-### 👕 Beyond Jerseys
-*A visual glossary of sports fashion culture.*
-- **Tech**: HTML5, Vanilla CSS, CSS Grid/Flexbox.
-- **Highlights**: Focuses on high-fidelity editorial layouts and visual storytelling across 60+ pages of curated content.
+### Beyond Jerseys
 
----
+A visual glossary exploring the culture and aesthetics of sports fashion through an interactive editorial presentation.
 
-## 🛠️ Technology Stack
+### Graduation Showcase 2026
 
-- **Frontend**: HTML5, Vanilla CSS, [TailwindCSS](https://tailwindcss.com/)
-- **3D Graphics**: [Three.js](https://threejs.org/) (WebGL)
-- **Icons**: [Lucide Icons](https://lucide.dev/)
-- **Typography**: Space Mono (Google Fonts)
+A brand identity and promotion system for NIFT Kannur's multidisciplinary graduation showcase.
 
----
+## Technology Stack
 
-## ⚙️ Local Development
-
-To run this project locally, a simple web server is required for the 3D models to load correctly (due to CORS restrictions):
-
-```bash
-# Using Python
-python3 -m http.server
-
-# Using Node (if installed)
-npx live-server
-```
-
-Once running, navigate to `http://localhost:8000` to view the full experience.
-
----
+- HTML5
+- Custom CSS / CSS3
+- Vanilla JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) via CDN
+- [Lucide Icons](https://lucide.dev/) via CDN
+- Google Fonts, including Space Mono
+- Additional page-specific font loading via Fontshare
+- [Three.js](https://threejs.org/) for the AlexaBot 3D viewer
+- [St.PageFlip](https://nodlik.github.io/StPageFlip/) for the Beyond Jerseys flipbook and Graduation Showcase book previews
+- Browser APIs including `requestAnimationFrame`, `IntersectionObserver`, `localStorage`, `sessionStorage`, and Canvas sampling
+- Google Analytics (`gtag.js`)
 
 &copy; 2026 REHAN JOSE. All rights reserved.

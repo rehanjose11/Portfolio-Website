@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Graduation Showcase 2026 — Branding & Promotion</title>
+  <title>Graduation Showcase 2026 — Rehan Jose's Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="icon" type="image/png" href="../../Homepage Assets/logo.png">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRRKNVG7VK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -1031,7 +1033,7 @@
               </div>
 
               <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px;">
-                <button id="gp-prev" onclick="gpFlipbook.flipPrev()"
+                <button id="gp-prev" onclick="window.gpFlipbook && window.gpFlipbook.flipPrev()"
                   style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
                   onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
                   onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">←
@@ -1039,7 +1041,7 @@
                 <span id="gp-page-counter"
                   style="font-size: 11px; color: var(--muted); letter-spacing: 0.08em; min-width: 80px; text-align: center;">1
                   / 18</span>
-                <button id="gp-next" onclick="gpFlipbook.flipNext()"
+                <button id="gp-next" onclick="window.gpFlipbook && window.gpFlipbook.flipNext()"
                   style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
                   onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
                   onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">Next
@@ -1088,7 +1090,7 @@
               </div>
 
               <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px;">
-                <button id="bm-prev" onclick="bmFlipbook.flipPrev()"
+                <button id="bm-prev" onclick="window.bmFlipbook && window.bmFlipbook.flipPrev()"
                   style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
                   onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
                   onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">←
@@ -1096,7 +1098,7 @@
                 <span id="bm-page-counter"
                   style="font-size: 11px; color: var(--muted); letter-spacing: 0.08em; min-width: 80px; text-align: center;">1
                   / 40</span>
-                <button id="bm-next" onclick="bmFlipbook.flipNext()"
+                <button id="bm-next" onclick="window.bmFlipbook && window.bmFlipbook.flipNext()"
                   style="background: transparent; border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 10px 24px; font-size: 12px; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; transition: all 0.2s;"
                   onmouseover="this.style.borderColor='rgba(106,197,165,0.5)'; this.style.color='#6ac5a5';"
                   onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='rgba(255,255,255,0.6)';">Next
@@ -1476,13 +1478,29 @@
           var PF = window.St && window.St.PageFlip;
           if (!PF) return;
 
-          var vw = window.innerWidth;
-          var isMobile = vw < 768;
+          var isMobile = window.innerWidth < 768;
 
-          // 1. BRAND MANUAL FLIPBOOK (40 Pages)
-          var bmBookEl = document.getElementById('bm-book');
-          if (bmBookEl) {
-            var bmFlipbook = new PF(bmBookEl, {
+          function buildPage(src) {
+            var page = document.createElement('div');
+            page.className = 'pf-page';
+            page.style.backgroundColor = 'transparent';
+
+            var img = document.createElement('img');
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.src = src;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'contain';
+
+            page.appendChild(img);
+            return page;
+          }
+
+          function mountFlipbook(bookEl, images, counterId, totalPages, windowKey) {
+            if (!bookEl || bookEl.childElementCount > 0) return;
+
+            var flipbook = new PF(bookEl, {
               width: 800,
               height: 800,
               size: 'stretch',
@@ -1497,128 +1515,121 @@
               mobileScrollSupport: true
             });
 
-            var bmImages = [
-              "GP&BM/bmcover1.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0002.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0003.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0004.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0005.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0006.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0007.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0008.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0009.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0010.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0011.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0012.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0013.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0014.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0015.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0016.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0017.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0018.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0019.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0020.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0021.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0022.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0023.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0024.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0025.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0026.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0027.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0028.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0029.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0030.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0031.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0032.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0033.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0034.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0035.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0036.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0037.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0038.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0039.jpg",
-              "GP&BM/bmjpg/BRAND MANUAL_page-0040.jpg"
-            ];
-
-            bmImages.forEach(function (src) {
-              var div = document.createElement('div');
-              div.className = 'pf-page';
-              div.style.backgroundColor = 'transparent';
-              var img = document.createElement('img');
-              img.loading = 'lazy';
-              img.src = src;
-              img.style.width = '100%';
-              img.style.height = '100%';
-              img.style.objectFit = 'contain';
-              div.appendChild(img);
-              bmBookEl.appendChild(div);
+            images.forEach(function (src) {
+              bookEl.appendChild(buildPage(src));
             });
 
-            bmFlipbook.loadFromHTML(bmBookEl.querySelectorAll('.pf-page'));
-            window.bmFlipbook = bmFlipbook;
-            bmFlipbook.on('flip', function (e) {
-              var counter = document.getElementById('bm-page-counter');
-              var p = e.data;
-              // When turning to front cover (0) or back cover, calculate visually appropriate page numbers
-              if (p === 0) p = 1;
-              if (counter) counter.textContent = p + ' / 40';
+            flipbook.loadFromHTML(bookEl.querySelectorAll('.pf-page'));
+            window[windowKey] = flipbook;
+
+            flipbook.on('flip', function (e) {
+              var counter = document.getElementById(counterId);
+              var pageNumber = e.data === 0 ? 1 : e.data;
+              if (counter) counter.textContent = pageNumber + ' / ' + totalPages;
             });
           }
 
-          // 2. GP BOOKLET FLIPBOOK (18 Pages)
-          var gpBookEl = document.getElementById('gp-book');
-          if (gpBookEl) {
-            var gpFlipbook = new PF(gpBookEl, {
-              width: 800,
-              height: 800,
-              size: 'stretch',
-              minWidth: 300,
-              maxWidth: 1000,
-              minHeight: 300,
-              maxHeight: 1000,
-              showCover: true,
-              drawShadow: true,
-              maxShadowOpacity: 0.3,
-              usePortrait: isMobile,
-              mobileScrollSupport: true
-            });
+          function initWhenVisible(targetId, onVisible) {
+            var target = document.getElementById(targetId);
+            if (!target) return;
 
-            var gpImages = [];
-            for (var i = 1; i <= 18; i++) {
-              var num = (i < 10 ? '0' : '') + (i < 100 && i >= 10 ? '0' : '') + i;
-              num = i.toString().padStart(4, '0');
-              gpImages.push("GP&BM/GPBOOKJPG/GPBOOK_page-" + num + ".jpg");
+            var initialized = false;
+            var start = function () {
+              if (initialized) return;
+              initialized = true;
+              onVisible();
+            };
+
+            if (!('IntersectionObserver' in window)) {
+              start();
+              return;
             }
 
-            // Use the newly provided cover image for the front of the flipbook
-            if (gpImages.length > 0) {
-              gpImages[0] = "GP&BM/gpcover.jpg";
-            }
-
-            gpImages.forEach(function (src) {
-              var div = document.createElement('div');
-              div.className = 'pf-page';
-              div.style.backgroundColor = 'transparent';
-              var img = document.createElement('img');
-              img.loading = 'lazy';
-              img.src = src;
-              img.style.width = '100%';
-              img.style.height = '100%';
-              img.style.objectFit = 'contain';
-              div.appendChild(img);
-              gpBookEl.appendChild(div);
+            var observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                observer.unobserve(entry.target);
+                start();
+              });
+            }, {
+              rootMargin: '240px 0px',
+              threshold: 0.05
             });
 
-            gpFlipbook.loadFromHTML(gpBookEl.querySelectorAll('.pf-page'));
-            window.gpFlipbook = gpFlipbook;
-
-            gpFlipbook.on('flip', function (e) {
-              var counter = document.getElementById('gp-page-counter');
-              var p = e.data;
-              if (p === 0) p = 1;
-              if (counter) counter.textContent = p + ' / 18';
-            });
+            observer.observe(target);
           }
+
+          var bmImages = [
+            "GP&BM/bmcover1.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0002.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0003.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0004.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0005.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0006.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0007.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0008.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0009.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0010.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0011.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0012.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0013.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0014.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0015.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0016.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0017.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0018.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0019.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0020.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0021.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0022.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0023.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0024.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0025.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0026.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0027.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0028.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0029.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0030.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0031.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0032.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0033.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0034.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0035.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0036.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0037.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0038.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0039.jpg",
+            "GP&BM/bmjpg/BRAND MANUAL_page-0040.jpg"
+          ];
+
+          var gpImages = [];
+          for (var i = 1; i <= 18; i++) {
+            var num = i.toString().padStart(4, '0');
+            gpImages.push("GP&BM/GPBOOKJPG/GPBOOK_page-" + num + ".jpg");
+          }
+          if (gpImages.length > 0) {
+            gpImages[0] = "GP&BM/gpcover.jpg";
+          }
+
+          initWhenVisible('bm-flipbook-wrap', function () {
+            mountFlipbook(
+              document.getElementById('bm-book'),
+              bmImages,
+              'bm-page-counter',
+              40,
+              'bmFlipbook'
+            );
+          });
+
+          initWhenVisible('gp-flipbook-wrap', function () {
+            mountFlipbook(
+              document.getElementById('gp-book'),
+              gpImages,
+              'gp-page-counter',
+              18,
+              'gpFlipbook'
+            );
+          });
         });
       </script>
 
