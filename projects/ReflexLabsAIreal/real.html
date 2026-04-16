@@ -58,10 +58,13 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
 }
 .mobile-nav-link:hover::before { transform: translateY(-50%) scaleX(1); }
 @media (max-width: 768px) {
+    /* Fix calculated margins that cause overflow on mobile */
+    div[style*="calc(50%"] { margin-left: auto !important; margin-right: auto !important; width: 100% !important; }
+    
     /* Global scroll lock */
     html, body { overflow-x: hidden !important; width: 100% !important; position: relative !important; }
     
-    /* Layout Paddings */
+    /* Layour Paddings */
     section { padding: 80px 24px !important; }
     .cover { padding: 120px 24px 60px 24px !important; min-height: auto !important; }
     .pull-quote { padding: 60px 24px !important; }
