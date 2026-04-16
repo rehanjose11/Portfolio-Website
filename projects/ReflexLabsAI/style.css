@@ -1006,3 +1006,67 @@ section{
     grid-template-columns: 1fr;
   }
 }
+
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE — all changes below are
+   ONLY applied on screens ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  section { padding: 64px 24px; overflow-x: hidden; }
+  .cover { padding: 80px 24px 48px; }
+  .cover-title { font-size: clamp(40px, 12vw, 64px); word-break: break-word; line-height: 1.1; }
+  .cover-descriptor { font-size: clamp(18px, 4vw, 24px); }
+  .cover-glow { width: 100%; height: 100vh; }
+  .cover-bottom { max-width: 100vw; gap: 32px; padding-top: 32px; }
+  .cover-meta-row { display: grid; grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  
+  .two-col, .three-col, .four-col { grid-template-columns: 1fr; gap: 40px; }
+  .process-row { grid-template-columns: 1fr; gap: 0; }
+  .process-step { padding: 24px 0; border-right: none; border-bottom: 1px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  
+  .comp-cards { grid-template-columns: 1fr; gap: 1px; }
+  .comp-card { padding: 24px; }
+  
+  .persona-grid { grid-template-columns: 1fr; gap: 1px; }
+  .persona-card { padding: 32px 24px; border-bottom: 1px solid var(--border); }
+  .persona-card:last-child { border-bottom: none; }
+  
+  .empathy-grid { grid-template-columns: 1fr; gap: 1px; }
+  .emp-cell { padding: 32px 24px; }
+  
+  .ia-row { grid-template-columns: 1fr; border-bottom: 1px solid var(--border); }
+  .ia-label { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 24px; }
+  .ia-items { padding: 16px 24px; }
+  
+  /* Make sure images stay constrained */
+  img, video { max-width: 100%; height: auto; }
+  .brand-story-wrapper { margin: 32px auto; width: 100%;  padding: 0 24px;}
+  .screen-slot.wide { grid-column: auto; }
+  .ds-row { grid-template-columns: 1fr; gap: 40px;}
+  
+  .insight-row { grid-template-columns: 1fr; gap: 1px; }
+  .insight-card { padding: 32px 24px; }
+  
+  .outcome-grid { grid-template-columns: 1fr; gap: 1px; }
+  .outcome-cell { padding: 32px 24px; }
+  
+  .reflect-grid { grid-template-columns: 1fr; gap: 1px; }
+  .reflect-cell { padding: 32px 24px; }
+  
+  .screens-grid { grid-template-columns: 1fr; gap: 16px; }
+  
+  .big-text { font-size: clamp(24px, 7vw, 36px); }
+  .pull-quote { padding: 60px 24px; }
+  .pull-quote p { font-size: clamp(20px, 6vw, 28px); }
+  
+  .end-meta { flex-direction: column; gap: 24px; }
+  .end-section { padding: 48px 24px; }
+  .end-word { font-size: clamp(28px, 8vw, 42px); }
+  
+  body { overflow-x: hidden; }
+
+  /* Fix for inline styled wrappers with negative margins */
+  .internship-banner { padding: 40px 24px !important; }
+  div[style*="margin-left:-64px"] { margin-left: -24px !important; margin-right: -24px !important; padding: 0 24px !important; }
+}
