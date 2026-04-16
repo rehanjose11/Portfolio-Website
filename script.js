@@ -403,12 +403,27 @@ if (aboutText && aboutSection && aboutContainer) {
             // Phase 2: Scramble & Pop Out (70% to 100%)
             const scrambleProgress = Math.max(0, (progress - 0.7) / 0.3); // 0 to 1
 
-            // Reveal link right before scrambling starts
+            // The "Get to Know Me" button appears during the reading phase
+            // and fades out as the letters scatter
             if (aboutLink) {
-                if (readingProgress > 0.9 && scrambleProgress < 0.2) {
+                if (readingProgress > 0) {
                     aboutLink.classList.add('visible');
+                    
+                    if (scrambleProgress > 0) {
+                        // Fade out the button as text scatters
+                        let linkOpacity = 1 - (scrambleProgress * 2);
+                        if (linkOpacity < 0) linkOpacity = 0;
+                        aboutLink.style.opacity = linkOpacity;
+                        aboutLink.style.pointerEvents = linkOpacity > 0 ? 'auto' : 'none';
+                    } else {
+                        // Fully visible while lighting up
+                        aboutLink.style.opacity = '';
+                        aboutLink.style.pointerEvents = '';
+                    }
                 } else {
                     aboutLink.classList.remove('visible');
+                    aboutLink.style.opacity = '';
+                    aboutLink.style.pointerEvents = '';
                 }
             }
 
