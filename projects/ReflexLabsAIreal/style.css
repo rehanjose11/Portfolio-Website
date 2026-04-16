@@ -1006,3 +1006,119 @@ section{
     grid-template-columns: 1fr;
   }
 }
+
+/* ── MOBILE OPTIMIZATION ── */
+@media (max-width: 768px) {
+  /* Layout Paddings */
+  section {
+    padding: 60px 24px;
+  }
+  .cover {
+    padding: 40px 24px;
+    min-height: auto;
+  }
+  .pull-quote {
+    padding: 60px 24px;
+  }
+  .end-section {
+    padding: 60px 24px;
+  }
+  .tag {
+    margin-bottom: 24px;
+  }
+  
+  /* Grids to Single Column */
+  .two-col, 
+  .three-col, 
+  .four-col,
+  .process-row,
+  .comp-cards,
+  .persona-grid,
+  .empathy-grid,
+  .ds-row,
+  .screens-grid,
+  .insight-row,
+  .outcome-grid,
+  .reflect-grid {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Specific Resets for Grids and Layouts */
+  .ia-row {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+  .ia-label {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+  }
+  .screen-slot.wide {
+    grid-column: span 1;
+  }
+  .process-step {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .process-step:last-child {
+    border-bottom: none;
+  }
+
+  /* Text & Fonts */
+  .cover-title {
+    font-size: clamp(40px, 12vw, 70px);
+  }
+  .cover-descriptor {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+  .big-text {
+    font-size: clamp(28px, 7vw, 36px);
+  }
+  .pull-quote p {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+  .end-word {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  /* Cover elements */
+  .cover-meta-row {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* General elements */
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Empathy grid */
+  .emp-list li::before {
+    top: 14px;
+  }
+  
+  /* IA final image wrapper full-bleed */
+  img[alt="Information Architecture Flow"] {
+    max-width: 100% !important;
+    margin-top: 40px !important;
+  }
+  
+  /* Team photos */
+  div[style*="max-width:1100px"] {
+    flex-direction: column !important;
+  }
+  div[style*="max-width:1100px"] img {
+    width: 100% !important;
+  }
+  
+  /* Wireframes */
+  div[style*="display: flex; flex-wrap: wrap"] > div {
+    width: 100% !important;
+  }
+}
