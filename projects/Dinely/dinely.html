@@ -25,8 +25,11 @@
 <body class="bg-black">
     <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 navbar-visible">
         <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-3">
+                    <a href="../../index.html#projects" class="md:hidden text-white hover:text-gray-300 transition-colors">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </a>
                     <a href="../../index.html"><img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
                 </div>
                 <div class="hidden md:flex items-center gap-6">
@@ -40,6 +43,7 @@
                         <span>Resume</span>
                         <i data-lucide="download" class="w-4 h-4"></i>
                     </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white"><i data-lucide="menu" class="w-5 h-5"></i></button>
                 </div>
             </div>
         </nav>

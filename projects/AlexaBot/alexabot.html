@@ -169,8 +169,11 @@
     <!-- ── NAVBAR ── -->
     <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 navbar-visible">
         <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-3">
+                    <a href="../../index.html#projects" class="md:hidden text-white hover:text-gray-300 transition-colors">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                    </a>
                     <a href="../../index.html"><img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
                 </div>
                 <div class="hidden md:flex items-center gap-6">
@@ -191,12 +194,12 @@
     </div>
 
     <!-- Project Title Badge (Scrolls to Top) -->
-    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="fixed top-6 left-4 lg:left-12 z-[1001] flex items-center px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white shadow-xl text-xs font-bold uppercase tracking-widest font-mono cursor-pointer hover:bg-white hover:text-black hover:border-transparent transition-all duration-300" style="margin-top: 8px;">
+    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hidden md:flex fixed top-6 left-4 lg:left-12 z-[1001] items-center px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white shadow-xl text-xs font-bold uppercase tracking-widest font-mono cursor-pointer hover:bg-white hover:text-black hover:border-transparent transition-all duration-300" style="margin-top: 8px;">
         <span>ALEXABOT</span>
     </a>
 
     <!-- Floating Back Button -->
-    <a href="../../index.html#projects" class="fixed top-6 right-4 lg:right-12 z-[1001] flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 shadow-xl text-xs font-bold uppercase tracking-widest" style="margin-top: 8px;">
+    <a href="../../index.html#projects" class="hidden md:flex fixed top-6 right-4 lg:right-12 z-[1001] items-center gap-2 px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 shadow-xl text-xs font-bold uppercase tracking-widest" style="margin-top: 8px;">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
         <span class="hidden sm:inline">Back to Projects</span>
         <span class="sm:hidden">Back</span>
