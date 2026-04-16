@@ -1380,6 +1380,39 @@ body::after {
     grid-template-columns: 1fr !important;
   }
 
+  /* Global overflow lock */
+  html, body { overflow-x: hidden !important; }
+
+  /* Social media four-col → 2 cols on phone */
+  .four-col {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Social media photo placeholders – allow natural height */
+  .four-col .photo-placeholder {
+    min-height: 200px !important;
+  }
+
+  /* Sketch main photo – remove negative margin that causes overflow */
+  .sketch-main-photo {
+    min-height: 200px;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+
+  /* Logo variations → 2 cols on phone (they were going to 1 col at 900px but 2 looks better) */
+  .logo-variations-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4px !important;
+  }
+
+  /* Selected fonts → 1 col on phone */
+  .selected-fonts {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
   /* Section divider */
   .section-divider {
     margin: 0 16px;
