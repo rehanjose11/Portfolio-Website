@@ -18,7 +18,7 @@
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <style>
 /* Scoped Mobile Menu & Nav Styles */
 #navbar-container, #navbar-container *,
@@ -58,6 +58,39 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
     width: 16px; height: 2px; background: #fff; transition: transform 0.3s ease;
 }
 .mobile-nav-link:hover::before { transform: translateY(-50%) scaleX(1); }
+@media (max-width: 768px) {
+    /* Layout Paddings */
+    section { padding: 60px 24px !important; }
+    .cover { padding: 40px 24px !important; min-height: auto !important; }
+    .pull-quote { padding: 60px 24px !important; }
+    .end-section { padding: 60px 24px !important; }
+    .tag { margin-bottom: 24px !important; }
+    
+    /* Grids to Single Column */
+    .two-col, .three-col, .four-col, .process-row, .comp-cards,
+    .persona-grid, .empathy-grid, .ds-row, .screens-grid,
+    .insight-row, .outcome-grid, .reflect-grid,
+    .elements-grid, .ia-row {
+        grid-template-columns: 1fr !important;
+        display: grid !important; 
+        gap: 40px !important;
+    }
+
+    .ia-row { gap: 0 !important; }
+    .ia-label { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; padding: 24px !important; }
+    .screen-slot.wide { grid-column: span 1 !important; }
+    .process-step { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    .process-step:last-child { border-bottom: none !important; }
+
+    /* Text & Fonts */
+    .cover-title { font-size: clamp(40px, 12vw, 70px) !important; }
+    .cover-descriptor, .big-text, .pull-quote p, .end-word { font-size: clamp(24px, 8vw, 36px) !important; }
+
+    /* Fix image overflows causing horizontal scroll */
+    img, video, .body-text, .cover-bottom, div[style*="max-width:1100px"] { max-width: 100% !important; height: auto !important; }
+    .cover-meta-row { flex-direction: column !important; gap: 24px !important; align-items: center !important; text-align: center !important; }
+    div[style*="max-width:1100px"] { flex-direction: column !important; }
+}
 @media (min-width: 768px) { .mobile-menu { display: none; } }
 </style>
 </head>
