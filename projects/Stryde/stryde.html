@@ -883,6 +883,21 @@
                 gap: 40px;
             }
 
+            /* ── Persona Grid ── */
+            .persona-grid-main,
+            .persona-grid-sub {
+                grid-template-columns: 1fr !important;
+            }
+            .persona-grid-main > div,
+            .persona-grid-sub > div {
+                border-right: none !important;
+                border-bottom: 1px solid var(--mid) !important;
+            }
+            .persona-grid-main > div:last-child,
+            .persona-grid-sub > div:last-child {
+                border-bottom: none !important;
+            }
+
             /* ── Body text ── */
             .body {
                 font-size: 14px;
@@ -1588,7 +1603,7 @@
             Built from secondary research + contextual observation. Not interview-validated — this is a design
             hypothesis.</p>
 
-        <div
+        <div class="persona-grid-main"
             style="display: grid; grid-template-columns: 1fr 2fr; gap: 1px; background: var(--mid); border: 1px solid var(--mid);">
 
             <!-- Identity -->
@@ -1644,7 +1659,7 @@
                         else. He stood for four hours, couldn't hear the commentary, and left with a sore back.</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                <div class="persona-grid-sub" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
                     <div
                         style="padding: 32px 44px; border-right: 1px solid var(--mid); border-bottom: 1px solid var(--mid);">
                         <div
