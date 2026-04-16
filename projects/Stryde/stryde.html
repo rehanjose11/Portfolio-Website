@@ -898,6 +898,14 @@
                 border-bottom: none !important;
             }
 
+            /* ── Design Details & Render Gallery ── */
+            .design-details-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .render-gallery-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
             /* ── Body text ── */
             .body {
                 font-size: 14px;
@@ -2011,7 +2019,7 @@
     <section style="padding: 120px 60px; background: var(--black); border-bottom: 1px solid var(--mid);">
         <div class="label">11 — Design Details</div>
         <h2 class="big-text" style="max-width: 600px; margin-bottom: 60px;">The decisions that made the difference</h2>
-        <div
+        <div class="design-details-grid"
             style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--mid); border: 1px solid var(--mid);">
             <div style="background: var(--black); padding: 40px 32px;">
                 <img src="render images/9.jpg" alt="Wooden Pillars"
