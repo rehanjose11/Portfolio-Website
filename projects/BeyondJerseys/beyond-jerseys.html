@@ -21,7 +21,7 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+    <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
     <style>
         /* Smooth, flush layout */
         .project-details-page {
@@ -50,18 +50,18 @@
             .flipbook-viewport {
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
-                overflow: visible;
+                overflow: hidden;
             }
 
             #flipbook {
-                transform: scale(0.82);
+                transform: none;
                 transform-origin: center center;
             }
         }
 
         @media (max-width: 480px) {
             #flipbook {
-                transform: scale(0.72);
+                transform: none;
             }
         }
     </style>
@@ -192,12 +192,12 @@
             const totalPages = 64; // Based on files rehan_sports.jpg to rehan_sports64.jpg
 
             const isMobile = window.innerWidth < 768;
-            const bookWidth = isMobile ? 220 : 800;
-            const bookHeight = isMobile ? 220 : 800;
-            const minBookWidth = isMobile ? 180 : 315;
-            const maxBookWidth = isMobile ? 320 : 1500;
-            const minBookHeight = isMobile ? 180 : 315;
-            const maxBookHeight = isMobile ? 320 : 1500;
+            const bookWidth = isMobile ? 245 : 800;
+            const bookHeight = isMobile ? 245 : 800;
+            const minBookWidth = isMobile ? 200 : 315;
+            const maxBookWidth = isMobile ? 440 : 1500;
+            const minBookHeight = isMobile ? 200 : 315;
+            const maxBookHeight = isMobile ? 440 : 1500;
 
             // Dynamically generate page DOM
             for (let i = 1; i <= totalPages; i++) {
@@ -226,7 +226,9 @@
                 maxHeight: maxBookHeight, // Increased for crispness on large screens
                 maxShadowOpacity: 0.5,
                 showCover: true,
-                mobileScrollSupport: false
+                drawShadow: true,
+                usePortrait: false,
+                mobileScrollSupport: true
             });
 
             // Load generated DOM elements into the logic engine
