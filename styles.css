@@ -771,7 +771,6 @@ body::before {
     position: relative;
     padding: 0;
     width: 100%;
-    background-color: var(--bg-color);
 }
 
 /* Wrapper to strictly contain the 3D scattering text */
@@ -916,7 +915,6 @@ body::before {
     padding: 120px 40px 36px;
     position: relative;
     width: 100%;
-    background-color: var(--bg-color);
 }
 
 
@@ -1270,6 +1268,12 @@ body::before {
     }
 }
 
+@media (min-width: 1025px) {
+    .project-description-break--laptop-hide {
+        display: none;
+    }
+}
+
 @media (min-width: 1440px) {
     .projects-header-wrapper,
     .projects-container {
@@ -1366,7 +1370,6 @@ body::before {
 .elsewhere-section {
     padding: 80px 40px 40px;
     width: 100%;
-    background-color: var(--bg-color) !important;
     position: relative;
     z-index: 2;
 }
@@ -1514,7 +1517,6 @@ body::before {
     /* Adjusted padding so everything fits on a single screen */
     position: relative;
     text-align: center;
-    background-color: var(--bg-color);
     /* Removed gap: 36px because it forces a massive gap between the email and the socials */
 }
 
