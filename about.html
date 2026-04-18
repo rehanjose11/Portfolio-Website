@@ -619,6 +619,28 @@
             font-style: italic;
         }
 
+        .mobile-reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            filter: blur(2px);
+            transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
+            will-change: opacity, transform;
+        }
+
+        .mobile-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .mobile-reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+
+        .mobile-reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+
         .skills-title-line2 {
             display: inline;
         }
@@ -1494,6 +1516,38 @@
             track: null,
             items: [],
         };
+        const mobileRevealState = {
+            observer: null,
+        };
+
+        function ensureMobileRevealObserver() {
+            if (mobileRevealState.observer) return mobileRevealState.observer;
+            if (!('IntersectionObserver' in window)) return null;
+
+            mobileRevealState.observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        mobileRevealState.observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.14,
+                rootMargin: '0px 0px -8% 0px',
+            });
+
+            return mobileRevealState.observer;
+        }
+
+        function observeMobileReveal(root) {
+            if (!isMobileAboutView()) return;
+            const observer = ensureMobileRevealObserver();
+            if (!observer || !root) return;
+            root.querySelectorAll('.mobile-reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        }
 
         function createMobileCarousel(images) {
             const carousel = document.createElement('div');
@@ -1630,6 +1684,7 @@
 
                 header.appendChild(labelEl);
                 header.appendChild(headingEl);
+                header.classList.add('mobile-reveal');
 
                 if (config.mode === 'carousel') {
                     inner.appendChild(header);
@@ -1642,11 +1697,14 @@
                         .filter((image) => image.src);
 
                     if (images.length > 0) {
-                        inner.appendChild(createMobileCarousel(images));
+                        const carousel = createMobileCarousel(images);
+                        carousel.classList.add('mobile-reveal', 'mobile-reveal-delay-1');
+                        inner.appendChild(carousel);
                     }
 
                     const bodyWrap = document.createElement('div');
                     bodyWrap.className = 'mobile-chapter-body-wrap';
+                    bodyWrap.classList.add('mobile-reveal', 'mobile-reveal-delay-2');
 
                     const bodyEl = document.createElement('p');
                     bodyEl.className = 'mobile-chapter-body';
@@ -1656,6 +1714,7 @@
                     inner.appendChild(bodyWrap);
                     section.appendChild(inner);
                     mobileAboutFlow.appendChild(section);
+                    observeMobileReveal(section);
                     return;
                 } else if (config.mode === 'work') {
                     header.classList.add('mobile-work-header');
@@ -1725,6 +1784,8 @@
                     mobileWorkState.track = workTrack;
                     mobileWorkState.items = items;
                     mobileAboutFlow.appendChild(section);
+                    workList.classList.add('mobile-reveal', 'mobile-reveal-delay-1');
+                    observeMobileReveal(section);
                     updateMobileWorkHighlight();
                     return;
                 }
