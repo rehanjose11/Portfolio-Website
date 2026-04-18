@@ -619,6 +619,10 @@
             font-style: italic;
         }
 
+        .skills-title-line2 {
+            display: inline;
+        }
+
         .mobile-timeline {
             max-width: 560px;
             margin: 28px auto 0;
@@ -1047,10 +1051,14 @@
                 align-self: stretch;
                 width: 100%;
                 box-sizing: border-box;
-                padding-left: 24px;
+                padding-left: 2px;
                 text-align: left !important;
                 margin-left: 0;
                 margin-bottom: 40px !important;
+            }
+
+            .skills-title-line2 {
+                display: block;
             }
         }
 
@@ -1374,7 +1382,7 @@
          SKILLS SECTION
     ============================================================ -->
     <section class="skills-section" id="skills" style="display: flex; flex-direction: column; align-items: center;">
-        <h2 class="chapter-heading" style="text-align: center; margin-bottom: 80px;">What I bring to the table</h2>
+        <h2 class="chapter-heading" style="text-align: center; margin-bottom: 80px;">What I bring to <span class="skills-title-line2">the table</span></h2>
         <div class="skills-grid" style="width: 100%;">
             <div class="skill-item">
                 <p class="skill-num">01</p>
@@ -1754,6 +1762,8 @@
         // ——————————————————————————————————————————————
         const heroTaglines = document.querySelectorAll('.scatter-text');
         const heroLetters = [];
+        const heroPhotoWraps = document.querySelectorAll('.hero-photo-wrap');
+        const heroDecorativeLayer = document.querySelector('.hero-decorative-layer');
         heroTaglines.forEach(heroTagline => {
             const segments = heroTagline.innerHTML.split(/(<br\s*\/?>)/i);
             heroTagline.innerHTML = '';
@@ -1885,10 +1895,27 @@
                         // No text colour boost or glow, just the pure scatter
                         letter.style.transform = `translate3d(${tx}vw, ${ty}vh, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
                     });
+
+                    // Fade hero photos with the same initial scroll phase as scatter text.
+                    if (!isMobileAboutView()) {
+                        const photoOpacity = 1 - heroProgress;
+                        heroPhotoWraps.forEach((photo) => {
+                            photo.style.opacity = String(photoOpacity);
+                        });
+                        if (heroDecorativeLayer) {
+                            heroDecorativeLayer.style.opacity = String(photoOpacity);
+                        }
+                    }
                 } else {
                     heroInner.style.transform = '';
                     heroInner.style.opacity = '';
                     heroLetters.forEach(letter => letter.style.transform = 'translateZ(0)');
+                    heroPhotoWraps.forEach((photo) => {
+                        photo.style.opacity = '';
+                    });
+                    if (heroDecorativeLayer) {
+                        heroDecorativeLayer.style.opacity = '';
+                    }
                 }
             }
 
