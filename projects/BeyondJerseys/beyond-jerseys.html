@@ -46,6 +46,24 @@
             filter: blur(0);
             transform: translateY(0);
         }
+        @media (max-width: 768px) {
+            .flipbook-viewport {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                overflow: visible;
+            }
+
+            #flipbook {
+                transform: scale(0.82);
+                transform-origin: center center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #flipbook {
+                transform: scale(0.72);
+            }
+        }
     </style>
 </head>
 
@@ -173,6 +191,14 @@
             const flipbookElement = document.getElementById('flipbook');
             const totalPages = 64; // Based on files rehan_sports.jpg to rehan_sports64.jpg
 
+            const isMobile = window.innerWidth < 768;
+            const bookWidth = isMobile ? 220 : 800;
+            const bookHeight = isMobile ? 220 : 800;
+            const minBookWidth = isMobile ? 180 : 315;
+            const maxBookWidth = isMobile ? 320 : 1500;
+            const minBookHeight = isMobile ? 180 : 315;
+            const maxBookHeight = isMobile ? 320 : 1500;
+
             // Dynamically generate page DOM
             for (let i = 1; i <= totalPages; i++) {
                 const pageDiv = document.createElement('div');
@@ -191,13 +217,13 @@
 
             // Initialize StPageFlip with standard Magazine Aspect Ratio
             const pageFlip = new St.PageFlip(flipbookElement, {
-                width: 800, // Base square responsive width
-                height: 800, // Matching the true 1:1 aspect ratio of the raw pages
+                width: bookWidth, // Base square responsive width
+                height: bookHeight, // Matching the true 1:1 aspect ratio of the raw pages
                 size: "stretch", // Stretches to fill viewport while maintaining aspect ratio
-                minWidth: 315,
-                maxWidth: 1500, // Increased for crispness on large screens
-                minHeight: 315,
-                maxHeight: 1500, // Increased for crispness on large screens
+                minWidth: minBookWidth,
+                maxWidth: maxBookWidth, // Increased for crispness on large screens
+                minHeight: minBookHeight,
+                maxHeight: maxBookHeight, // Increased for crispness on large screens
                 maxShadowOpacity: 0.5,
                 showCover: true,
                 mobileScrollSupport: false
