@@ -18,7 +18,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
     <style>
-        .project-details-page { width: 100%; background-color: #000; min-height: 100vh; padding-top: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .project-details-page { width: 100%; background-color: #000; min-height: 100vh; padding-top: 120px; }
+        .reveal-up { opacity: 0; filter: blur(10px); transform: translateY(40px); transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .reveal-up.is-visible { opacity: 1; filter: blur(0); transform: translateY(0); }
+        @media (max-width: 768px) {
+            .case-study-container { padding: 0 16px; }
+        }
         .placeholder-text { font-family: 'Space Mono', monospace; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; }
     </style>
 </head>
@@ -49,9 +54,27 @@
         </nav>
     </div>
 
-    <div class="project-details-page">
-        <h1 class="text-4xl font-bold text-white mb-4 uppercase tracking-tighter">Dinely</h1>
-        <p class="placeholder-text">Work in progress</p>
+<!-- Project Title Badge (Scrolls to Top) -->
+    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hidden md:flex fixed top-6 left-4 lg:left-12 z-[1001] items-center px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white shadow-xl text-xs font-bold uppercase tracking-widest font-mono cursor-pointer hover:bg-white hover:text-black hover:border-transparent transition-all duration-300" style="margin-top: 8px;">
+        <span>DINELY</span>
+    </a>
+
+    <!-- Floating Back Button -->
+    <a href="../../index.html#projects" class="hidden md:flex fixed top-6 right-4 lg:right-12 z-[1001] items-center gap-2 px-5 py-3 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 shadow-xl text-xs font-bold uppercase tracking-widest" style="margin-top: 8px;">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">Back to Projects</span>
+        <span class="sm:hidden">Back</span>
+    </a>
+
+    <div class="project-details-page pb-24">
+        <div class="case-study-container max-w-[1400px] mx-auto px-6">
+            <div class="reveal-up flex flex-col items-center" style="transition-delay: 0.1s;">
+                <img src="DINELYJPG/1.png" alt="Dinely Presentation Part 1" class="w-full rounded-t-3xl border-x border-t border-white/5 shadow-2xl">
+                <img src="DINELYJPG/2.png" alt="Dinely Presentation Part 2" class="w-full border-x border-white/5 shadow-2xl">
+                <img src="DINELYJPG/3.png" alt="Dinely Presentation Part 3" class="w-full border-x border-white/5 shadow-2xl">
+                <img src="DINELYJPG/4.png" alt="Dinely Presentation Part 4" class="w-full rounded-b-3xl border-x border-b border-white/5 shadow-2xl">
+            </div>
+        </div>
     </div>
 
     <footer class="w-full bg-black py-8 flex justify-center items-center">
@@ -60,6 +83,9 @@
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        setTimeout(() => document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('is-visible')), 200);
+    </script>
 </body>
 </html>
