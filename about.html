@@ -244,6 +244,7 @@
             #mobile-menu-toggle { display: flex; }
         }
 
+
         /* ============================================
            ABOUT PAGE — SCROLL NARRATIVE
         ============================================ */
@@ -311,6 +312,29 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeUp 0.8s 1.1s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+
+        /* Fix scroll overlap specifically for short screens like iPhone SE */
+        @media (max-height: 700px) and (max-width: 768px) {
+            .about-hero {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 140px 24px 40px;
+            }
+            .about-hero-inner {
+                margin-top: 0 !important;
+            }
+            .about-hero-tagline {
+                margin-bottom: 20px !important;
+            }
+            .scroll-indicator-wrapper {
+                position: relative !important;
+                bottom: auto !important;
+                margin-top: 0 !important;
+            }
+            .scroll-line {
+                height: 40px !important;
+            }
         }
 
         .about-hero-scroll-hint {
@@ -533,7 +557,7 @@
         }
 
         .mobile-carousel {
-            margin: 28px auto 0;
+            margin: 28px auto 32px;
             max-width: 340px;
         }
 
@@ -571,7 +595,7 @@
 
         .mobile-carousel-dots {
             margin-top: 14px;
-            display: flex;
+            display: none;
             justify-content: center;
             gap: 8px;
         }
@@ -1445,7 +1469,7 @@
     ============================================================ -->
     <section class="about-contact" id="about-cta">
         <h2 class="about-contact-heading" id="cta-heading">
-            Let's make<br>something good.
+            Let's build<br>something cool and great!
         </h2>
         <p class="about-contact-sub" id="cta-sub">
             Whether it's a collaboration, a conversation, or just a project<br>

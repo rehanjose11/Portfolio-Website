@@ -1656,6 +1656,29 @@ body::before {
         gap: 28px;
     }
 
+    .contact-socials {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        row-gap: 16px;
+        column-gap: 16px;
+        align-items: center;
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .contact-social-link:nth-of-type(1) { grid-column: 1; text-align: right; }
+    .contact-social-sep:nth-of-type(1) { grid-column: 2; text-align: center; }
+    .contact-social-link:nth-of-type(2) { grid-column: 3; text-align: left; }
+    
+    .contact-social-link:nth-of-type(3) { grid-column: 1; text-align: right; }
+    .contact-social-sep:nth-of-type(3) { grid-column: 2; text-align: center; }
+    .contact-social-link:nth-of-type(4) { grid-column: 3; text-align: left; }
+
+    .contact-social-sep:nth-of-type(2) {
+        display: none;
+    }
+
     .contact-headline {
         font-size: clamp(36px, 10vw, 72px);
         white-space: normal;
