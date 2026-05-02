@@ -761,6 +761,21 @@ body::before {
     }
 }
 
+/* Fix swipe indicator overlap specifically for short screens like iPhone SE */
+@media (max-height: 700px) and (max-width: 768px) {
+    .hero-section .swipe-indicator {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin-top: 32px;
+    }
+    
+    .hero-section {
+        padding-bottom: 40px;
+    }
+}
+
 /* ============================================
    ABOUT SECTION
    ============================================ */
