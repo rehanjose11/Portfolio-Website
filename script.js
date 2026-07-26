@@ -1,8 +1,11 @@
 // --- THEME TOGGLE (init before anything else to avoid FOUC) ---
 (function () {
-    // Temporarily disabled: force dark mode
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.removeItem('portfolio-theme');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
 })();
 
 // Initialize Lucide icons
@@ -624,7 +627,7 @@ function applyGlowColors() {
         const glowOverride = card.hasAttribute('data-glow-override');
 
         const applyColor = (rgb) => {
-            card.style.setProperty('--glow-color', `rgba(${rgb}, 0.7)`);
+            card.style.setProperty('--glow-color', `rgba(${rgb}, 0.3)`);
         };
 
         // If override is set, always use data-glow (skip canvas sampling)
@@ -724,16 +727,15 @@ document.addEventListener('keydown', (e) => {
 
 applyGlowColors();
 
-// --- PROJECT CARDS SCROLL REVEAL ANIMATION ---
+// --- PROJECT CARDS SCROLL REVEAL & STACKING ANIMATION ---
 const projectCardsReveal = document.querySelectorAll('.project-card');
 
 const projectCardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Get all visible (not hidden) cards and find stagger index
             const allVisibleCards = Array.from(projectCardsReveal).filter(c => !c.classList.contains('hidden'));
             const cardIndex = allVisibleCards.indexOf(entry.target);
-            const delay = cardIndex >= 0 ? cardIndex * 150 : 0;
+            const delay = cardIndex >= 0 ? Math.min(cardIndex * 100, 300) : 0;
 
             setTimeout(() => {
                 entry.target.classList.add('is-visible');
@@ -748,6 +750,37 @@ const projectCardObserver = new IntersectionObserver((entries) => {
     threshold: 0.1
 });
 
-projectCardsReveal.forEach(card => {
+projectCardsReveal.forEach((card, i) => {
+    card.style.setProperty('--card-index', i + 1);
+    card.style.setProperty('--stack-offset', `${i * 12}px`);
     projectCardObserver.observe(card);
 });
+
+// Scroll-driven card depth effect as cards stack over each other
+function updateCardStacking() {
+    const visibleCards = Array.from(projectCardsReveal).filter(c => !c.classList.contains('hidden'));
+    
+    visibleCards.forEach((card, index) => {
+        if (index < visibleCards.length - 1) {
+            const nextCard = visibleCards[index + 1];
+            const nextRect = nextCard.getBoundingClientRect();
+            const currentStickyTop = 100 + index * 12;
+            const triggerPoint = currentStickyTop + 250;
+            
+            if (nextRect.top < triggerPoint) {
+                const progress = Math.min(1, Math.max(0, (triggerPoint - nextRect.top) / 350));
+                const scale = 1 - (progress * 0.04);
+                const brightness = 1 - (progress * 0.18);
+                
+                card.style.transform = `scale(${scale})`;
+                card.style.filter = `brightness(${brightness})`;
+            } else if (card.classList.contains('is-visible')) {
+                card.style.transform = '';
+                card.style.filter = '';
+            }
+        }
+    });
+}
+
+window.addEventListener('scroll', updateCardStacking, { passive: true });
+updateCardStacking();

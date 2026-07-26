@@ -16,6 +16,7 @@
     }
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="style.css?v=2">
 <style>
 /* Scoped Mobile Menu & Nav Styles */
@@ -105,6 +106,10 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
     <!-- ── NAVBAR ── -->
     <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center px-4 navbar-visible"
         style="z-index: 999;">
+        <button id="theme-toggle" class="theme-toggle theme-toggle--floating" aria-label="Toggle light/dark mode">
+            <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
+            <i data-lucide="sun" class="theme-icon theme-icon-sun  w-4 h-4"></i>
+        </button>
         <nav
             class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
             <div class="flex items-center justify-between w-full">
