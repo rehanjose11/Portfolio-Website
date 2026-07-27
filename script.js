@@ -331,7 +331,6 @@ const aboutSection = document.getElementById('about');
 const aboutContainer = document.querySelector('.about-container');
 const aboutText = document.getElementById('about-text');
 const aboutLink = document.getElementById('about-link');
-const projectsTitle = document.querySelector('.projects-title');
 
 // Pre-define random scattering values for consistent animation
 const letterPhysics = [];
@@ -483,64 +482,6 @@ if (aboutText && aboutSection && aboutContainer) {
                 aboutContainer.style.opacity = 1;
                 aboutContainer.style.pointerEvents = 'auto';
             }
-        }
-
-        // --- PROJECTS TITLE FORMING LOGIC ---
-        // As the About letters scatter into nothingness, the Projects 
-        // title letters fly IN from the scatter to form the word "PROJECTS"
-        if (projectsTitle) {
-            const projectsTop = document.getElementById('projects').offsetTop;
-
-            // Calculate progress specifically for when Projects title enters viewport
-            const titleEnterProgress = (scrollPosition + viewportHeight - projectsTop) / (viewportHeight * 0.5);
-            const clampedTitleProgress = Math.max(0, Math.min(1, titleEnterProgress));
-
-            // If the title hasn't been split into letters yet, do it now
-            if (!projectsTitle.hasAttribute('data-split')) {
-                const titleText = projectsTitle.innerText;
-                projectsTitle.innerHTML = '';
-                for (let i = 0; i < titleText.length; i++) {
-                    const span = document.createElement('span');
-                    span.innerHTML = titleText[i];
-                    span.style.display = 'inline-block';
-                    span.style.willChange = 'transform, opacity, filter';
-
-                    // Assign random coming-in coordinates matching the scatter effect
-                    span.setAttribute('data-ix', (Math.random() - 0.5) * 100);
-                    span.setAttribute('data-iy', (Math.random() - 0.5) * 100 - 50); // coming from slightly above
-                    span.setAttribute('data-irz', (Math.random() - 0.5) * 360);
-
-                    projectsTitle.appendChild(span);
-                }
-                projectsTitle.setAttribute('data-split', 'true');
-            }
-
-            // Animate title letters forming
-            const titleLetters = projectsTitle.querySelectorAll('span');
-            titleLetters.forEach((letter) => {
-                // Ease out back for a snapping effect into place
-                const easeOutBack = (x) => {
-                    const c1 = 1.70158;
-                    const c3 = c1 + 1;
-                    return 1 + c3 * Math.pow(clampedTitleProgress - 1, 3) + c1 * Math.pow(clampedTitleProgress - 1, 2);
-                };
-
-                const eased = clampedTitleProgress === 1 ? 1 : easeOutBack(clampedTitleProgress);
-                const invProgress = 1 - eased;
-
-                const startX = parseFloat(letter.getAttribute('data-ix'));
-                const startY = parseFloat(letter.getAttribute('data-iy'));
-                const startRz = parseFloat(letter.getAttribute('data-irz'));
-
-                letter.style.transform = `
-                    translate3d(${startX * invProgress}vw, ${startY * invProgress}vh, ${200 * invProgress}px)
-                    rotateZ(${startRz * invProgress}deg)
-                    scale(${1 + invProgress * 2})
-                `;
-
-                letter.style.opacity = clampedTitleProgress;
-                letter.style.filter = `blur(${invProgress * 10}px)`;
-            });
         }
     }
 
