@@ -414,7 +414,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 100px 32px 100px;
+    padding: 130px 32px 100px;
     position: relative;
     overflow-x: hidden;
     /* Prevent horizontal scroll from animated elements */
