@@ -940,7 +940,7 @@ body::before {
     justify-content: space-between;
     align-items: flex-start;
     margin: 0 auto 80px auto;
-    max-width: 1600px;
+    max-width: 1280px;
     gap: 64px;
     width: 100%;
 }
@@ -1319,7 +1319,8 @@ body::before {
 
 @media (min-width: 1440px) {
     .projects-header-wrapper,
-    .projects-container {
+    .projects-container,
+    .elsewhere-container {
         max-width: 1360px;
     }
 
@@ -1435,6 +1436,12 @@ body::before {
     width: 100%;
     position: relative;
     z-index: 2;
+}
+
+.elsewhere-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 .elsewhere-eyebrow {
