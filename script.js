@@ -1,11 +1,8 @@
 // --- THEME TOGGLE (init before anything else to avoid FOUC) ---
 (function () {
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-        document.documentElement.removeAttribute('data-theme');
-    }
+    // Temporarily disabled: force dark mode
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.removeItem('portfolio-theme');
 })();
 
 // Initialize Lucide icons
