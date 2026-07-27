@@ -1432,6 +1432,7 @@ body::before {
    ============================================ */
 
 .elsewhere-section {
+    min-height: auto !important;
     padding: 80px 40px 40px;
     width: 100%;
     position: relative;
@@ -1494,10 +1495,8 @@ body::before {
 }
 
 .playground-btn:hover {
-    color: #000000;
-    background: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    background: var(--tag-bg-hover);
+    border-color: var(--border-hover);
     transform: translateY(-2px);
 }
 
@@ -1506,14 +1505,13 @@ body::before {
 }
 
 [data-theme="light"] .playground-btn {
-    color: var(--text-primary);
-    border-color: var(--border-subtle);
+    border-color: rgba(17, 17, 17, 0.15);
+    background: rgba(17, 17, 17, 0.03);
 }
 
 [data-theme="light"] .playground-btn:hover {
-    color: #ffffff;
-    background: #000000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(17, 17, 17, 0.08);
+    border-color: rgba(17, 17, 17, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -1533,11 +1531,9 @@ body::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 148px 48px 16px;
-    /* Adjusted padding so everything fits on a single screen */
+    padding: 80px 48px 16px;
     position: relative;
     text-align: center;
-    /* Removed gap: 36px because it forces a massive gap between the email and the socials */
 }
 
 /* --- Contact Image --- */
