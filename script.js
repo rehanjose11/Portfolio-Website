@@ -322,6 +322,9 @@ function initProjectStatusToggle() {
             if (typeof refreshProjectStacking === 'function') {
                 refreshProjectStacking();
             }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }, 260);
     }
 
