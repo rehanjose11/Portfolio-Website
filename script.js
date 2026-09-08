@@ -132,12 +132,13 @@ mobileNavLinks.forEach(link => {
     });
 });
 
-// Close menu when clicking outside
-mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-        closeMobileMenu();
-    }
-});
+if (mobileMenu) {
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+}
 
 // --- THEME TOGGLE ---
 const themeToggle = document.getElementById('theme-toggle');
@@ -272,56 +273,77 @@ window.addEventListener('scroll', () => {
 // Initial call
 updateHeroAnimations();
 
-// --- CATEGORY DROPDOWN & PROJECT FILTERING ---
-const categoryDropdown = document.getElementById('category-select');
-const projectCards = document.querySelectorAll('.project-card');
+// --- PROJECT STATUS TOGGLE (COMPLETED vs PROGRESS) ---
+const statusToggleBtns = document.querySelectorAll('.status-toggle-btn');
 
-function filterProjects(selectedCategory) {
-    // Save selection
-    localStorage.setItem('selectedCategory', selectedCategory);
+function initProjectStatusToggle() {
+    if (!statusToggleBtns.length) return;
 
-    // Filter and show/hide projects with smooth transition
-    projectCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
+    let currentStatus = 'completed'; // Default to 'completed'
 
-        if (cardCategory === selectedCategory) {
-            // Show matching projects
-            card.classList.remove('hidden');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
+    function applyStatusFilter(status) {
+        currentStatus = status;
 
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 50);
-        } else {
-            // Hide non-matching projects
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(-20px)';
+        statusToggleBtns.forEach(btn => {
+            const isActive = btn.getAttribute('data-status') === status;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
 
-            setTimeout(() => {
-                card.classList.add('hidden');
-            }, 400);
-        }
+        // Only filter cards that aren't permanently hidden (AlexaBot, Beyond Jerseys, Graduation Showcase)
+        const landingCards = Array.from(document.querySelectorAll('.project-card')).filter(card => {
+            return !card.classList.contains('hidden');
+        });
+
+        landingCards.forEach(card => {
+            const cardStatus = card.getAttribute('data-status');
+            const shouldShow = (status === 'all' || cardStatus === status);
+
+            if (shouldShow) {
+                card.classList.remove('status-hidden');
+                card.style.display = 'flex';
+                requestAnimationFrame(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(12px) scale(0.98)';
+                setTimeout(() => {
+                    if (card.getAttribute('data-status') !== currentStatus && currentStatus !== 'all') {
+                        card.classList.add('status-hidden');
+                        card.style.display = 'none';
+                    }
+                }, 250);
+            }
+        });
+
+        setTimeout(() => {
+            if (typeof refreshProjectStacking === 'function') {
+                refreshProjectStacking();
+            }
+        }, 260);
+    }
+
+    statusToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const status = btn.getAttribute('data-status');
+            if (status === currentStatus) {
+                // If clicked again, toggle to show both statuses
+                applyStatusFilter('all');
+                statusToggleBtns.forEach(b => b.classList.remove('active'));
+            } else {
+                applyStatusFilter(status);
+            }
+        });
     });
+
+    // Initialize with default
+    applyStatusFilter('completed');
 }
 
-/* 
-if (categoryDropdown) {
-    categoryDropdown.addEventListener('change', (e) => {
-        const category = e.target.value;
-        filterProjects(category);
-    });
-
-    // Initialize with saved category (defaulting to editorial)
-    const savedCategory = localStorage.getItem('selectedCategory') || 'editorial';
-    
-    // Sync dropdown value with saved category
-    categoryDropdown.value = savedCategory;
-    
-    filterProjects(savedCategory);
-}
-*/
+// Run status toggle init
+initProjectStatusToggle();
 
 // --- ABOUT SECTION SCROLL ANIMATION & PROJECTS TRANSITION ---
 const aboutSection = document.getElementById('about');
@@ -660,8 +682,199 @@ function closeComingSoon() {
 
 // Close on Esc key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeComingSoon();
+    if (e.key === 'Escape') {
+        closeComingSoon();
+        closeExpModal();
+    }
 });
+
+// --- EXPERIENCE SECTION & DETAILS MODAL ---
+const experienceData = {
+    alramz: {
+        company: "Al Ramz MEP Designs",
+        logo: "experience%20logos/Al%20Ramz.png",
+        initials: "AR",
+        role: "Product Designer & Web Developer",
+        type: "Freelance",
+        period: "Sept. 2026",
+        location: "Remote",
+        certificate: false,
+        highlights: [
+            "Designed and developed a 0→1 responsive website based on client requirements.",
+            "Created sitemap, user flows, and UI Design in Figma; developed using HTML, CSS & JavaScript.",
+            "Managed deployment, domain, SSL, hosting, SEO optimization, and Google Analytics.",
+            "Collaborated with the client through iterations to align the website with brand and business requirements."
+        ]
+    },
+    xplor: {
+        company: "Xplor AI Mobility",
+        logo: "experience%20logos/xplor.png",
+        initials: "XP",
+        role: "Product Designer",
+        type: "Summer Internship",
+        period: "Jun. 2026 – Aug. 2026",
+        location: "On-site",
+        highlights: [
+            "Worked within the Product Design team on Xplor's mobility platform, contributing to UX research, user testing, information architecture, interaction design, and UI across bus and metro experiences.",
+            "Benchmarked 42 mobility, travel, and finance apps, analysing journey planning, transit discovery, and multimodal UX to identify opportunities for Xplor.",
+            "Identified usability issues through existing-flow analysis and user-testing feedback, redesigning key journeys across search, bus discovery, schedules, account linking, and journey planning.",
+            "Designed a Universal Search and Multimodal Journey experience exploring point-to-point travel combining bus, metro, walking, and first/last-mile connections across different journey scenarios.",
+            "Redesigned the bus search, availability, cards, and schedules, improving information hierarchy and introducing relevant alternatives and a route-request flow to capture unmet transit demand.",
+            "Collaborated with Product, Design, and Technology teams through design reviews, iteration, documentation, and handoff, while contributing to product QA and campaign-related UI/visual communication."
+        ]
+    },
+    reflexlabs: {
+        company: "ReflexLabs AI",
+        logo: "experience%20logos/reflexlabs.png",
+        initials: "RL",
+        role: "UI/UX Designer",
+        type: "Internship",
+        period: "Nov. 2025",
+        location: "Remote",
+        highlights: [
+            "Redesigned the ReflexLabs AI website with a cleaner structure and modern visual language.",
+            "Ideated new design elements and created interactive components to enhance user engagement.",
+            "Improved overall user flow, clarity, and brand experience."
+        ]
+    },
+    nift: {
+        company: "NIFT Kannur",
+        logo: "experience%20logos/nift.png",
+        initials: "NK",
+        role: "Print & Graphic Team, Converge 2025",
+        type: "Student Assistant",
+        period: "Jun. 2025 – Sept. 2025",
+        location: "On-site",
+        highlights: [
+            "Part of a 10-member core team developing the brand identity for Converge 2025 (Inter-NIFT annual event).",
+            "Led design and production of the official Playbook, and created standees, direction boards, and visual assets using Adobe Creative Suite.",
+            "Produced 40 custom mementos for SDAC delegates using laser etching (RDWorks V8), aligning with the event's visual identity."
+        ]
+    },
+    inamigos: {
+        company: "InAmigos Foundation",
+        logo: "experience%20logos/Inamigos.png",
+        initials: "IF",
+        role: "Graphic Designer",
+        type: "Internship",
+        period: "Jun. 2025 – Jul. 2025",
+        location: "Remote",
+        highlights: [
+            "Designed posters and visual content for social impact campaigns, including Project Bachpanshala.",
+            "Created engaging reels to drive social media awareness and support the 'Join as a Volunteer' campaign.",
+            "Explored and applied generative AI tools for video content creation and enhancement."
+        ]
+    }
+};
+
+function openExpModal(expId) {
+    const data = experienceData[expId];
+    if (!data) return;
+
+    const modal = document.getElementById('experience-modal');
+    const logoEl = document.getElementById('exp-modal-logo-img');
+    const initialsEl = document.getElementById('exp-modal-initials');
+    const companyEl = document.getElementById('exp-modal-company');
+    const roleEl = document.getElementById('exp-modal-role');
+    const periodEl = document.getElementById('exp-modal-period');
+    const locationEl = document.getElementById('exp-modal-location');
+    const typeEl = document.getElementById('exp-modal-type');
+    const listEl = document.getElementById('exp-modal-list');
+
+    if (logoEl && data.logo) {
+        logoEl.src = data.logo;
+        logoEl.alt = `${data.company} Logo`;
+        logoEl.style.display = 'block';
+        if (initialsEl) initialsEl.style.display = 'none';
+    } else if (initialsEl) {
+        initialsEl.textContent = data.initials;
+        initialsEl.style.display = 'block';
+        if (logoEl) logoEl.style.display = 'none';
+    }
+
+    if (companyEl) companyEl.textContent = data.company;
+    if (roleEl) roleEl.textContent = data.role;
+    if (periodEl) periodEl.textContent = data.period;
+    if (locationEl) locationEl.textContent = data.location;
+    if (typeEl) typeEl.textContent = data.type;
+
+    if (listEl) {
+        listEl.innerHTML = '';
+        data.highlights.forEach(highlight => {
+            const li = document.createElement('li');
+            li.textContent = highlight;
+            listEl.appendChild(li);
+        });
+    }
+
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeExpModal() {
+    const modal = document.getElementById('experience-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Bind clicks & keyboard events to experience cards
+document.querySelectorAll('.experience-card').forEach(card => {
+    const expId = card.getAttribute('data-exp-id');
+    card.addEventListener('click', () => openExpModal(expId));
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openExpModal(expId);
+        }
+    });
+});
+
+// --- EXPERIENCE SECTION SCROLL REVEAL ANIMATION ---
+const expHeader = document.querySelector('#experience .projects-header-left');
+const expCardElements = document.querySelectorAll('.experience-card');
+
+// Observe the header separately
+if (expHeader) {
+    const headerObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                expHeader.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -30px 0px',
+        threshold: 0.2
+    });
+    headerObserver.observe(expHeader);
+}
+
+// Observe each card individually so they reveal as they scroll into view
+if (expCardElements.length > 0) {
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.1
+    });
+
+    expCardElements.forEach((card, index) => {
+        // Stagger via transition-delay so each card slides in slightly after the previous
+        card.style.transitionDelay = `${index * 80}ms`;
+        cardObserver.observe(card);
+    });
+}
 
 applyGlowColors();
 
@@ -688,15 +901,27 @@ const projectCardObserver = new IntersectionObserver((entries) => {
     threshold: 0.1
 });
 
-projectCardsReveal.forEach((card, i) => {
-    card.style.setProperty('--card-index', i + 1);
-    card.style.setProperty('--stack-offset', `${i * 12}px`);
-    projectCardObserver.observe(card);
-});
+function getActiveProjectCards() {
+    return Array.from(document.querySelectorAll('.project-card')).filter(c => {
+        return !c.classList.contains('hidden') && !c.classList.contains('status-hidden');
+    });
+}
+
+function refreshProjectStacking() {
+    const visibleCards = getActiveProjectCards();
+    visibleCards.forEach((card, i) => {
+        card.style.setProperty('--card-index', i + 1);
+        card.style.setProperty('--stack-offset', `${i * 12}px`);
+        if (typeof projectCardObserver !== 'undefined') {
+            projectCardObserver.observe(card);
+        }
+    });
+    updateCardStacking();
+}
 
 // Scroll-driven card depth effect as cards stack over each other
 function updateCardStacking() {
-    const visibleCards = Array.from(projectCardsReveal).filter(c => !c.classList.contains('hidden'));
+    const visibleCards = getActiveProjectCards();
     
     visibleCards.forEach((card, index) => {
         if (index < visibleCards.length - 1) {
@@ -716,9 +941,12 @@ function updateCardStacking() {
                 card.style.transform = '';
                 card.style.filter = '';
             }
+        } else if (card.classList.contains('is-visible')) {
+            card.style.transform = '';
+            card.style.filter = '';
         }
     });
 }
 
 window.addEventListener('scroll', updateCardStacking, { passive: true });
-updateCardStacking();
+refreshProjectStacking();
