@@ -206,7 +206,7 @@ a {
 .case-container {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 140px 28px 0;
+    padding: 140px 28px 24px;
     position: relative;
     z-index: 1;
 }
@@ -1227,7 +1227,7 @@ a {
 
 @media (max-width: 640px) {
     .case-container {
-        padding: 120px 20px 0;
+        padding: 120px 20px 16px;
     }
 
     .meta-specs-grid {
