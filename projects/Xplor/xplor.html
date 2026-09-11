@@ -726,7 +726,6 @@
                         <thead>
                             <tr>
                                 <th>Platform</th>
-                                <th>Severity</th>
                                 <th>Audited Core Flow</th>
                                 <th>Observed Usability Friction</th>
                                 <th>UX &amp; Engineering Resolution</th>
@@ -735,35 +734,30 @@
                         <tbody>
                             <tr>
                                 <td><strong>Android (6 Pages)</strong></td>
-                                <td><span class="ux-scenario-badge amber">P1 Severe</span></td>
                                 <td>Bus Search &amp; Location Inputs</td>
                                 <td>Virtual keyboard occluded the destination suggestion list on sub-6" budget devices.</td>
                                 <td>Implemented dynamic viewport scroll repositioning and condensed top app bar padding.</td>
                             </tr>
                             <tr>
                                 <td><strong>Android (6 Pages)</strong></td>
-                                <td><span class="ux-scenario-badge amber">P1 Severe</span></td>
                                 <td>Live Map Vehicle Tracking</td>
                                 <td>GPS vehicle marker snapped erratically when commuter cellular connection throttled to 2G.</td>
                                 <td>Introduced dead-reckoning interpolation and cached polyline smoothing between pings.</td>
                             </tr>
                             <tr>
                                 <td><strong>iOS (7 Pages)</strong></td>
-                                <td><span class="ux-scenario-badge green">P2 Polish</span></td>
                                 <td>Navigation Stack</td>
                                 <td>Interactive edge-swipe to dismiss results screen wiped selected filter parameters.</td>
                                 <td>Persisted active filter state in temporary session cache to allow seamless re-entry.</td>
                             </tr>
                             <tr>
                                 <td><strong>iOS (7 Pages)</strong></td>
-                                <td><span class="ux-scenario-badge purple">P0 Blocker</span></td>
                                 <td>SOS Emergency Trigger</td>
                                 <td>Emergency call action sheet was dismissed without confirmation on background tap.</td>
                                 <td>Made emergency modal persistent with explicit modal swipe-lock and 5-second countdown.</td>
                             </tr>
                             <tr>
                                 <td><strong>Both OS</strong></td>
-                                <td><span class="ux-scenario-badge green">P2 Polish</span></td>
                                 <td>Design System Alignment</td>
                                 <td>Discrepancies in button radii, elevation shadows, and font weights across OS native toolkits.</td>
                                 <td>Standardized design token mapping across Material 3 and Cupertino native UI libraries.</td>
