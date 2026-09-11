@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplor AI Mobility — Summer Internship (Under NDA) — Rehan Jose</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" href="../../Homepage Assets/logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Ambient Background Glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- Floating Top Navigation -->
+    <nav class="case-nav">
+        <div class="case-nav-inner">
+            <a href="../../index.html#projects" class="back-btn">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span>Back to Overview</span>
+            </a>
+            <div class="nda-pill">
+                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                <span>Protected Under NDA</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="case-container">
+
+        <!-- ============================================
+             HERO HEADER SECTION
+             ============================================ -->
+        <header class="case-hero">
+            <div class="hero-meta-top">
+                <span class="hero-tag">Summer Internship 2026</span>
+                <span class="hero-dates">9-Week Sprint · June 01 – August 01, 2026</span>
+            </div>
+
+            <h1 class="hero-title">
+                XPLOR AI MOBILITY<br>
+                <span class="hero-title-highlight">Designing for Public Transit at Scale</span>
+            </h1>
+
+            <p class="hero-lead">
+                How do you design for a public transportation ecosystem where millions of commuters depend on buses every day, yet the entire infrastructure—from scheduling and paper tickets to metro feeder connections—is fragmented?
+            </p>
+
+            <!-- Meta Specs Grid -->
+            <div class="meta-specs-grid">
+                <div class="meta-spec-item">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Product Design Intern</span>
+                    <span class="spec-sub">Design &amp; Product Team</span>
+                </div>
+                <div class="meta-spec-item">
+                    <span class="spec-label">Industry Mentors</span>
+                    <span class="spec-value">Ms. Reshma MS</span>
+                    <span class="spec-sub">Head of Design, Xplor</span>
+                </div>
+                <div class="meta-spec-item">
+                    <span class="spec-label">Location</span>
+                    <span class="spec-value">Kochi, Kerala</span>
+                    <span class="spec-sub">Kerala Tech Innovation Zone</span>
+                </div>
+                <div class="meta-spec-item">
+                    <span class="spec-label">Core Deliverables</span>
+                    <span class="spec-value">14 Projects</span>
+                    <span class="spec-sub">UX, Research, QA, Brand</span>
+                </div>
+            </div>
+
+            <!-- Hero Cover Media -->
+            <div class="hero-media-wrapper">
+                <img src="assets/hero.png" alt="Xplor AI Mobility Project Cover">
+            </div>
+        </header>
+
+        <!-- ============================================
+             SENIOR-STYLE NDA CALLOUT SECTION
+             ============================================ -->
+        <section class="nda-banner-card">
+            <div class="nda-icon-circle">
+                <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <div class="nda-content">
+                <h3 class="nda-title">
+                    <span>Non-Disclosure Agreement (NDA) Notice</span>
+                </h3>
+                <p class="nda-text">
+                    To respect confidentiality and protect Xplor AI Mobility's proprietary intellectual property, <strong>sensitive commuter mobile app interfaces, internal fleet operator dashboards, confidential route data, and commercial backend metrics are protected</strong> under NDA and omitted from public display.<br><br>
+                    This documentation highlights <strong>high-level problem framing, extensive benchmarking research (42 apps), systemic UX methodologies, permitted physical-digital graphic works</strong> (bus ticketing, fleet exterior branding, event collateral), and tangible outcomes. I would be delighted to walk through the protected design process, user testing insights, and architecture decisions in a <strong>1-on-1 private discussion</strong>.
+                </p>
+                <div class="nda-actions">
+                    <a href="mailto:rehanjose.design@gmail.com?subject=1-on-1%20Discussion%20Request%3A%20Xplor%20AI%20Mobility%20Case%20Study" class="cta-nda-primary">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>Request 1-on-1 Walkthrough</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" class="cta-nda-secondary">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        <span>Connect on LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 01: UNDERSTANDING THE COMPANY
+             ============================================ -->
+        <section class="case-section" id="company">
+            <div class="section-header">
+                <span class="section-number">Chapter 01</span>
+                <h2 class="section-title">Understanding Xplor AI Mobility</h2>
+                <p class="section-intro">
+                    Founded in late 2023 at the Kerala Technology Innovation Zone in Kochi, Xplor AI Mobility is an <strong>Intelligent Mobility as a Service (iMaaS)</strong> company building a connected digital ecosystem for public transportation and fleet management.
+                </p>
+            </div>
+
+            <div class="features-grid-3">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="bus" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">The Real-World Crisis</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        In India, millions rely on private buses and public transit daily. However, operations are plagued by uncoordinated schedules, manual paper tickets, zero live arrival tracking, and complete disconnect between metro and feeder services.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">AI-Powered iMaaS</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Xplor transforms fragmented transit by connecting operators, vehicles, drivers, and commuters through a centralized software platform—integrating ticketing, automated scheduling, GPS telemetry, and passenger discovery.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="network" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Multimodal Vision</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        From Kochi Metro feeder bus tie-ups to Open Network for Digital Commerce (ONDC) mobility protocols, Xplor unites isolated transit modes into a single, seamless commuter journey.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ecosystem Breakdown Cards -->
+            <div class="features-grid-2" style="margin-top: 24px;">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge" style="background: rgba(20, 184, 166, 0.12); color: #14b8a6; border-color: rgba(20, 184, 166, 0.25);">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Xplor User App</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        A commuter-facing application enabling users to search routes, check real-time bus arrivals, buy metro/bus digital tickets, and plan multimodal journeys across the city.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge" style="background: rgba(59, 130, 246, 0.12); color: #60a5fa; border-color: rgba(59, 130, 246, 0.25);">
+                            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Fleet Operations Platform</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Tools for bus owners and transit authorities to monitor fleets in real-time, audit ticketing revenue, manage crew schedules, and improve route efficiency.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border-color: rgba(245, 158, 11, 0.25);">
+                            <i data-lucide="train" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Kochi Metro Feeder Network</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Digital scheduling and first/last-mile integration connecting Kochi Metro stations with feeder buses, reducing commuter transfer wait times.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge" style="background: rgba(236, 72, 153, 0.12); color: #f472b6; border-color: rgba(236, 72, 153, 0.25);">
+                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Halo by Xplor</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        A dedicated school and institutional transportation ERP providing parent ETA alerts, route optimization, driver monitoring, and child safety attendance.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 02: MY ROLE & WORK STREAMS
+             ============================================ -->
+        <section class="case-section" id="role">
+            <div class="section-header">
+                <span class="section-number">Chapter 02</span>
+                <h2 class="section-title">My Role &amp; 4 Core Work Streams</h2>
+                <p class="section-intro">
+                    Over the 9-week internship, I operated as a <strong>Product Design Intern</strong> within the core design team under Ms. Reshma MS (Head of Design) and worked cross-functionally alongside product managers, software engineers, and on-ground operations personnel across 4 interconnected streams.
+                </p>
+            </div>
+
+            <div class="features-grid-2">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <span style="font-family: var(--font-mono); font-weight: 700; font-size: 14px;">01</span>
+                        </div>
+                        <h4 class="feature-card-title">Commuter UX &amp; Flow Optimization</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Audited the core journey planning flows. Redesigned the search and location-modification logic, established explicit confirmation steps when swapping destinations, and created clear decision states for direct vs. indirect bus availability.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <span style="font-family: var(--font-mono); font-weight: 700; font-size: 14px;">02</span>
+                        </div>
+                        <h4 class="feature-card-title">Global Mobility &amp; ERP Benchmarking</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Executed a 6-day comprehensive benchmarking study of <strong>42 global and domestic transit apps</strong>. Extracted 9 systemic opportunities for multimodal discovery, demand capture, and school transportation ERP feature sets.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <span style="font-family: var(--font-mono); font-weight: 700; font-size: 14px;">03</span>
+                        </div>
+                        <h4 class="feature-card-title">Cross-Platform QA &amp; Usability Auditing</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Conducted rigorous end-to-end user testing across Android and iOS builds. Documented bug friction matrices, interface hierarchy discrepancies, and structured an in-app push notification system.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <span style="font-family: var(--font-mono); font-weight: 700; font-size: 14px;">04</span>
+                        </div>
+                        <h4 class="feature-card-title">Physical-Digital Transit Graphic Works</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Designed high-visibility physical and digital assets deployed across Kochi: bus ticket advertising formats, bus fleet exterior route decals, FIFA x ZEE5 marketing posters, and Bus Owner Meetup branding.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="stats-strip">
+                <div class="stat-box">
+                    <span class="stat-number stat-number-purple">14</span>
+                    <span class="stat-caption">Projects Delivered</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">42</span>
+                    <span class="stat-caption">Apps Benchmarked</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number stat-number-purple">9</span>
+                    <span class="stat-caption">Weeks On-Site</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-caption">NDA Compliant</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 03: BENCHMARKING STUDY
+             ============================================ -->
+        <section class="case-section" id="research">
+            <div class="section-header">
+                <span class="section-number">Chapter 03</span>
+                <h2 class="section-title">The 42-App Benchmarking Study</h2>
+                <p class="section-intro">
+                    To transition Xplor from a single-point ticketing tool into a comprehensive mobility companion, I conducted an in-depth competitive benchmarking analysis evaluating <strong>42 international and domestic mobility and ERP platforms</strong>.
+                </p>
+            </div>
+
+            <div class="features-grid-3">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="compass" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Global Transit Benchmarks</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Analyzed <strong>Citymapper, Moovit, Transit, Whim, and Chalo</strong>. Studied how leading platforms present multimodal transfers, walking radii, live vehicle tracking, and real-time disruption alerts.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Ride-Hailing &amp; Intercity</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Evaluated <strong>Uber, Rapido, Namma Yatri, RedBus, and ixigo</strong> to extract best-in-class location picking patterns, payment flows, fare transparency, and post-booking reassurance.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="school" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Institutional ERP Systems</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Analyzed school transit software to benchmark feature sets for <strong>Halo by Xplor</strong>—including guardian geo-fencing, student attendance check-ins, and emergency protocol communications.
+                    </p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "The central takeaway from our benchmarking: Modern public transit users do not just want to buy a ticket. They want certainty—knowing exactly when a bus will arrive, where to switch to the metro, and how to reach their final destination with minimal friction."
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 04: SYSTEMIC UX & PRODUCT THINKING
+             ============================================ -->
+        <section class="case-section" id="ux-frameworks">
+            <div class="section-header">
+                <span class="section-number">Chapter 04</span>
+                <h2 class="section-title">Systemic UX &amp; Interaction Frameworks</h2>
+                <p class="section-intro">
+                    Public transit commuters often use mobile applications while on moving buses, in crowded stations, and with intermittent cellular connectivity. Good UX in this space demands reducing cognitive load and providing absolute clarity at every step.
+                </p>
+            </div>
+
+            <div class="features-grid-2">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Search &amp; Location Swap Logic</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        In the original app, selecting a boarding and destination point auto-navigated to results. However, when commuters returned to swap or change their route, the lack of an explicit confirmation action created user doubt. I introduced contextual behavior: <em>Instant auto-advance for initial searches, and an explicit "Proceed" confirmation CTA during route modifications.</em>
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="split" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Availability States &amp; Demand Capture</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        When a direct bus was unavailable between two stops, the existing experience left commuters at a dead end. I framed three distinct state flows: <strong>Direct Available</strong>, <strong>Indirect / Feeder Transfer Available</strong>, and <strong>No Service Yet</strong>—pairing the dead-end state with an intentional demand-capture button to log unserved routes for future operator planning.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="bell" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Push Notification Architecture</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Crafted a comprehensive push notification taxonomy categorized by urgency: <em>Critical Journey Alerts</em> (e.g. bus approaching stop in 2 mins), <em>Operational Disruption Notices</em>, and <em>Value-Driven Updates</em>—establishing concise, regional-friendly UX microcopy that respects commuter attention.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">End-to-End Cross-Platform Auditing</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Conducted systematic QA usability passes across different screen resolutions and OS builds. Documented visual inconsistencies, touch-target issues on budget Android devices, and state handling errors, bridging the gap between design vision and technical execution.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 05: PHYSICAL-DIGITAL GRAPHIC WORKS
+             ============================================ -->
+        <section class="case-section" id="graphic-works">
+            <div class="section-header">
+                <span class="section-number">Chapter 05</span>
+                <h2 class="section-title">Physical-Digital Graphic Works Showcase</h2>
+                <p class="section-intro">
+                    As part of my deliverables, I designed public-facing physical and digital communications deployed across fleets, transit hubs, and commuter touchpoints in Kerala. These permitted non-confidential works represent the tangible visual presence of Xplor.
+                </p>
+            </div>
+
+            <div class="showcase-grid">
+                <!-- Card 1: Bus Ticket Advertising -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap">
+                        <img src="assets/ticket front.jpg" alt="Xplor Bus Ticket Back Advertisement Design">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Print &amp; Transit Touchpoint</span>
+                        <h4 class="showcase-title">Bus Ticket Back-of-Ticket Advertising</h4>
+                        <p class="showcase-desc">
+                            Designed the reverse-side advertising system for physical bus tickets printed daily across hundreds of private transit fleets in Kochi. Created high-contrast, thermal-printer-compatible layouts driving commuter app downloads and brand awareness.
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Physical Print</span>
+                            <span class="showcase-pill">Transit Media</span>
+                            <span class="showcase-pill">Thermal Printing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Bus Fleet Route Decals -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap">
+                        <img src="assets/Bussticker-1.png" alt="Bus Fleet Exterior Branding Stickers">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Vehicle Branding</span>
+                        <h4 class="showcase-title">Bus Fleet Exterior Decals &amp; QR Signage</h4>
+                        <p class="showcase-desc">
+                            Standardized bilingual (English &amp; Malayalam) exterior vehicle stickers for partner private buses and metro feeder shuttles, making route identification and digital fare scanning instantly recognizable from the curb.
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Fleet Branding</span>
+                            <span class="showcase-pill">Malayalam Typography</span>
+                            <span class="showcase-pill">Wayfinding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: FIFA x ZEE5 Campaign -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap">
+                        <img src="assets/FIFAINSTA.png" alt="FIFA x ZEE5 Promotional Campaign Poster">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Marketing &amp; Campaign Design</span>
+                        <h4 class="showcase-title">FIFA 2026 × ZEE5 Digital Campaign</h4>
+                        <p class="showcase-desc">
+                            Spearheaded visual campaign collaterals for a 5-day metro ticket booking challenge in collaboration with ZEE5. Designed digital posters, social media carousels, and in-app milestone streaks celebrating Kerala's football fandom.
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Campaign Strategy</span>
+                            <span class="showcase-pill">Social Media</span>
+                            <span class="showcase-pill">Visual Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Kochi Metro Feeder Network -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap">
+                        <img src="assets/FEEDERBUS.png" alt="Kochi Metro Feeder Bus Identity">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Multimodal Integration</span>
+                        <h4 class="showcase-title">Kochi Metro Feeder Bus Visual System</h4>
+                        <p class="showcase-desc">
+                            Visual communication design supporting feeder bus routes connecting key metro stations across Kochi, aligning municipal transit colors with Xplor's connected digital route discovery.
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Kochi Metro Feeder</span>
+                            <span class="showcase-pill">Multimodal</span>
+                            <span class="showcase-pill">Signage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Environmental Day Poster -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap">
+                        <img src="assets/Environmental day Poster.jpeg" alt="World Environment Day Transit Poster">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Brand Communications</span>
+                        <h4 class="showcase-title">World Environment Day Transit Creative</h4>
+                        <p class="showcase-desc">
+                            Conceptualized and executed visual communications advocating for shared public transit usage as a direct, tangible solution to urban vehicular carbon emissions.
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Brand Storytelling</span>
+                            <span class="showcase-pill">Poster Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Design System Palette -->
+                <div class="showcase-card">
+                    <div class="showcase-image-wrap" style="display: flex; align-items: center; justify-content: center; background: #121218;">
+                        <img src="assets/COLOURPALETTE.png" alt="Xplor Color Palette and Design System Tokens" style="object-fit: contain; padding: 20px;">
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-tag">Design System</span>
+                        <h4 class="showcase-title">Brand Color Palette &amp; Typography</h4>
+                        <p class="showcase-desc">
+                            Documented the functional color palette centered on Xplor Purple, supported by high-contrast tints for interface states, accessibility guidelines, and bilingual typography pairings (Nohemi, Inter, Akand Condensed).
+                        </p>
+                        <div class="showcase-badges">
+                            <span class="showcase-pill">Design System</span>
+                            <span class="showcase-pill">Accessibility</span>
+                            <span class="showcase-pill">Typography</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CHAPTER 06: IMPACT & REFLECTIONS
+             ============================================ -->
+        <section class="case-section" id="impact">
+            <div class="section-header">
+                <span class="section-number">Chapter 06</span>
+                <h2 class="section-title">Measurable Impact &amp; Learnings</h2>
+                <p class="section-intro">
+                    Working within an early-stage, fast-moving mobility tech company was a transformative experience that grounded my design skills in real-world operational complexities.
+                </p>
+            </div>
+
+            <div class="features-grid-3">
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Physical-Digital Synergy</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Public mobility is not just an app—it is buses, conductors, passengers, printed tickets, and street signage. Designing the connective tissue between physical bus touchpoints and digital apps was my biggest takeaway.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Startup Agility &amp; Speed</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Delivered 14 distinct projects across 9 weeks—ranging from strategic benchmarking decks for investor summits to on-ground vehicle decals printed within 24-hour turnaround windows.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-header">
+                        <div class="feature-icon-badge">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="feature-card-title">Cross-Team Empathy</h4>
+                    </div>
+                    <p class="feature-card-desc">
+                        Learned to communicate design rationale not just with designers, but with backend engineers building ONDC APIs, operations leads managing bus depots, and sales leads meeting fleet owners.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             FINAL END CTA & CONTACT
+             ============================================ -->
+        <section class="case-end-cta">
+            <span class="end-cta-eyebrow">Interested in Learning More?</span>
+            <h3 class="end-cta-title">Let's Walk Through the Full Process</h3>
+            <p class="end-cta-desc">
+                Due to NDA restrictions, detailed UX prototypes, user testing transcripts, and proprietary app screens are preserved for private walkthroughs. If you are a recruiter, hiring manager, or design team curious to see how I tackle complex systemic design, I would love to connect.
+            </p>
+            <div class="end-cta-buttons">
+                <a href="mailto:rehanjose.design@gmail.com?subject=1-on-1%20Discussion%20Request%3A%20Xplor%20AI%20Mobility%20Case%20Study" class="cta-nda-primary">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>Email Rehan</span>
+                </a>
+                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" class="cta-nda-secondary">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    <span>LinkedIn Profile</span>
+                </a>
+                <a href="../../index.html#projects" class="cta-nda-secondary">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span>Back to Portfolio</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Simple Footer -->
+    <footer style="padding: 40px 24px 60px; text-align: center; border-top: 1px solid var(--border-subtle); margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <p style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
+                Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED
+            </p>
+            <div style="display: flex; gap: 20px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;">
+                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" style="color: var(--text-muted); text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">LinkedIn</a>
+                <span style="color: var(--text-muted);">&middot;</span>
+                <a href="https://www.behance.net/rehanjose" target="_blank" style="color: var(--text-muted); text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Behance</a>
+                <span style="color: var(--text-muted);">&middot;</span>
+                <a href="https://github.com/rehanjose" target="_blank" style="color: var(--text-muted); text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>
