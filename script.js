@@ -56,8 +56,11 @@ function finishPreloader() {
     }
 
     // Finish preloader
-    preloader.style.opacity = '0';
-    setTimeout(() => preloader.remove(), 500);
+    if (preloader) {
+        preloader.style.pointerEvents = 'none';
+        preloader.style.opacity = '0';
+        setTimeout(() => preloader.remove(), 500);
+    }
 
     // Reveal Site
     mainContent.classList.add('visible');
@@ -1076,8 +1079,18 @@ refreshProjectStacking();
     function getHoverConfig(target) {
         if (!target || !(target instanceof Element)) return null;
 
-        // 1. Photo hover -> "It's me"
-        if (target.closest('.photo-wrapper, .profile-photo, .hero-image .photo-wrapper, [data-cursor="photo"], [data-cursor="me"]')) {
+        // Never trigger cursor badges while preloader is active or main content is not revealed
+        const activePreloader = document.getElementById('preloader');
+        if (activePreloader && document.body.contains(activePreloader) && activePreloader.style.opacity !== '0') {
+            return null;
+        }
+        const mainContentEl = document.getElementById('main-content');
+        if (mainContentEl && !mainContentEl.classList.contains('visible')) {
+            return null;
+        }
+
+        // 1. Photo hover -> "It's me" (only on the actual profile photo)
+        if (target.closest('.hero-image .photo-wrapper, .hero-image .profile-photo, .photo-wrapper, .profile-photo, [data-cursor="photo"], [data-cursor="me"]')) {
             return { text: "It's me", type: 'photo' };
         }
 
