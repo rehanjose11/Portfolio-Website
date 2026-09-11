@@ -22,7 +22,7 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 
 <body>
@@ -101,7 +101,7 @@
                 <!-- Filter Controls -->
                 <div class="archive-filters" role="tablist" aria-label="Project categories">
                     <button class="archive-filter-btn active" data-filter="all">All (9)</button>
-                    <button class="archive-filter-btn" data-filter="product">Product Design (5)</button>
+                    <button class="archive-filter-btn" data-filter="product">Product Design (7)</button>
                     <button class="archive-filter-btn" data-filter="ui-web">UI/UX &amp; Web (5)</button>
                     <button class="archive-filter-btn" data-filter="visual">Visual &amp; Brand (2)</button>
                 </div>
@@ -110,216 +110,177 @@
             <!-- Projects Grid -->
             <div class="archive-grid" id="archive-grid">
 
-                <!-- 1: ReflexLabs.AI -->
-                <a href="projects/ReflexLabsAIreal/real.html" class="archive-card" data-category="ui-web">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="thumbnailreflex.png" alt="ReflexLabs.AI project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; ReflexLabs.AI. All rights reserved.</span>
+                <!-- 1: Xplor AI Mobility -->
+                <div class="project-card" data-category="product ui-web" data-glow="255, 255, 255" data-glow-override
+                    onclick="showComingSoonTracked('Xplor AI Mobility', 'Xplor AI Mobility case study and platform documentation coming soon.')">
+                    <div class="project-image-wrapper">
+                        <img src="xplorthumbnail.png" alt="Xplor AI Mobility project thumbnail"
+                            class="project-thumbnail">
+                        <p class="project-copyright">© Xplor AI Mobility. All rights reserved.</p>
                     </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">ReflexLabs.AI</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            An AI platform for transforming video content, designed to maximize creator reach and engagement.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Web Design</span>
-                            <span class="tag">Frontend Dev</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 2: Dinely -->
-                <a href="projects/Dinely/dinely.html" class="archive-card" data-category="product ui-web">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="Homepage Assets/dinelythumbnail1.png" alt="Dinely project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; Dinely. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">Dinely</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            An upcoming mobile and web product for restaurant discovery and social dining experiences.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">Product Design</span>
-                            <span class="tag">UI/UX</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 3: STRYDE -->
-                <a href="projects/Stryde/stryde.html" class="archive-card" data-category="product">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="Homepage Assets/STRYDE.png" alt="STRYDE project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; STRYDE. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">STRYDE</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            An AI-powered smart mobility scooter designed for urban commuters, featuring intelligent obstacle detection, adaptive speed control, and smartphone integration.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">Product Design</span>
-                            <span class="tag">3D Modeling</span>
-                            <span class="tag">Transportation</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 4: AlexaBot -->
-                <a href="projects/AlexaBot/alexabot.html" class="archive-card" data-category="product">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="Homepage Assets/ALEXABOT.png" alt="AlexaBot project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; AlexaBot. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">AlexaBot</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            A smart, voice-activated companion designed to simplify everyday tasks through intelligent automation.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">Product Design</span>
-                            <span class="tag">AI Companion</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 5: Beyond Jerseys -->
-                <a href="projects/BeyondJerseys/beyond-jerseys.html" class="archive-card" data-category="visual">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="Homepage Assets/beyond-jerseys-thumbnail.jpg" alt="Beyond Jerseys project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; Beyond Jerseys. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">Beyond Jerseys</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            An exploration of visual storytelling and identity through the lens of sports and athletic culture.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">Editorial Design</span>
-                            <span class="tag">Visual Design</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 6: Graduation Showcase 2026 -->
-                <a href="projects/GPshow/graduation-portfolio.html" class="archive-card" data-category="visual">
-                    <div class="archive-card-thumb-wrap">
-                        <img src="Homepage Assets/brandingthumbnail.jpg" alt="Graduation Showcase 2026 project thumbnail" class="archive-card-thumb">
-                        <span class="archive-card-copyright">&copy; NIFT Kannur. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">Graduation Showcase 2026</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            A brand identity project for a graduation showcase, designed to unify multiple disciplines under a cohesive visual system.
-                        </p>
-                        <div class="archive-card-tags">
-                            <span class="tag">Brand Identity</span>
-                            <span class="tag">Visual Design</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- 7: Xplor AI Mobility -->
-                <div class="archive-card" data-category="product ui-web" onclick="alert('Case study coming soon.')">
-                    <div class="archive-card-thumb-wrap" style="display: flex; align-items: center; justify-content: center; background: rgba(18, 18, 22, 0.9);">
-                        <img src="experience%20logos/xplor.png" alt="Xplor AI Mobility project thumbnail" class="archive-card-thumb" style="object-fit: contain; padding: 40px;">
-                        <span class="archive-card-copyright">&copy; Xplor AI Mobility. All rights reserved.</span>
-                    </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">Xplor AI Mobility</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                        <p class="archive-card-desc">
-                            Universal search, multimodal journey planning, and transit discovery designed for next-generation urban mobility.
-                        </p>
-                        <div class="archive-card-tags">
+                    <div class="project-info">
+                        <h3 class="project-title">Xplor AI Mobility</h3>
+                        <p class="project-description">Designing and improving mobility experiences across research, journey planning, transit discovery, and multimodal UX.</p>
+                        <div class="project-tags">
                             <span class="tag">Product Design</span>
                             <span class="tag">UI/UX</span>
                             <span class="tag">Transit System</span>
+                            <span class="tag">Summer Internship</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 8: mParivahan Redesign -->
-                <div class="archive-card" data-category="product ui-web" onclick="alert('mParivahan Redesign is currently in progress.')">
-                    <div class="archive-card-thumb-wrap" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);">
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--text-muted);">
-                            <i data-lucide="smartphone" class="w-10 h-10" style="opacity: 0.7;"></i>
-                            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">mParivahan Preview</span>
-                        </div>
-                        <span class="archive-card-copyright">&copy; Work In Progress</span>
+                <!-- 2: STRYDE -->
+                <div class="project-card" data-category="product" data-glow="255, 255, 255" data-glow-override
+                    onclick="openProjectWithTracking('projects/Stryde/stryde.html', 'STRYDE')">
+                    <div class="project-image-wrapper">
+                        <img src="strydethumbnail.jpeg" alt="STRYDE project thumbnail"
+                            class="project-thumbnail">
+                        <p class="project-copyright">© STRYDE. All rights reserved.</p>
                     </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">mParivahan Redesign</h2>
-                            <span class="archive-card-arrow">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                            </span>
+                    <div class="project-info">
+                        <h3 class="project-title">WHEN THE GAME IS BIG, WHY DOES INDIA'S VIEWING EXPERIENCE FEEL SMALL?</h3>
+                        <p class="project-description">This case study explores the gap between India’s growing sports fandom and the lack of dedicated spaces to experience it—rethinking public viewing through comfort, atmosphere, immersion, and community.</p>
+                        <div class="project-tags">
+                            <span class="tag">Case Study</span>
+                            <span class="tag">Experience Design</span>
+                            <span class="tag">Product Design</span>
                         </div>
-                        <p class="archive-card-desc">
-                            Reimagining digital citizen transit services with modern accessibility, streamlined vehicle workflows, and clean UI architecture.
-                        </p>
-                        <div class="archive-card-tags">
+                    </div>
+                </div>
+
+                <!-- 3: Dinely (In Progress) -->
+                <div class="project-card" data-category="product ui-web" data-glow="255, 255, 255" data-glow-override
+                    onclick="openDinelyModal()">
+                    <div class="project-image-wrapper">
+                        <div class="project-status-badge">IN PROGRESS</div>
+                        <img src="dinelythumbnail1.png" alt="Dinely project thumbnail"
+                            class="project-thumbnail">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Dinely</h3>
+                        <p class="project-description">Helping individuals and groups effortlessly decide where to eat by aligning preferences, dietary needs, and choices.</p>
+                        <div class="project-tags">
                             <span class="tag">Product Design</span>
                             <span class="tag">UI/UX</span>
-                            <span class="tag">GovTech</span>
+                            <span class="tag">Case Study</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 9: Sample -->
-                <div class="archive-card" data-category="product ui-web" onclick="alert('Sample project is currently in progress.')">
-                    <div class="archive-card-thumb-wrap" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);">
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--text-muted);">
-                            <i data-lucide="sparkles" class="w-10 h-10" style="opacity: 0.7;"></i>
-                            <span style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">Sample Preview</span>
-                        </div>
-                        <span class="archive-card-copyright">&copy; Work In Progress</span>
+                <!-- 4: ReflexLabs AI -->
+                <div class="project-card" data-category="product ui-web" data-glow="255, 255, 255" data-glow-override
+                    onclick="openProjectWithTracking('projects/ReflexLabsAIreal/real.html', 'ReflexLabs AI')">
+                    <div class="project-image-wrapper">
+                        <img src="thumbnailreflex.png" alt="ReflexLabs AI Website Redesign thumbnail"
+                            class="project-thumbnail">
+                        <p class="project-copyright">© ReflexLabs AI. All rights reserved.</p>
                     </div>
-                    <div class="archive-card-content">
-                        <div class="archive-card-header">
-                            <h2 class="archive-card-title">Sample</h2>
-                            <p class="archive-card-desc">
-                                Upcoming design exploration and concept case study. Details and visuals to be added soon.
-                            </p>
+                    <div class="project-info">
+                        <span class="project-eyebrow">REFLEXLABS.AI</span>
+                        <h3 class="project-title">THE FIRST PROBLEM WASN’T THE PRODUCT. IT WAS THE FIRST IMPRESSION.</h3>
+                        <p class="project-description">This case study explores how a weak digital first impression can undermine trust, and how research-led UX and visual design can turn a promising product into a more credible experience.</p>
+                        <div class="project-tags">
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Case Study</span>
+                            <span class="tag">Internship</span>
                         </div>
-                        <div class="archive-card-tags">
-                            <span class="tag">Exploration</span>
-                            <span class="tag">Concept</span>
+                    </div>
+                </div>
+
+                <!-- 5: NextGen mParivahan (In Progress) -->
+                <div class="project-card" data-category="product ui-web" data-glow="255, 255, 255" data-glow-override
+                    onclick="openMparivahanModal()">
+                    <div class="project-image-wrapper">
+                        <div class="project-status-badge">IN PROGRESS</div>
+                        <img src="mparivahanthumbnail.webp" alt="mParivahan Redesign project thumbnail"
+                            class="project-thumbnail">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-eyebrow">NEXTGEN MPARIVAHAN</span>
+                        <h3 class="project-title">INDIA RELIES ON IT. BUT CAN PEOPLE ACTUALLY USE IT EASILY?</h3>
+                        <p class="project-description">With 50M+ downloads, 7 lakh+ Google Play reviews, and ratings of just 3.3★ on Android and 2.2★ on iOS, mParivahan presents a striking gap between reach and satisfaction. This case study investigates what lies behind it—and whether NextGen mParivahan is truly built for the next generation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Case Study</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Interface Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6: Accessibility in Exams (In Progress) -->
+                <div class="project-card" data-category="product ui-web" data-glow="255, 255, 255" data-glow-override
+                    onclick="openAccessibilityModal()">
+                    <div class="project-image-wrapper">
+                        <div class="project-status-badge">IN PROGRESS</div>
+                        <img src="inclusive.png" alt="Accessibility in Exams project thumbnail"
+                            class="project-thumbnail">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">THE EXAM IS ACCESSIBLE. IS THE JOURNEY TO IT?</h3>
+                        <p class="project-description">Indian competitive examinations provide various provisions and accommodations for candidates with disabilities, but inclusivity often becomes an afterthought when it comes to the application process. This case study explores whether candidates can independently navigate the digital journey to access these provisions—from discovering relevant information and understanding eligibility to registering, requesting accommodations, and completing the application.</p>
+                        <div class="project-tags">
+                            <span class="tag">Case Study</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Accessibility</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7: AlexaBot -->
+                <div class="project-card" data-category="product" data-glow="255, 255, 255" data-glow-override
+                    onclick="openProjectWithTracking('projects/AlexaBot/alexabot.html', 'AlexaBot')">
+                    <div class="project-image-wrapper">
+                        <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot project thumbnail"
+                            class="project-thumbnail">
+                        <p class="project-copyright">© AlexaBot. All rights reserved.</p>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">AlexaBot</h3>
+                        <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
+                        <div class="project-tags">
+                            <span class="tag">3D Modeling</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">Fusion 360</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8: Beyond Jerseys (Book Publication Design) -->
+                <div class="project-card" data-category="visual" data-glow="255, 255, 255" data-glow-override
+                    onclick="openProjectWithTracking('projects/BeyondJerseys/beyond-jerseys.html', 'Beyond Jerseys')">
+                    <div class="project-image-wrapper">
+                        <img src="Homepage%20Assets/beyond-jerseys-thumbnail.jpg"
+                            alt="Beyond Jerseys project thumbnail" class="project-thumbnail">
+                        <p class="project-copyright">© Beyond Jerseys. All rights reserved.</p>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Beyond Jerseys</h3>
+                        <p class="project-description">A creative editorial publication capturing the intersection of football, fashion, and culture through visual storytelling.</p>
+                        <div class="project-tags">
+                            <span class="tag">Editorial Design</span>
+                            <span class="tag">Visual Design</span>
+                            <span class="tag">Publication</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9: Graduation Showcase 2026 -->
+                <div class="project-card" data-category="visual" data-glow="255, 255, 255" data-glow-override
+                    onclick="openProjectWithTracking('projects/GPshow/graduation-portfolio.html', 'Graduation Showcase 2026')">
+                    <div class="project-image-wrapper">
+                        <img src="Homepage%20Assets/brandingthumbnail.jpg"
+                            alt="Graduation Showcase 2026 project thumbnail" class="project-thumbnail">
+                        <p class="project-copyright">© NIFT Kannur. All rights reserved.</p>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Graduation Showcase 2026</h3>
+                        <p class="project-description">A brand identity project for a graduation showcase, designed to unify multiple disciplines under a cohesive visual system.</p>
+                        <div class="project-tags">
+                            <span class="tag">Brand Identity</span>
+                            <span class="tag">Visual Design</span>
                         </div>
                     </div>
                 </div>
@@ -381,7 +342,7 @@
 
         // Category Filtering
         const filterBtns = document.querySelectorAll('.archive-filter-btn');
-        const cards = document.querySelectorAll('.archive-card');
+        const cards = document.querySelectorAll('.archive-grid .project-card, .archive-card');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -403,6 +364,78 @@
             });
         });
     </script>
+
+    <!-- Dinely In-Progress Modal -->
+    <div id="dinely-modal" class="coming-soon-modal" onclick="closeDinelyModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">Dinely</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>What started as a fun, quirky idea has evolved into something with real product potential.</p>
+                <p>As I developed Dinely, I began exploring whether the concept could work as a viable product beyond the initial idea. I’m currently investigating its business and revenue model, restaurant-side opportunities, and the ecosystem required to make the product sustainable.</p>
+                <p>On the UX side, the user app is currently undergoing user testing, with insights from testing being used to further refine the experience.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="openProjectWithTracking('projects/Dinely/dinely.html', 'Dinely')">
+                    <span>View Case Study</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- mParivahan In-Progress Modal -->
+    <div id="mparivahan-modal" class="coming-soon-modal" onclick="closeMparivahanModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">NextGen mParivahan</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>I started this project as part of my Interface Design course this semester after noticing something that made mParivahan different from a typical app: for many Indians, there isn’t really an alternative. When a digital service is this essential, I felt simply redesigning the interface wasn’t enough—I wanted to understand what was actually making the experience difficult and try to solve those problems through design.</p>
+                <p>The project has now grown into a deeper UX investigation, looking at the gap between mParivahan’s massive reach and user satisfaction through secondary research, app-store reviews, and interface evaluation. I’m currently moving into primary research and usability testing to validate the problems before defining the redesign.</p>
+                <p>If you find this project interesting or have thoughts, insights, or experience that could help shape the research, feel free to reach out—I’d love to hear from you.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="goToContactFromModal('mParivahan')">
+                    <span>Contact Rehan</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility in Exams In-Progress Modal -->
+    <div id="accessibility-modal" class="coming-soon-modal" onclick="closeAccessibilityModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">Accessibility in Exams</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>I started this project with a simple question: Indian competitive examinations provide provisions for candidates with disabilities—but how accessible is the process of applying for them?</p>
+                <p>As part of my Inclusive Design course, I’m exploring the gap between accessibility provisions and the actual application experience. While accommodations such as scribes, extra time, and other considerations may be available at the examination stage, the digital journey to access these provisions can involve its own barriers. I’m currently researching how candidates discover information, understand eligibility, complete applications, and request accommodations, with the aim of identifying where the application experience falls short of being truly inclusive.</p>
+                <p>This is an ongoing research project, and I’m currently working through the research and evaluation stage before moving towards potential design interventions.</p>
+                <p>If you have experience navigating competitive examination applications, accessibility provisions, or inclusive digital services, feel free to reach out. Your perspective could help shape this research.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="goToContactFromModal('Accessibility in Exams')">
+                    <span>Contact Rehan</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

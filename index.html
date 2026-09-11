@@ -22,7 +22,7 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 
 <body>
@@ -151,7 +151,7 @@
         <section id="about" class="about-section">
             <div class="about-overflow-wrapper">
                 <div class="about-container">
-                    <h3 class="about-text" id="about-text">A Senior Year Communication Design student from NIFT Kannur,
+                    <h3 class="about-text" id="about-text" onclick="window.location.href='about.html'" role="link" tabindex="0" aria-label="Know more about Rehan Jose">A Senior Year Communication Design student from NIFT Kannur,
                         constantly experimenting, questioning, and figuring things out.</h3>
                     <a href="about.html" class="know-more-link" id="about-link">
                         <span>Get to Know Me</span>
@@ -177,7 +177,7 @@
                             <span>Completed</span>
                         </button>
                         <button class="status-toggle-btn" data-status="progress" role="tab" aria-selected="false">
-                            <span>Progress</span>
+                            <span>In Progress</span>
                         </button>
                     </div>
                 </div>
@@ -185,13 +185,50 @@
 
             <div class="projects-container">
                 <div class="projects-grid">
-                    <!-- Project 1 — Dinely (In Progress) -->
+                    <!-- Project 1 — Xplor AI Mobility (Completed) -->
+                    <div class="project-card" data-category="ui-ux" data-status="completed" data-glow="255, 255, 255" data-glow-override
+                        onclick="showComingSoonTracked('Xplor AI Mobility', 'Xplor AI Mobility case study and platform documentation coming soon.')">
+                        <div class="project-image-wrapper">
+                            <img src="xplorthumbnail.png" alt="Xplor AI Mobility project thumbnail"
+                                class="project-thumbnail">
+                            <p class="project-copyright">© Xplor AI Mobility. All rights reserved.</p>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Xplor AI Mobility</h3>
+                            <p class="project-description">Designing and improving mobility experiences across research, journey planning, transit discovery, and multimodal UX.</p>
+                            <div class="project-tags">
+                                <span class="tag">Product Design</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Transit System</span>
+                                <span class="tag">Summer Internship</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 — STRYDE (Completed) -->
+                    <div class="project-card" data-category="experience-design" data-status="completed" data-glow="255, 255, 255"
+                        data-glow-override onclick="openProjectWithTracking('projects/Stryde/stryde.html', 'STRYDE')">
+                        <div class="project-image-wrapper">
+                            <img src="strydethumbnail.jpeg" alt="STRYDE project thumbnail"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">WHEN THE GAME IS BIG, WHY DOES INDIA'S VIEWING EXPERIENCE FEEL SMALL?</h3>
+                            <p class="project-description">This case study explores the gap between India’s growing sports fandom and the lack of dedicated spaces to experience it—rethinking public viewing through comfort, atmosphere, immersion, and community.</p>
+                            <div class="project-tags">
+                                <span class="tag">Case Study</span>
+                                <span class="tag">Experience Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 — Dinely (In Progress) -->
                     <div class="project-card status-hidden" data-category="ui-ux" data-status="progress" data-glow="255, 255, 255" data-glow-override
-                        onclick="openProjectWithTracking('projects/Dinely/dinely.html', 'Dinely')">
+                        onclick="openDinelyModal()">
                         <div class="project-image-wrapper">
                             <div class="project-status-badge">IN PROGRESS</div>
-                            <img src="Homepage%20Assets/dinelythumbnail1.png" alt="Dinely project thumbnail"
-                                class="project-thumbnail contain">
+                            <img src="dinelythumbnail1.png" alt="Dinely project thumbnail"
+                                class="project-thumbnail">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Dinely</h3>
@@ -205,85 +242,7 @@
                         </div>
                     </div>
 
-                    <!-- Project 2 — mParivahan Redesign (In Progress) -->
-                    <div class="project-card status-hidden" data-category="ui-ux" data-status="progress" data-glow="255, 255, 255" data-glow-override
-                        onclick="showComingSoonTracked('mParivahan Redesign', 'mParivahan Redesign is currently in progress. Full case study coming soon.')">
-                        <div class="project-image-wrapper">
-                            <div class="project-status-badge">IN PROGRESS</div>
-                            <div class="project-image-placeholder" style="flex-direction: column; gap: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);">
-                                <i data-lucide="smartphone" class="w-10 h-10" style="opacity: 0.7;"></i>
-                                <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">mParivahan Preview</span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">mParivahan Redesign</h3>
-                            <p class="project-description">Reimagining digital citizen transit services with modern accessibility, streamlined vehicle workflows, and clean UI architecture.</p>
-                            <div class="project-tags">
-                                <span class="tag">Product Design</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">GovTech</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 — Sample (In Progress) -->
-                    <div class="project-card status-hidden" data-category="ui-ux" data-status="progress" data-glow="255, 255, 255" data-glow-override
-                        onclick="showComingSoonTracked('Sample', 'Sample project is currently in progress. Details coming soon.')">
-                        <div class="project-image-wrapper">
-                            <div class="project-status-badge">IN PROGRESS</div>
-                            <div class="project-image-placeholder" style="flex-direction: column; gap: 14px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);">
-                                <i data-lucide="sparkles" class="w-10 h-10" style="opacity: 0.7;"></i>
-                                <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">Sample Preview</span>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Sample</h3>
-                            <p class="project-description">Upcoming design exploration and concept case study. Visual assets, wireframes, and documentation will be added soon.</p>
-                            <div class="project-tags">
-                                <span class="tag">Exploration</span>
-                                <span class="tag">Concept</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 — STRYDE (Completed) -->
-                    <div class="project-card" data-category="experience-design" data-status="completed" data-glow="255, 255, 255"
-                        data-glow-override onclick="openProjectWithTracking('projects/Stryde/stryde.html', 'STRYDE')">
-                        <div class="project-image-wrapper">
-                            <img src="Homepage%20Assets/STRYDE.png" alt="STRYDE project thumbnail"
-                                class="project-thumbnail">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">STRYDE</h3>
-                            <p class="project-description">Reimagining sports viewing through an immersive, stadium-like
-                                theatre experience.</p>
-                            <div class="project-tags">
-                                <span class="tag">Case Study</span>
-                                <span class="tag">Experience Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 — Xplor AI Mobility (Completed) -->
-                    <div class="project-card" data-category="ui-ux" data-status="completed" data-glow="255, 255, 255" data-glow-override
-                        onclick="showComingSoonTracked('Xplor AI Mobility', 'Xplor AI Mobility case study and platform documentation coming soon.')">
-                        <div class="project-image-wrapper">
-                            <img src="experience%20logos/xplor.png" alt="Xplor AI Mobility project thumbnail"
-                                class="project-thumbnail contain" style="padding: 44px; background: rgba(18, 18, 22, 0.9);">
-                            <p class="project-copyright">© Xplor AI Mobility. All rights reserved.</p>
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Xplor AI Mobility</h3>
-                            <p class="project-description">Universal search, multimodal journey planning, and transit discovery designed for next-generation urban mobility.</p>
-                            <div class="project-tags">
-                                <span class="tag">Product Design</span>
-                                <span class="tag">UI/UX</span>
-                                <span class="tag">Transit System</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 — ReflexLabs AI (Completed) -->
+                    <!-- Project 4 — ReflexLabs AI (Completed) -->
                     <div class="project-card" data-category="ui-ux" data-status="completed" data-glow="255, 255, 255" data-glow-override
                         onclick="openProjectWithTracking('projects/ReflexLabsAIreal/real.html', 'ReflexLabs AI')">
                         <div class="project-image-wrapper">
@@ -292,8 +251,9 @@
                             <p class="project-copyright">© ReflexLabs AI. All rights reserved.</p>
                         </div>
                         <div class="project-info">
-                            <h3 class="project-title">ReflexLabs.AI</h3>
-                            <p class="project-description">A website redesign for ReflexLabs AI.</p>
+                            <span class="project-eyebrow">REFLEXLABS.AI</span>
+                            <h3 class="project-title">THE FIRST PROBLEM WASN’T THE PRODUCT. IT WAS THE FIRST IMPRESSION.</h3>
+                            <p class="project-description">This case study explores how a weak digital first impression can undermine trust, and how research-led UX and visual design can turn a promising product into a more credible experience.</p>
                             <div class="project-tags">
                                 <span class="tag">UI/UX</span>
                                 <span class="tag">Case Study</span>
@@ -302,17 +262,58 @@
                         </div>
                     </div>
 
-                    <!-- Project 4 — AlexaBot (Hidden for now) -->
+                    <!-- Project 5 — mParivahan Redesign (In Progress) -->
+                    <div class="project-card status-hidden" data-category="ui-ux" data-status="progress" data-glow="255, 255, 255" data-glow-override
+                        onclick="openMparivahanModal()">
+                        <div class="project-image-wrapper">
+                            <div class="project-status-badge">IN PROGRESS</div>
+                            <img src="mparivahanthumbnail.webp" alt="mParivahan Redesign project thumbnail"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <span class="project-eyebrow">NEXTGEN MPARIVAHAN</span>
+                            <h3 class="project-title">INDIA RELIES ON IT. BUT CAN PEOPLE ACTUALLY USE IT EASILY?</h3>
+                            <p class="project-description">With 50M+ downloads, 7 lakh+ Google Play reviews, and ratings of just 3.3★ on Android and 2.2★ on iOS, mParivahan presents a striking gap between reach and satisfaction. This case study investigates what lies behind it—and whether NextGen mParivahan is truly built for the next generation.</p>
+                            <div class="project-tags">
+                                <span class="tag">Case Study</span>
+                                <span class="tag">Product Design</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Interface Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 — Accessibility in Exams (In Progress) -->
+                    <div class="project-card status-hidden" data-category="ui-ux" data-status="progress" data-glow="255, 255, 255" data-glow-override
+                        onclick="openAccessibilityModal()">
+                        <div class="project-image-wrapper">
+                            <div class="project-status-badge">IN PROGRESS</div>
+                            <img src="inclusive.png" alt="Accessibility in Exams project thumbnail"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">THE EXAM IS ACCESSIBLE. IS THE JOURNEY TO IT?</h3>
+                            <p class="project-description">Indian competitive examinations provide various provisions and accommodations for candidates with disabilities, but inclusivity often becomes an afterthought when it comes to the application process. This case study explores whether candidates can independently navigate the digital journey to access these provisions—from discovering relevant information and understanding eligibility to registering, requesting accommodations, and completing the application.</p>
+                            <div class="project-tags">
+                                <span class="tag">Case Study</span>
+                                <span class="tag">Product Design</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Accessibility</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 — AlexaBot (Hidden on Landing) -->
                     <div class="project-card hidden" data-category="3d-spatial" data-status="completed" data-glow="255, 255, 255"
                         data-glow-override onclick="openProjectWithTracking('projects/AlexaBot/alexabot.html', 'AlexaBot')">
                         <div class="project-image-wrapper">
                             <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design"
                                 class="project-thumbnail">
+                            <p class="project-copyright">© AlexaBot. All rights reserved.</p>
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">AlexaBot</h3>
-                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with
-                                personality.</p>
+                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
                             <div class="project-tags">
                                 <span class="tag">3D Modeling</span>
                                 <span class="tag">Product Design</span>
@@ -321,7 +322,7 @@
                         </div>
                     </div>
 
-                    <!-- Project 5 — Beyond Jerseys (Hidden for now) -->
+                    <!-- Project 8 — Beyond Jerseys (Book Publication Design - Hidden on Landing) -->
                     <div class="project-card hidden" data-category="editorial" data-status="completed" data-glow="255, 255, 255"
                         data-glow-override onclick="openProjectWithTracking('projects/BeyondJerseys/beyond-jerseys.html', 'Beyond Jerseys')">
                         <div class="project-image-wrapper">
@@ -335,11 +336,12 @@
                             <div class="project-tags">
                                 <span class="tag">Editorial Design</span>
                                 <span class="tag">Visual Design</span>
+                                <span class="tag">Publication</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 6 — Graduation Showcase 2026 (Hidden for now) -->
+                    <!-- Project 9 — Graduation Showcase 2026 (Hidden on Landing) -->
                     <div class="project-card hidden" data-category="brand-identity" data-status="completed" data-glow="255, 255, 255"
                         data-glow-override onclick="openProjectWithTracking('projects/GPshow/graduation-portfolio.html', 'Graduation Showcase 2026')">
                         <div class="project-image-wrapper">
@@ -573,6 +575,76 @@
 
             <div class="exp-modal-actions">
                 <button class="cs-modal-close-btn" onclick="closeExpModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dinely In-Progress Modal -->
+    <div id="dinely-modal" class="coming-soon-modal" onclick="closeDinelyModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">Dinely</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>What started as a fun, quirky idea has evolved into something with real product potential.</p>
+                <p>As I developed Dinely, I began exploring whether the concept could work as a viable product beyond the initial idea. I’m currently investigating its business and revenue model, restaurant-side opportunities, and the ecosystem required to make the product sustainable.</p>
+                <p>On the UX side, the user app is currently undergoing user testing, with insights from testing being used to further refine the experience.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="openProjectWithTracking('projects/Dinely/dinely.html', 'Dinely')">
+                    <span>View Case Study</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- mParivahan In-Progress Modal -->
+    <div id="mparivahan-modal" class="coming-soon-modal" onclick="closeMparivahanModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">NextGen mParivahan</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>I started this project as part of my Interface Design course this semester after noticing something that made mParivahan different from a typical app: for many Indians, there isn’t really an alternative. When a digital service is this essential, I felt simply redesigning the interface wasn’t enough—I wanted to understand what was actually making the experience difficult and try to solve those problems through design.</p>
+                <p>The project has now grown into a deeper UX investigation, looking at the gap between mParivahan’s massive reach and user satisfaction through secondary research, app-store reviews, and interface evaluation. I’m currently moving into primary research and usability testing to validate the problems before defining the redesign.</p>
+                <p>If you find this project interesting or have thoughts, insights, or experience that could help shape the research, feel free to reach out—I’d love to hear from you.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="goToContactFromModal('mParivahan')">
+                    <span>Contact Rehan</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility in Exams In-Progress Modal -->
+    <div id="accessibility-modal" class="coming-soon-modal" onclick="closeAccessibilityModal()">
+        <div class="cs-modal-content dinely-modal-content" onclick="event.stopPropagation()">
+            <div class="dinely-modal-header">
+                <div class="dinely-modal-title-wrap">
+                    <span class="dinely-modal-badge">IN PROGRESS</span>
+                    <h2 class="dinely-modal-title">Accessibility in Exams</h2>
+                </div>
+            </div>
+            <div class="dinely-modal-body">
+                <p>I started this project with a simple question: Indian competitive examinations provide provisions for candidates with disabilities—but how accessible is the process of applying for them?</p>
+                <p>As part of my Inclusive Design course, I’m exploring the gap between accessibility provisions and the actual application experience. While accommodations such as scribes, extra time, and other considerations may be available at the examination stage, the digital journey to access these provisions can involve its own barriers. I’m currently researching how candidates discover information, understand eligibility, complete applications, and request accommodations, with the aim of identifying where the application experience falls short of being truly inclusive.</p>
+                <p>This is an ongoing research project, and I’m currently working through the research and evaluation stage before moving towards potential design interventions.</p>
+                <p>If you have experience navigating competitive examination applications, accessibility provisions, or inclusive digital services, feel free to reach out. Your perspective could help shape this research.</p>
+            </div>
+            <div class="dinely-modal-actions">
+                <button class="dinely-modal-btn dinely-modal-btn--primary" onclick="goToContactFromModal('Accessibility in Exams')">
+                    <span>Contact Rehan</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </button>
             </div>
         </div>
     </div>

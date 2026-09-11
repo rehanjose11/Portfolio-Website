@@ -683,11 +683,98 @@ function closeComingSoon() {
     }
 }
 
+function openDinelyModal() {
+    trackProjectView('Dinely In-Progress Modal', () => {
+        const modal = document.getElementById('dinely-modal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+    });
+}
+
+function closeDinelyModal() {
+    const modal = document.getElementById('dinely-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function openMparivahanModal() {
+    trackProjectView('mParivahan In-Progress Modal', () => {
+        const modal = document.getElementById('mparivahan-modal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+    });
+}
+
+function closeMparivahanModal() {
+    const modal = document.getElementById('mparivahan-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function openAccessibilityModal() {
+    trackProjectView('Accessibility in Exams In-Progress Modal', () => {
+        const modal = document.getElementById('accessibility-modal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+    });
+}
+
+function closeAccessibilityModal() {
+    const modal = document.getElementById('accessibility-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function goToContactFromModal(source) {
+    closeMparivahanModal();
+    closeDinelyModal();
+    closeAccessibilityModal();
+    closeComingSoon();
+    
+    if (typeof gtag === 'function') {
+        gtag('event', 'contact_click', {
+            event_category: 'modal_cta',
+            event_label: source || 'modal'
+        });
+    }
+
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+        contactEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        window.location.href = 'index.html#contact';
+    }
+}
+
 // Close on Esc key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeComingSoon();
         closeExpModal();
+        closeDinelyModal();
+        closeMparivahanModal();
+        closeAccessibilityModal();
     }
 });
 
@@ -905,7 +992,7 @@ const projectCardObserver = new IntersectionObserver((entries) => {
 });
 
 function getActiveProjectCards() {
-    return Array.from(document.querySelectorAll('.project-card')).filter(c => {
+    return Array.from(document.querySelectorAll('.projects-grid .project-card')).filter(c => {
         return !c.classList.contains('hidden') && !c.classList.contains('status-hidden');
     });
 }
@@ -953,3 +1040,192 @@ function updateCardStacking() {
 
 window.addEventListener('scroll', updateCardStacking, { passive: true });
 refreshProjectStacking();
+
+// ============================================================
+// --- CUSTOM MOUSE FOLLOWER BADGE (REFERENCE 2 INTERACTION) ---
+// ============================================================
+(function initCursorBadge() {
+    // Only run on devices that support hover (desktop / mouse)
+    if (window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+        return;
+    }
+
+    // Ensure single instance of badge follower DOM element
+    let badge = document.getElementById('custom-cursor-badge');
+    if (!badge) {
+        badge = document.createElement('div');
+        badge.id = 'custom-cursor-badge';
+        badge.className = 'cursor-badge-follower';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.innerHTML = '<span class="cursor-badge-text"></span>';
+        document.body.appendChild(badge);
+    }
+
+    const badgeText = badge.querySelector('.cursor-badge-text');
+    let mouseX = -100;
+    let mouseY = -100;
+    let currentX = -100;
+    let currentY = -100;
+    let targetX = -100;
+    let targetY = -100;
+    let isActive = false;
+    let currentBadgeType = '';
+    let currentText = '';
+    let animFrameId = null;
+
+    function getHoverConfig(target) {
+        if (!target || !(target instanceof Element)) return null;
+
+        // 1. Photo hover -> "It's me"
+        if (target.closest('.photo-wrapper, .profile-photo, .hero-image .photo-wrapper, [data-cursor="photo"], [data-cursor="me"]')) {
+            return { text: "It's me", type: 'photo' };
+        }
+
+        // 2. About text statement -> "Know more"
+        if (target.closest('.about-text, #about-text, [data-cursor="about"]')) {
+            return { text: "Know more", type: 'about' };
+        }
+
+        // 3. Project card -> "View Case Study"
+        if (target.closest('.project-card, .archive-card, [data-cursor="project"]')) {
+            return { text: "View Case Study", type: 'project' };
+        }
+
+        // 4. Experience card -> "View Experience"
+        if (target.closest('.experience-card, [data-cursor="experience"]')) {
+            return { text: "View Experience", type: 'experience' };
+        }
+
+        // Generic support for custom data attributes
+        const customEl = target.closest('[data-cursor-text]');
+        if (customEl) {
+            return {
+                text: customEl.getAttribute('data-cursor-text'),
+                type: customEl.getAttribute('data-cursor-type') || 'default'
+            };
+        }
+
+        return null;
+    }
+
+    function updateBadgePosition() {
+        const ease = 0.22;
+        currentX += (targetX - currentX) * ease;
+        currentY += (targetY - currentY) * ease;
+
+        badge.style.setProperty('--x', `${currentX.toFixed(2)}px`);
+        badge.style.setProperty('--y', `${currentY.toFixed(2)}px`);
+
+        if (isActive || Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
+            animFrameId = requestAnimationFrame(updateBadgePosition);
+        } else {
+            animFrameId = null;
+        }
+    }
+
+    function setBadgeActive(config, x, y) {
+        if (!config) return;
+
+        // Offset slightly to the bottom right of the cursor pointer
+        const offsetX = 14;
+        const offsetY = 14;
+        
+        let posX = x + offsetX;
+        let posY = y + offsetY;
+
+        // Keep inside viewport bounds
+        const badgeWidth = badge.offsetWidth || 120;
+        const badgeHeight = badge.offsetHeight || 36;
+        if (posX + badgeWidth > window.innerWidth - 12) {
+            posX = x - badgeWidth - 10;
+        }
+        if (posY + badgeHeight > window.innerHeight - 12) {
+            posY = y - badgeHeight - 10;
+        }
+
+        targetX = posX;
+        targetY = posY;
+
+        // First appearance snap
+        if (!isActive) {
+            currentX = targetX;
+            currentY = targetY;
+            badge.style.setProperty('--x', `${currentX}px`);
+            badge.style.setProperty('--y', `${currentY}px`);
+        }
+
+        // Smooth text morph when changing target text
+        if (currentText !== config.text) {
+            currentText = config.text;
+            if (badgeText) {
+                badgeText.classList.add('is-changing');
+                setTimeout(() => {
+                    badgeText.textContent = currentText;
+                    badgeText.classList.remove('is-changing');
+                }, 60);
+            }
+        }
+
+        // Update styling variant
+        if (currentBadgeType !== config.type) {
+            badge.classList.remove(
+                'cursor-badge-follower--photo',
+                'cursor-badge-follower--about',
+                'cursor-badge-follower--project',
+                'cursor-badge-follower--experience'
+            );
+            if (config.type) {
+                badge.classList.add(`cursor-badge-follower--${config.type}`);
+            }
+            currentBadgeType = config.type;
+        }
+
+        if (!isActive) {
+            isActive = true;
+            badge.classList.remove('is-hiding');
+            badge.classList.add('is-active');
+        }
+
+        if (!animFrameId) {
+            animFrameId = requestAnimationFrame(updateBadgePosition);
+        }
+    }
+
+    function setBadgeInactive() {
+        if (!isActive) return;
+        isActive = false;
+        badge.classList.remove('is-active');
+        badge.classList.add('is-hiding');
+    }
+
+    // Mouse tracking
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        const config = getHoverConfig(e.target);
+        if (config) {
+            setBadgeActive(config, mouseX, mouseY);
+        } else {
+            setBadgeInactive();
+        }
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+        setBadgeInactive();
+    });
+
+    window.addEventListener('scroll', () => {
+        if (isActive && mouseX >= 0 && mouseY >= 0) {
+            const elUnderMouse = document.elementFromPoint(mouseX, mouseY);
+            const config = getHoverConfig(elUnderMouse);
+            if (config) {
+                setBadgeActive(config, mouseX, mouseY);
+            } else {
+                setBadgeInactive();
+            }
+        }
+    }, { passive: true });
+})();
+
+
