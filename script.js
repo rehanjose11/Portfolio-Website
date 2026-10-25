@@ -6,93 +6,103 @@
 })();
 
 // Initialize Lucide icons
-lucide.createIcons();
+if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+}
 
 // --- PRELOADER LOGIC ---
 const preloader = document.getElementById('preloader');
 const mainContent = document.getElementById('main-content');
 const skipButton = document.getElementById('skip-button');
 
-const lines = [
-    "I'm Rehan.",
-    "It's <span style='color: #ef4444'>not</span> Rehaaaaaaaaan.",
-    "It's Rehan."
-];
+if (preloader && mainContent) {
+    const lines = [
+        "I'm Rehan.",
+        "It's <span style='color: #ef4444'>not</span> Rehaaaaaaaaan.",
+        "It's Rehan."
+    ];
 
-let animationComplete = false;
+    let animationComplete = false;
 
-function playLine(text, duration) {
-    return new Promise((resolve) => {
-        const el = document.createElement('div');
-        el.className = 'loader-text';
-        el.innerHTML = text;
-        preloader.appendChild(el);
+    function playLine(text, duration) {
+        return new Promise((resolve) => {
+            const el = document.createElement('div');
+            el.className = 'loader-text';
+            el.innerHTML = text;
+            preloader.appendChild(el);
 
-        // Animate IN
-        requestAnimationFrame(() => el.classList.add('text-enter'));
+            // Animate IN
+            requestAnimationFrame(() => el.classList.add('text-enter'));
 
-        // Wait, then Animate OUT
-        setTimeout(() => {
-            el.classList.remove('text-enter');
-            el.classList.add('text-exit');
-
-            // Cleanup after exit animation (Matches CSS 0.5s)
+            // Wait, then Animate OUT
             setTimeout(() => {
-                el.remove();
-                resolve();
-            }, 500);
-        }, duration);
-    });
-}
+                el.classList.remove('text-enter');
+                el.classList.add('text-exit');
 
-function finishPreloader() {
-    if (animationComplete) return;
-    animationComplete = true;
-
-    // Hide skip button
-    if (skipButton) {
-        skipButton.style.opacity = '0';
-        setTimeout(() => skipButton.remove(), 300);
+                // Cleanup after exit animation (Matches CSS 0.5s)
+                setTimeout(() => {
+                    el.remove();
+                    resolve();
+                }, 500);
+            }, duration);
+        });
     }
 
-    // Finish preloader
-    if (preloader) {
-        preloader.style.pointerEvents = 'none';
-        preloader.style.opacity = '0';
-        setTimeout(() => preloader.remove(), 500);
+    function finishPreloader() {
+        if (animationComplete) return;
+        animationComplete = true;
+
+        // Hide skip button
+        if (skipButton) {
+            skipButton.style.opacity = '0';
+            setTimeout(() => skipButton.remove(), 300);
+        }
+
+        // Finish preloader
+        if (preloader) {
+            preloader.style.pointerEvents = 'none';
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.remove(), 500);
+        }
+
+        // Reveal Site
+        if (mainContent) {
+            mainContent.classList.add('visible');
+        }
+        document.body.style.overflow = 'auto';
     }
 
-    // Reveal Site
-    mainContent.classList.add('visible');
-    document.body.style.overflow = 'auto';
-}
+    async function runSequence() {
+        // CHANGED: Much shorter durations
+        await playLine(lines[0], 600);   // Fast Intro
+        await playLine(lines[1], 900);   // Just enough to read the joke
+        await playLine(lines[2], 600);   // Fast confirm
 
-async function runSequence() {
-    // CHANGED: Much shorter durations
-    await playLine(lines[0], 600);   // Fast Intro
-    await playLine(lines[1], 900);   // Just enough to read the joke
-    await playLine(lines[2], 600);   // Fast confirm
-
-    finishPreloader();
-}
-
-// Skip button handler
-if (skipButton) {
-    skipButton.addEventListener('click', () => {
         finishPreloader();
-    });
-}
+    }
 
-// Start Sequence or Skip if already seen
-if (sessionStorage.getItem('preloaderDone')) {
-    if (preloader) preloader.remove();
-    if (skipButton) skipButton.remove();
-    mainContent.classList.add('visible');
-    document.body.style.overflow = 'auto';
-    animationComplete = true;
+    // Skip button handler
+    if (skipButton) {
+        skipButton.addEventListener('click', () => {
+            finishPreloader();
+        });
+    }
+
+    // Start Sequence or Skip if already seen
+    if (sessionStorage.getItem('preloaderDone')) {
+        if (preloader) preloader.remove();
+        if (skipButton) skipButton.remove();
+        if (mainContent) mainContent.classList.add('visible');
+        document.body.style.overflow = 'auto';
+        animationComplete = true;
+    } else {
+        runSequence();
+        sessionStorage.setItem('preloaderDone', 'true');
+    }
 } else {
-    runSequence();
-    sessionStorage.setItem('preloaderDone', 'true');
+    // If no preloader/mainContent on this page (e.g. projects.html, about.html), ensure document is scrollable
+    if (mainContent) mainContent.classList.add('visible');
+    document.body.style.overflow = 'auto';
 }
 
 // Clock
@@ -623,7 +633,7 @@ function applyGlowColors() {
     });
 }
 
-// --- COMING SOON MODAL ---
+// --- COMING SOON MODAL & TRACKING ---
 function trackProjectView(projectLabel, onComplete) {
     const done = typeof onComplete === 'function' ? onComplete : () => { };
 
@@ -639,26 +649,48 @@ function trackProjectView(projectLabel, onComplete) {
         done();
     };
 
-    gtag('event', 'project_view', {
-        event_category: 'portfolio',
-        event_label: projectLabel,
-        transport_type: 'beacon',
-        event_callback: safeDone
-    });
+    try {
+        gtag('event', 'project_view', {
+            event_category: 'portfolio',
+            event_label: projectLabel,
+            transport_type: 'beacon',
+            event_callback: safeDone
+        });
+    } catch (e) {
+        safeDone();
+        return;
+    }
 
-    setTimeout(safeDone, 700);
+    setTimeout(safeDone, 200);
 }
 
 function openProjectWithTracking(url, projectLabel) {
-    trackProjectView(projectLabel, () => {
-        window.location.href = url;
-    });
+    if (!url) return;
+    if (typeof gtag === 'function') {
+        try {
+            gtag('event', 'project_view', {
+                event_category: 'portfolio',
+                event_label: projectLabel || url,
+                transport_type: 'beacon'
+            });
+        } catch (e) {
+            console.warn('Analytics tracking error:', e);
+        }
+    }
+    window.location.href = url;
 }
 
 function showComingSoonTracked(title, text) {
-    trackProjectView(title, () => {
-        showComingSoon(title, text);
-    });
+    showComingSoon(title, text);
+    if (typeof gtag === 'function') {
+        try {
+            gtag('event', 'project_view', {
+                event_category: 'portfolio',
+                event_label: title,
+                transport_type: 'beacon'
+            });
+        } catch (e) {}
+    }
 }
 
 function showComingSoon(title, text) {
@@ -687,16 +719,23 @@ function closeComingSoon() {
 }
 
 function openDinelyModal() {
-    trackProjectView('Dinely In-Progress Modal', () => {
-        const modal = document.getElementById('dinely-modal');
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            if (window.lucide) {
-                lucide.createIcons();
-            }
+    if (typeof gtag === 'function') {
+        try {
+            gtag('event', 'project_view', {
+                event_category: 'portfolio',
+                event_label: 'Dinely In-Progress Modal',
+                transport_type: 'beacon'
+            });
+        } catch (e) {}
+    }
+    const modal = document.getElementById('dinely-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
-    });
+    }
 }
 
 function closeDinelyModal() {
@@ -708,16 +747,23 @@ function closeDinelyModal() {
 }
 
 function openMparivahanModal() {
-    trackProjectView('mParivahan In-Progress Modal', () => {
-        const modal = document.getElementById('mparivahan-modal');
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            if (window.lucide) {
-                lucide.createIcons();
-            }
+    if (typeof gtag === 'function') {
+        try {
+            gtag('event', 'project_view', {
+                event_category: 'portfolio',
+                event_label: 'mParivahan In-Progress Modal',
+                transport_type: 'beacon'
+            });
+        } catch (e) {}
+    }
+    const modal = document.getElementById('mparivahan-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
-    });
+    }
 }
 
 function closeMparivahanModal() {
@@ -729,16 +775,23 @@ function closeMparivahanModal() {
 }
 
 function openAccessibilityModal() {
-    trackProjectView('Accessibility in Exams In-Progress Modal', () => {
-        const modal = document.getElementById('accessibility-modal');
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            if (window.lucide) {
-                lucide.createIcons();
-            }
+    if (typeof gtag === 'function') {
+        try {
+            gtag('event', 'project_view', {
+                event_category: 'portfolio',
+                event_label: 'Accessibility in Exams In-Progress Modal',
+                transport_type: 'beacon'
+            });
+        } catch (e) {}
+    }
+    const modal = document.getElementById('accessibility-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
-    });
+    }
 }
 
 function closeAccessibilityModal() {

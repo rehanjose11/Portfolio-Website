@@ -321,6 +321,80 @@
             lucide.createIcons();
         }
 
+        // Direct navigation helper
+        function openProjectWithTracking(url, label) {
+            if (!url) return;
+            if (typeof gtag === 'function') {
+                try {
+                    gtag('event', 'project_view', {
+                        event_category: 'portfolio',
+                        event_label: label || url,
+                        transport_type: 'beacon'
+                    });
+                } catch (e) {}
+            }
+            window.location.href = url;
+        }
+
+        // In-Progress Modal Handlers
+        function openDinelyModal() {
+            const modal = document.getElementById('dinely-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+        function closeDinelyModal() {
+            const modal = document.getElementById('dinely-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        function openMparivahanModal() {
+            const modal = document.getElementById('mparivahan-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+        function closeMparivahanModal() {
+            const modal = document.getElementById('mparivahan-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        function openAccessibilityModal() {
+            const modal = document.getElementById('accessibility-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
+        function closeAccessibilityModal() {
+            const modal = document.getElementById('accessibility-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        function goToContactFromModal(source) {
+            closeMparivahanModal();
+            closeDinelyModal();
+            closeAccessibilityModal();
+            if (typeof gtag === 'function') {
+                gtag('event', 'contact_click', {
+                    event_category: 'modal_cta',
+                    event_label: source || 'modal'
+                });
+            }
+            window.location.href = 'index.html#contact';
+        }
+
         // Mobile Menu Toggle
         const mobileToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
