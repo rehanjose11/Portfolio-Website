@@ -70,6 +70,11 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 html {
     scroll-behavior: smooth;
     background-color: var(--bg-page);
@@ -202,11 +207,12 @@ a {
     letter-spacing: 0.1em;
 }
 
-/* Page Container */
+/* Page Container — Matching project thumbnail container width & padding */
 .case-container {
-    max-width: 1080px;
+    max-width: 880px;
     margin: 0 auto;
-    padding: 140px 28px 24px;
+    width: 100%;
+    padding: 140px 24px 32px;
     position: relative;
     z-index: 1;
 }
@@ -1227,7 +1233,7 @@ a {
 
 @media (max-width: 640px) {
     .case-container {
-        padding: 120px 20px 16px;
+        padding: 120px 16px 20px;
     }
 
     .meta-specs-grid {

@@ -1,8 +1,26 @@
 // --- THEME TOGGLE (init before anything else to avoid FOUC) ---
 (function () {
-    // Temporarily disabled: force dark mode
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.removeItem('portfolio-theme');
+    // If on an individual project case study page, always remain in dark mode
+    if (window.location.pathname.includes('/projects/') && !window.location.pathname.endsWith('projects.html')) {
+        document.documentElement.removeAttribute('data-theme');
+        return;
+    }
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+
+    // Preload alternate backdrop assets to make theme switching instant
+    try {
+        const bgLight = new Image();
+        bgLight.src = 'Homepage%20Assets/NETBACKDROPBLACK.png';
+        const bgDark = new Image();
+        bgDark.src = 'Homepage%20Assets/netbackdrop.png';
+        const bgLightLogo = new Image();
+        bgLightLogo.src = 'Homepage%20Assets/rehanlogoblack.png';
+    } catch (e) {}
 })();
 
 // Initialize Lucide icons
@@ -11,11 +29,13 @@ if (typeof lucide !== 'undefined') {
 }
 
 // --- PRELOADER LOGIC ---
+// Flag to easily toggle preloader on/off (set to true whenever you want to re-enable it)
+const ENABLE_PRELOADER = false;
 const preloader = document.getElementById('preloader');
 const mainContent = document.getElementById('main-content');
 const skipButton = document.getElementById('skip-button');
 
-if (preloader && mainContent) {
+if (ENABLE_PRELOADER && preloader && mainContent) {
     const lines = [
         "I'm Rehan.",
         "It's <span style='color: #ef4444'>not</span> Rehaaaaaaaaan.",
@@ -73,7 +93,6 @@ if (preloader && mainContent) {
     }
 
     async function runSequence() {
-        // CHANGED: Much shorter durations
         await playLine(lines[0], 600);   // Fast Intro
         await playLine(lines[1], 900);   // Just enough to read the joke
         await playLine(lines[2], 600);   // Fast confirm
@@ -100,7 +119,9 @@ if (preloader && mainContent) {
         sessionStorage.setItem('preloaderDone', 'true');
     }
 } else {
-    // If no preloader/mainContent on this page (e.g. projects.html, about.html), ensure document is scrollable
+    // When preloader is disabled or not present, reveal site immediately and remove any preloader elements
+    if (preloader) preloader.remove();
+    if (skipButton) skipButton.remove();
     if (mainContent) mainContent.classList.add('visible');
     document.body.style.overflow = 'auto';
 }
@@ -113,16 +134,20 @@ setInterval(() => {
 }, 1000);
 
 // Mobile Menu Toggle
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+var mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+var mobileMenu = document.getElementById('mobile-menu');
+var mobileMenuClose = document.getElementById('mobile-menu-close');
+var mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
 function openMobileMenu() {
     mobileMenu.classList.add('active');
     document.body.style.overflow = 'hidden';
     // Reinitialize Lucide icons in the mobile menu
-    setTimeout(() => lucide.createIcons(), 100);
+    setTimeout(() => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }, 100);
 }
 
 function closeMobileMenu() {
@@ -153,9 +178,7 @@ if (mobileMenu) {
     });
 }
 
-// --- THEME TOGGLE ---
-const themeToggle = document.getElementById('theme-toggle');
-
+// --- THEME TOGGLE WITH CIRCULAR RIPPLE REVEAL ---
 function applyTheme(theme) {
     if (theme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
@@ -163,16 +186,103 @@ function applyTheme(theme) {
         document.documentElement.removeAttribute('data-theme');
     }
     localStorage.setItem('portfolio-theme', theme);
+
+    // Swap src for any standalone nav-logo images
+    document.querySelectorAll('.nav-logo:not(.nav-logo--dark):not(.nav-logo--light)').forEach(img => {
+        img.src = theme === 'light' ? 'Homepage%20Assets/rehanlogoblack.png' : 'Homepage%20Assets/logo.png';
+    });
+
     // Re-init Lucide so icon strokes get the right color
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
 }
 
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        applyTheme(isLight ? 'dark' : 'light');
-    });
+function toggleThemeWithRipple(e, btn) {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const nextTheme = isLight ? 'dark' : 'light';
+
+    // Calculate origin coordinates from the clicked button
+    const rect = btn.getBoundingClientRect();
+    const x = e && typeof e.clientX === 'number' && e.clientX > 0
+        ? e.clientX
+        : rect.left + rect.width / 2;
+    const y = e && typeof e.clientY === 'number' && e.clientY > 0
+        ? e.clientY
+        : rect.top + rect.height / 2;
+
+    // Radius to reach the farthest corner of the screen plus safety margin
+    const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+    ) + 30;
+
+    // Native View Transitions API (Chrome 111+, Edge 111+, Safari 18+)
+    if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // Disable internal CSS background/text fades during snapshot so the new state renders instantly crisp
+        document.documentElement.classList.add('no-theme-transition');
+
+        const transition = document.startViewTransition(() => {
+            applyTheme(nextTheme);
+        });
+
+        transition.ready.then(() => {
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`
+                    ]
+                },
+                {
+                    duration: 720,
+                    easing: 'cubic-bezier(0.19, 1, 0.22, 1)',
+                    pseudoElement: '::view-transition-new(root)'
+                }
+            );
+        });
+
+        transition.finished.finally(() => {
+            document.documentElement.classList.remove('no-theme-transition');
+        });
+        return;
+    }
+
+    // High-performance circular ripple fallback for browsers without View Transitions
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const ripple = document.createElement('div');
+        ripple.className = 'theme-transition-ripple';
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        ripple.style.setProperty('--end-radius', `${endRadius}px`);
+        ripple.style.backgroundColor = nextTheme === 'light' ? '#f5f3eb' : '#000000';
+        document.body.appendChild(ripple);
+
+        requestAnimationFrame(() => {
+            ripple.classList.add('is-animating');
+        });
+
+        setTimeout(() => {
+            applyTheme(nextTheme);
+        }, 300);
+
+        setTimeout(() => {
+            ripple.classList.add('is-fading');
+            setTimeout(() => ripple.remove(), 400);
+        }, 520);
+        return;
+    }
+
+    // Immediate fallback for users who prefer reduced motion
+    applyTheme(nextTheme);
 }
+
+document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleThemeWithRipple(e, btn);
+    });
+});
 
 // Photo Click - Wave Emoji Animation (REMOVED)
 

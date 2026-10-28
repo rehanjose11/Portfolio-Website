@@ -27,11 +27,23 @@
         }
     }
     </script>
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../styles.css?v=21">
 
     <style>
-        .project-details-page { width: 100%; background-color: #000; min-height: 100vh; padding-top: 120px; }
+        .project-details-page { 
+            width: 100%; 
+            background-color: #000; 
+            min-height: 100vh; 
+            padding-top: 140px; 
+        }
         
+        .case-study-container {
+            max-width: 880px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 24px;
+        }
+
         /* ── ALERTS / REVEAL ── */
         .reveal-up {
             opacity: 0; filter: blur(10px); transform: translateY(40px);
@@ -42,7 +54,7 @@
         /* ── 3D CONTAINER ── */
         .viewer-container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 880px;
             margin: 80px auto 100px;
             padding: 0 24px;
         }
@@ -158,7 +170,8 @@
         .lightbox-close:hover { opacity: 1; }
 
         @media (max-width: 768px) {
-            .viewer-container { padding: 0 16px; margin-top: 60px; }
+            .project-details-page { padding-top: 120px; }
+            .viewer-container { padding: 0 16px; margin: 40px auto 60px; }
             .case-study-container { padding: 0 16px; }
         }
 
@@ -176,17 +189,15 @@
     </div>
 
     <!-- Center: Pages Navigation Bar -->
-    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block w-full max-w-2xl px-4">
+    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block">
         <nav
-            class="center-nav-bar flex items-center justify-center gap-9 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 w-full transition-all duration-300">
+            class="center-nav-bar flex items-center justify-center gap-7 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 transition-all duration-300">
             <a href="../../index.html#home"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
             <a href="../../about.html"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
             <a href="../../index.html#projects"
                 class="nav-link active px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
-            <a href="../../index.html#experience"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Experience</a>
             <a href="../../index.html#contact"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
         </nav>
@@ -214,16 +225,15 @@
                 <a href="../../index.html#home" class="mobile-nav-link">Home</a>
                 <a href="../../about.html" class="mobile-nav-link">About</a>
                 <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
-                <a href="../../index.html#experience" class="mobile-nav-link">Experience</a>
                 <a href="../../index.html#contact" class="mobile-nav-link">Contact</a>
             </nav>
         </div>
     </div>
 
     <!-- ── MAIN CONTENT ── -->
-    <div class="project-details-page">
+    <div class="project-details-page pb-24">
         <!-- New Project Images -->
-        <div class="case-study-container max-w-[1400px] mx-auto px-6">
+        <div class="case-study-container">
             <div class="reveal-up" style="transition-delay: 0.1s;">
                 <img src="alexa1.png" alt="AlexaBot Presentation 01" class="w-full rounded-t-3xl border-x border-t border-white/5 shadow-2xl">
                 <img src="alexa2.png" alt="AlexaBot Presentation 02" class="w-full border-x border-white/5 shadow-2xl">
@@ -267,7 +277,7 @@
             
         </div>
         <!-- Final Outcomes Section -->
-        <div class="case-study-container max-w-[1400px] mx-auto px-6">
+        <div class="case-study-container">
             <!-- Seamless Detailed Shots Flow -->
             <div class="reveal-up flex flex-col items-center" style="transition-delay: 0.1s;">
                 <img src="18.png" alt="AlexaBot Final Outcome" class="w-full rounded-t-3xl border-x border-t border-white/5 shadow-2xl cursor-pointer" onclick="openLightbox('18.png')">
@@ -291,10 +301,55 @@
         <img id="lightbox-img" src="" class="lightbox-content" onclick="event.stopPropagation()">
     </div>
 
-    <!-- Footer -->
-    <footer class="w-full bg-black py-4 flex justify-center items-center">
-        <div class="reveal-up text-center">
-            <p class="font-mono text-zinc-600 text-xs uppercase tracking-[0.2em]">&copy; REHAN JOSE 2026 ALL RIGHTS RESERVED</p>
+    <!-- Global Sitemap Footer -->
+    <footer class="portfolio-sitemap-footer">
+        <div class="sitemap-container">
+            <div class="sitemap-grid">
+                <!-- Brand / Bio -->
+                <div class="sitemap-brand">
+                    <a href="../../index.html" class="sitemap-brand-link" aria-label="Rehan Jose Home">
+                        <img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--dark">
+                        <img src="../../Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--light">
+                        <span class="sitemap-logo-text">REHAN JOSE</span>
+                    </a>
+                    <div class="sitemap-status-pill">
+                        <span class="sitemap-status-dot"></span>
+                        <span>Available for Opportunities</span>
+                    </div>
+                </div>
+
+                <!-- Column 1: Navigation -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Navigation</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="../../index.html#home" class="sitemap-link">Home</a></li>
+                        <li><a href="../../about.html" class="sitemap-link">About</a></li>
+                        <li><a href="../../projects.html" class="sitemap-link">Projects Archive</a></li>
+                        <li><a href="../../about.html#experience" class="sitemap-link">Experience</a></li>
+                        <li><a href="../../index.html#contact" class="sitemap-link">Contact</a></li>
+                        <li><a href="../../RehanJoseResume.pdf" target="_blank" class="sitemap-link">Resume <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Connect & Socials -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Connect</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="mailto:rehanjose11@gmail.com" class="sitemap-link">Email <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" rel="noopener noreferrer" class="sitemap-link">LinkedIn <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.behance.net/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">Behance <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://github.com/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">GitHub <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://joserehan.wordpress.com/" target="_blank" rel="noopener noreferrer" class="sitemap-link">WordPress <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank" rel="noopener noreferrer" class="sitemap-link">Instagram <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Copyright & Back to Top -->
+            <div class="sitemap-bottom">
+                <p class="sitemap-copyright">Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED</p>
+                <button type="button" class="sitemap-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top ↑</button>
+            </div>
         </div>
     </footer>
 

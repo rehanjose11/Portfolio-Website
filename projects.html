@@ -7,6 +7,19 @@
     <title>All Projects — Rehan Jose</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
     <link rel="icon" type="image/png" href="Homepage Assets/logo.png">
+
+    <!-- Theme initialization before render to avoid FOUC -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        })();
+    </script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRRKNVG7VK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -22,67 +35,80 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=36">
 </head>
 
 <body>
 
-    <!-- Top Left Corner: Logo -->
-    <div class="fixed top-6 left-6 md:left-12 z-50 flex items-center h-14">
-        <a href="index.html" class="flex items-center group" aria-label="Rehan Jose Home">
-            <img src="Homepage Assets/logo.png" alt="RJ Logo"
-                class="h-8 w-auto object-contain nav-logo transition-transform duration-300 group-hover:scale-105">
-        </a>
-    </div>
-
-    <!-- Center: Pages Navigation Bar -->
-    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block w-full max-w-2xl px-4">
-        <nav
-            class="center-nav-bar flex items-center justify-center gap-9 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 w-full transition-all duration-300">
-            <a href="index.html#home"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
-            <a href="about.html"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
-            <a href="projects.html"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">Projects</a>
-            <a href="index.html#experience"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Experience</a>
-            <a href="index.html#contact"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
-        </nav>
-    </div>
-
-    <!-- Top Right Corner: Resume Button & Mobile Toggle -->
-    <div class="fixed top-6 right-6 md:right-12 z-50 flex items-center gap-3 h-14">
-        <a href="RehanJoseResume.pdf" target="_blank"
-            class="nav-resume-btn hidden sm:inline-flex items-center gap-2 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 h-14 text-xs font-bold uppercase tracking-widest text-white hover:border-white/30 hover:bg-white hover:text-black hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
-            <span>Resume</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-        </a>
-        <button id="mobile-menu-toggle"
-            class="md:hidden flex items-center justify-center w-14 h-14 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:border-white/30 transition-all duration-300"
-            aria-label="Open navigation menu">
-            <i data-lucide="menu" class="w-5 h-5"></i>
+    <!-- Top Right Corner: Theme Toggle -->
+    <div class="fixed top-6 right-4 sm:right-6 md:right-10 z-50 flex items-center h-12 md:h-14">
+        <button class="theme-toggle theme-toggle--top-right" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+            <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
+            <i data-lucide="sun" class="theme-icon theme-icon-sun w-4 h-4"></i>
         </button>
+    </div>
+
+    <!-- Navigation (Outside main-content so it's always visible) -->
+    <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 pr-16 sm:pr-20 md:px-4 navbar-visible pointer-events-none">
+        <nav
+            class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300 pointer-events-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" aria-label="Rehan Jose Home" class="flex items-center">
+                        <img src="Homepage%20Assets/logo.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo nav-logo--dark">
+                        <img src="Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo nav-logo--light">
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html#home"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
+                    <a href="about.html"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
+                    <a href="projects.html"
+                        class="nav-link active text-xs font-bold uppercase tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">Projects</a>
+                    <a href="index.html#contact"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="RehanJoseResume.pdf" target="_blank"
+                        class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white" aria-label="Open navigation menu"><i data-lucide="menu"
+                            class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu">
         <div class="mobile-menu-content">
-            <button id="mobile-menu-close" class="mobile-menu-close">
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <nav class="mobile-nav">
                 <a href="index.html#home" class="mobile-nav-link">Home</a>
                 <a href="about.html" class="mobile-nav-link">About</a>
                 <a href="projects.html" class="mobile-nav-link">Projects</a>
-                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
                 <a href="index.html#contact" class="mobile-nav-link">Contact</a>
                 <a href="RehanJoseResume.pdf" target="_blank" class="mobile-nav-link mobile-nav-resume">
                     <span>Resume</span>
                     <i data-lucide="download" class="w-5 h-5"></i>
                 </a>
             </nav>
+            <div class="mt-8 flex items-center justify-center">
+                <button class="theme-toggle flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase text-white"
+                    aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
+                    <i data-lucide="sun" class="theme-icon theme-icon-sun w-4 h-4"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -100,10 +126,10 @@
 
                 <!-- Filter Controls -->
                 <div class="archive-filters" role="tablist" aria-label="Project categories">
-                    <button class="archive-filter-btn active" data-filter="all">All (9)</button>
+                    <button class="archive-filter-btn active" data-filter="all">All (7)</button>
                     <button class="archive-filter-btn" data-filter="product">Product Design (7)</button>
                     <button class="archive-filter-btn" data-filter="ui-web">UI/UX &amp; Web (5)</button>
-                    <button class="archive-filter-btn" data-filter="visual">Visual &amp; Brand (2)</button>
+                    <!-- <button class="archive-filter-btn" data-filter="visual">Visual &amp; Brand (2)</button> -->
                 </div>
             </div>
 
@@ -121,12 +147,6 @@
                     <div class="project-info">
                         <h3 class="project-title">Xplor AI Mobility</h3>
                         <p class="project-description">Designing and improving mobility experiences across research, journey planning, transit discovery, and multimodal UX.</p>
-                        <div class="project-tags">
-                            <span class="tag">Product Design</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Transit System</span>
-                            <span class="tag">Summer Internship</span>
-                        </div>
                     </div>
                 </div>
 
@@ -141,11 +161,6 @@
                     <div class="project-info">
                         <h3 class="project-title">WHEN THE GAME IS BIG, WHY DOES INDIA'S VIEWING EXPERIENCE FEEL SMALL?</h3>
                         <p class="project-description">This case study explores the gap between India’s growing sports fandom and the lack of dedicated spaces to experience it—rethinking public viewing through comfort, atmosphere, immersion, and community.</p>
-                        <div class="project-tags">
-                            <span class="tag">Case Study</span>
-                            <span class="tag">Experience Design</span>
-                            <span class="tag">Product Design</span>
-                        </div>
                     </div>
                 </div>
 
@@ -160,11 +175,6 @@
                     <div class="project-info">
                         <h3 class="project-title">Dinely</h3>
                         <p class="project-description">Helping individuals and groups effortlessly decide where to eat by aligning preferences, dietary needs, and choices.</p>
-                        <div class="project-tags">
-                            <span class="tag">Product Design</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Case Study</span>
-                        </div>
                     </div>
                 </div>
 
@@ -180,11 +190,6 @@
                         <span class="project-eyebrow">REFLEXLABS.AI</span>
                         <h3 class="project-title">THE FIRST PROBLEM WASN’T THE PRODUCT. IT WAS THE FIRST IMPRESSION.</h3>
                         <p class="project-description">This case study explores how a weak digital first impression can undermine trust, and how research-led UX and visual design can turn a promising product into a more credible experience.</p>
-                        <div class="project-tags">
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Case Study</span>
-                            <span class="tag">Internship</span>
-                        </div>
                     </div>
                 </div>
 
@@ -200,12 +205,6 @@
                         <span class="project-eyebrow">NEXTGEN MPARIVAHAN</span>
                         <h3 class="project-title">INDIA RELIES ON IT. BUT CAN PEOPLE ACTUALLY USE IT EASILY?</h3>
                         <p class="project-description">With 50M+ downloads, 7 lakh+ Google Play reviews, and ratings of just 3.3★ on Android and 2.2★ on iOS, mParivahan presents a striking gap between reach and satisfaction. This case study investigates what lies behind it—and whether NextGen mParivahan is truly built for the next generation.</p>
-                        <div class="project-tags">
-                            <span class="tag">Case Study</span>
-                            <span class="tag">Product Design</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Interface Design</span>
-                        </div>
                     </div>
                 </div>
 
@@ -220,12 +219,6 @@
                     <div class="project-info">
                         <h3 class="project-title">THE EXAM IS ACCESSIBLE. IS THE JOURNEY TO IT?</h3>
                         <p class="project-description">Indian competitive examinations provide various provisions and accommodations for candidates with disabilities, but inclusivity often becomes an afterthought when it comes to the application process. This case study explores whether candidates can independently navigate the digital journey to access these provisions—from discovering relevant information and understanding eligibility to registering, requesting accommodations, and completing the application.</p>
-                        <div class="project-tags">
-                            <span class="tag">Case Study</span>
-                            <span class="tag">Product Design</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">Accessibility</span>
-                        </div>
                     </div>
                 </div>
 
@@ -240,15 +233,10 @@
                     <div class="project-info">
                         <h3 class="project-title">AlexaBot</h3>
                         <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
-                        <div class="project-tags">
-                            <span class="tag">3D Modeling</span>
-                            <span class="tag">Product Design</span>
-                            <span class="tag">Fusion 360</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- 8: Beyond Jerseys (Book Publication Design) -->
+                <!-- Temporarily Hidden: Beyond Jerseys & Graduation Showcase (Re-enable when needed)
                 <div class="project-card" data-category="visual" data-glow="255, 255, 255" data-glow-override
                     onclick="openProjectWithTracking('projects/BeyondJerseys/beyond-jerseys.html', 'Beyond Jerseys')">
                     <div class="project-image-wrapper">
@@ -259,15 +247,9 @@
                     <div class="project-info">
                         <h3 class="project-title">Beyond Jerseys</h3>
                         <p class="project-description">A creative editorial publication capturing the intersection of football, fashion, and culture through visual storytelling.</p>
-                        <div class="project-tags">
-                            <span class="tag">Editorial Design</span>
-                            <span class="tag">Visual Design</span>
-                            <span class="tag">Publication</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- 9: Graduation Showcase 2026 -->
                 <div class="project-card" data-category="visual" data-glow="255, 255, 255" data-glow-override
                     onclick="openProjectWithTracking('projects/GPshow/graduation-portfolio.html', 'Graduation Showcase 2026')">
                     <div class="project-image-wrapper">
@@ -278,12 +260,9 @@
                     <div class="project-info">
                         <h3 class="project-title">Graduation Showcase 2026</h3>
                         <p class="project-description">A brand identity project for a graduation showcase, designed to unify multiple disciplines under a cohesive visual system.</p>
-                        <div class="project-tags">
-                            <span class="tag">Brand Identity</span>
-                            <span class="tag">Visual Design</span>
-                        </div>
                     </div>
                 </div>
+                -->
 
             </div>
 
@@ -298,29 +277,60 @@
         </div>
     </main>
 
-    <!-- Simple Footer -->
-    <footer style="padding: 40px 24px 60px; text-align: center; border-top: 1px solid var(--border-subtle); margin-top: 40px;">
-        <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-            <p style="font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;">
-                Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED
-            </p>
-            <div style="display: flex; gap: 20px; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase;">
-                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">LinkedIn</a>
-                <span style="color: var(--text-muted);">&middot;</span>
-                <a href="https://www.behance.net/rehanjose" target="_blank" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Behance</a>
-                <span style="color: var(--text-muted);">&middot;</span>
-                <a href="https://github.com/rehanjose" target="_blank" style="color: var(--text-muted); transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">GitHub</a>
+    <!-- Global Sitemap Footer -->
+    <footer class="portfolio-sitemap-footer">
+        <div class="sitemap-container">
+            <div class="sitemap-grid">
+                <!-- Brand / Bio -->
+                <div class="sitemap-brand">
+                    <a href="index.html" class="sitemap-brand-link" aria-label="Rehan Jose Home">
+                        <img src="Homepage%20Assets/logo.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--dark">
+                        <img src="Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--light">
+                        <span class="sitemap-logo-text">REHAN JOSE</span>
+                    </a>
+                    <div class="sitemap-status-pill">
+                        <span class="sitemap-status-dot"></span>
+                        <span>Available for Opportunities</span>
+                    </div>
+                </div>
+
+                <!-- Column 1: Navigation -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Navigation</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="index.html#home" class="sitemap-link">Home</a></li>
+                        <li><a href="about.html" class="sitemap-link">About</a></li>
+                        <li><a href="projects.html" class="sitemap-link">Projects Archive</a></li>
+                        <li><a href="about.html#experience" class="sitemap-link">Experience</a></li>
+                        <li><a href="index.html#contact" class="sitemap-link">Contact</a></li>
+                        <li><a href="RehanJoseResume.pdf" target="_blank" class="sitemap-link">Resume <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Connect & Socials -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Connect</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="mailto:rehanjose11@gmail.com" class="sitemap-link">Email <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" rel="noopener noreferrer" class="sitemap-link">LinkedIn <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.behance.net/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">Behance <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://github.com/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">GitHub <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://joserehan.wordpress.com/" target="_blank" rel="noopener noreferrer" class="sitemap-link">WordPress <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank" rel="noopener noreferrer" class="sitemap-link">Instagram <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Copyright & Back to Top -->
+            <div class="sitemap-bottom">
+                <p class="sitemap-copyright">Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED</p>
+                <button type="button" class="sitemap-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top ↑</button>
             </div>
         </div>
     </footer>
 
     <!-- Interactive Script -->
     <script>
-        // Initialize Lucide Icons
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-
         // Direct navigation helper
         function openProjectWithTracking(url, label) {
             if (!url) return;
@@ -395,48 +405,31 @@
             window.location.href = 'index.html#contact';
         }
 
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileClose = document.getElementById('mobile-menu-close');
+        // Category Filtering (scoped in IIFE)
+        (function () {
+            const filterBtns = document.querySelectorAll('.archive-filter-btn');
+            const cards = document.querySelectorAll('.archive-grid .project-card, .archive-card');
 
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-        if (mobileClose && mobileMenu) {
-            mobileClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
+                    const filter = btn.getAttribute('data-filter');
 
-        // Category Filtering
-        const filterBtns = document.querySelectorAll('.archive-filter-btn');
-        const cards = document.querySelectorAll('.archive-grid .project-card, .archive-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-
-                cards.forEach(card => {
-                    const categories = (card.getAttribute('data-category') || '').split(' ');
-                    if (filter === 'all' || categories.includes(filter)) {
-                        card.style.display = 'flex';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    cards.forEach(card => {
+                        const categories = (card.getAttribute('data-category') || '').split(' ');
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'flex';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
                 });
             });
-        });
+        })();
     </script>
 
     <!-- Dinely In-Progress Modal -->

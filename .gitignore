@@ -1,3 +1,6 @@
 .DS_Store
 *.mov
+!About/3dphoto/*.MOV
+!About/3dphoto/*.mov
 XPLOR REFERENCE/
+ref1.mp4

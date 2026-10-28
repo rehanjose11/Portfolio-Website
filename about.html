@@ -5,17 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — Rehan Jose's Portfolio</title>
-    <meta name="description" content="About Rehan Jose — Communication Design student at NIFT Kannur, exploring product design, UI/UX, and visual storytelling.">
+    <meta name="description"
+        content="About Rehan Jose — Communication Design student at NIFT Kannur, exploring product design, UI/UX, and visual storytelling.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
-    <link rel="icon" type="image/png" href="Homepage Assets/logo.png">
+    <link rel="icon" type="image/png" href="Homepage%20Assets/logo.png">
 
-    <!-- Force dark mode on load before any render -->
+    <!-- Theme initialization before render to avoid FOUC -->
     <script>
         (function () {
-            document.documentElement.removeAttribute('data-theme');
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
         })();
     </script>
 
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRRKNVG7VK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -31,1881 +38,1212 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=36">
 
     <style>
-        /* ============================================
-           THEME VARIABLES — matches main site
-        ============================================ */
-        :root {
-            --bg-overlay: rgba(0, 0, 0, 0.92);
-            --bg-color: #000000;
-            --text-primary: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.6);
-            --text-dim: rgba(255, 255, 255, 0.15);
-            --border-subtle: rgba(255, 255, 255, 0.10);
-            --border-hover: rgba(255, 255, 255, 0.30);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-bg-hover: rgba(255, 255, 255, 0.05);
-            --tag-bg: rgba(255, 255, 255, 0.08);
-            --nav-bg: rgba(24, 24, 27, 0.90);
-            --nav-border: rgba(63, 63, 70, 1);
-            --mobile-menu-bg: rgba(0, 0, 0, 0.95);
-            --highlight-glow: rgba(255, 255, 255, 0.4);
-        }
-
-        /* Dark mode only — light mode removed */
-
-        /* ============================================
-           BASE
-        ============================================ */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html { scroll-behavior: auto; }
-
-        body {
-            font-family: 'Space Mono', monospace;
-            color: var(--text-primary);
-            background-color: var(--bg-color);
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: -1;
-            background-color: var(--bg-color);
-            background-image:
-                linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-                url('Homepage%20Assets/netbackdrop.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            transition: background 0.4s ease, background-color 0.4s ease;
-        }
-
-        a { text-decoration: none; color: inherit; }
-
-
-
-
-        /* ============================================
-           ABOUT PAGE — SCROLL NARRATIVE
-        ============================================ */
-
-        /* — Intro Hero — */
-        .about-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 32px 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-hero-inner {
-            max-width: 900px;
+        /* Scoped About Page Editorial Styles */
+        .about-page-wrap {
             width: 100%;
-            text-align: center;
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 220px 24px 80px;
         }
 
-        .about-eyebrow {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        .about-hero-name {
-            font-size: clamp(56px, 10vw, 120px);
-            font-weight: 700;
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-            color: var(--text-primary);
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 0.9s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        .about-hero-tagline {
-            font-size: clamp(20px, 3vw, 28px);
-            line-height: 1.7;
-            color: var(--text-primary);
-            font-style: italic;
-            max-width: 800px;
-            margin: 0 auto 56px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        .scroll-indicator-wrapper {
-            position: absolute;
-            bottom: 70px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s 1.1s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        /* Fix scroll overlap specifically for short screens like iPhone SE */
-        @media (max-height: 700px) and (max-width: 768px) {
-            .about-hero {
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 140px 24px 40px;
-            }
-            .about-hero-inner {
-                margin-top: 0 !important;
-            }
-            .about-hero-tagline {
-                margin-bottom: 20px !important;
-            }
-            .scroll-indicator-wrapper {
-                position: relative !important;
-                bottom: auto !important;
-                margin-top: 0 !important;
-            }
-            .scroll-line {
-                height: 40px !important;
+        @media (max-width: 768px) {
+            .about-page-wrap {
+                padding-top: 160px;
             }
         }
 
-        .about-hero-scroll-hint {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: rgba(255,255,255,0.4);
-        }
-
-        .about-hero-scroll-hint span {
+        .about-tag {
             font-family: 'Space Mono', monospace;
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.3em;
             text-transform: uppercase;
+            letter-spacing: 0.22em;
             color: var(--text-muted);
-        }
-
-        .about-hero-scroll-hint svg {
-            color: var(--text-primary);
-            width: 20px;
-            height: 20px;
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Decorative Hero Assets */
-        .hero-decorative-layer {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .hero-photo-wrap {
-            position: absolute;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .hero-photo-wrap.left-wrap {
-            top: calc(50% - 140px);
-            left: 8%;
-            animation: fadeUpWrap 1s 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        .hero-photo-wrap.right-wrap {
-            top: calc(50% - 140px);
-            right: 8%;
-            animation: fadeUpWrap 1s 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        @keyframes fadeUpWrap {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-photo-obj {
-            border-radius: 12px;
-            border: 6px solid var(--border-subtle);
-            background: var(--card-bg);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.6);
-            overflow: hidden;
-        }
-
-        .hero-photo-obj img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .left-wrap .hero-photo-obj {
-            width: 210px;
-            height: 280px;
-            transform: rotate(-10deg);
-            animation: floatObjLeft 6s ease-in-out infinite;
-        }
-
-        .right-wrap .hero-photo-obj {
-            width: 210px;
-            height: 280px;
-            transform: rotate(8deg);
-            animation: floatObjRight 7s ease-in-out infinite;
-        }
-
-        @keyframes floatObjLeft {
-            0%, 100% { transform: rotate(-10deg) translateY(0); }
-            50% { transform: rotate(-8deg) translateY(-12px); }
-        }
-
-        @keyframes floatObjRight {
-            0%, 100% { transform: rotate(8deg) translateY(0); }
-            50% { transform: rotate(6deg) translateY(-15px); }
-        }
-
-        @keyframes organicFloatY {
-            0%, 100% { top: 0px; }
-            50% { top: -15px; }
-        }
-        .organic-float-1 { animation: organicFloatY 5s ease-in-out infinite; }
-        .organic-float-2 { animation: organicFloatY 7s ease-in-out infinite; }
-        .organic-float-3 { animation: organicFloatY 6s ease-in-out infinite; }
-        .organic-float-4 { animation: organicFloatY 6.5s ease-in-out infinite; }
-
-        @media (max-width: 900px) {
-            .hero-decorative-layer { display: none; }
-        }
-
-        /* — Scroll Narrative Track — */
-        /*  The outer wrapper is very tall to give scroll room.
-            The inner sticky container stays pinned to viewport. */
-        .narrative-track {
-            position: relative;
-            /* Each chapter = 1 screen height of scroll room */
-        }
-
-        .narrative-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Floating photo cards that drift across the screen */
-        .float-card {
-            position: absolute;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            background: var(--card-bg);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.6);
-            transition: opacity 0.6s ease, transform 0.1s linear;
-            pointer-events: none;
-            will-change: transform, opacity;
-        }
-
-        .float-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .float-card-label {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            padding: 10px 14px;
-            font-size: 11px;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        }
-
-        /* Chapter text block — pinned center-screen text */
-        .chapter-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 720px;
-            width: 90%;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .chapter-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .chapter-heading {
-            font-size: clamp(28px, 5vw, 52px);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-
-        .chapter-body {
-            font-size: clamp(14px, 1.8vw, 17px);
-            line-height: 1.8;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .mobile-about-flow {
-            display: none;
-        }
-
-        .mobile-chapter {
-            padding: 56px 16px 32px;
-        }
-
-        .mobile-chapter-inner {
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        .mobile-carousel {
-            margin: 28px auto 32px;
-            max-width: 340px;
-        }
-
-        .mobile-carousel-stage {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            border: 1px solid var(--border-subtle);
-            border-radius: 22px;
-            overflow: hidden;
-            background: var(--card-bg);
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
-        }
-
-        .mobile-carousel-slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transform: scale(1.02);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-
-        .mobile-carousel-slide.is-active {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 1;
-        }
-
-        .mobile-carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        .mobile-carousel-dots {
-            margin-top: 14px;
-            display: none;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .mobile-carousel-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .mobile-carousel-dot.is-active {
-            background: var(--text-primary);
-            transform: scale(1.25);
-        }
-
-        .mobile-chapter-text {
-            max-width: 560px;
-            margin: 24px auto 0;
-            text-align: center;
-            padding-left: 0;
-        }
-
-        .mobile-chapter-title {
-            max-width: 560px;
-            margin: 24px auto 0;
-            text-align: left;
-            padding-left: 24px;
-            box-sizing: border-box;
-        }
-
-        .mobile-chapter-body-wrap {
-            max-width: 560px;
-            margin: 16px auto 0;
-            padding-left: 24px;
-            padding-right: 24px;
-            box-sizing: border-box;
-        }
-
-        .mobile-chapter-body {
-            font-size: 14px;
-            line-height: 1.9;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .mobile-reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            filter: blur(2px);
-            transition: opacity 0.55s ease, transform 0.55s ease, filter 0.55s ease;
-            will-change: opacity, transform;
-        }
-
-        .mobile-reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-        }
-
-        .mobile-reveal-delay-1 {
-            transition-delay: 0.08s;
-        }
-
-        .mobile-reveal-delay-2 {
-            transition-delay: 0.16s;
-        }
-
-        .skills-title-line2 {
-            display: inline;
-        }
-
-        .mobile-timeline {
-            max-width: 560px;
-            margin: 28px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .mobile-timeline .timeline-item {
-            opacity: 1 !important;
-            transform: none !important;
-            scale: 1 !important;
-            gap: 16px !important;
-        }
-
-        .mobile-timeline .timeline-logo {
-            width: 56px !important;
-            height: 56px !important;
-            border-radius: 14px !important;
-            flex-shrink: 0;
-        }
-
-        .mobile-timeline .timeline-content {
-            padding-top: 2px !important;
-        }
-
-        .mobile-timeline .timeline-content h3 {
-            font-size: 18px !important;
-            line-height: 1.25;
-        }
-
-        .mobile-timeline .timeline-content p {
-            font-size: 12px !important;
-        }
-
-        .mobile-work-track {
-            position: relative;
-            height: 300vh;
-            padding: 0 16px;
-            margin-top: 24px;
-        }
-
-        .mobile-work-sticky {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-work-inner {
-            width: 100%;
-            max-width: 560px;
-            margin: 0 auto;
-            padding-top: 0;
-        }
-
-        .mobile-work-list {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-top: 18px;
-            padding-left: 24px;
-        }
-
-        .mobile-work-list::before,
-        .mobile-work-list::after {
-            content: '';
-            position: absolute;
-            left: 9px;
-            top: 4px;
-            width: 2px;
-            border-radius: 999px;
-        }
-
-        .mobile-work-list::before {
-            bottom: 4px;
-            background: var(--border-subtle);
-        }
-
-        .mobile-work-list::after {
-            height: var(--mobile-work-progress, 0%);
-            background: linear-gradient(180deg, var(--text-primary), rgba(255, 255, 255, 0.15));
-            box-shadow: 0 0 18px rgba(255, 255, 255, 0.16);
-        }
-
-        .mobile-work-header {
-            text-align: left;
-            margin-top: 0;
-            margin-bottom: 4px;
-        }
-
-        .mobile-work-item {
-            position: relative;
-            display: flex !important;
-            gap: 14px !important;
-            align-items: flex-start !important;
-            padding: 16px !important;
-            padding-left: 18px !important;
-            border: 1px solid var(--border-subtle) !important;
-            border-radius: 18px !important;
-            background: var(--card-bg) !important;
-            opacity: 0.28;
-            transform: scale(0.96);
-            transform-origin: center center;
-            transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        .mobile-work-item::before {
-            content: '';
-            position: absolute;
-            left: -21px;
-            top: 24px;
-            width: 12px;
-            height: 12px;
-            border-radius: 999px;
-            background: var(--border-subtle);
-            border: 2px solid var(--card-bg);
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
-        }
-
-        .mobile-work-item.is-active {
-            opacity: 1;
-            transform: scale(1);
-            background: var(--card-bg-hover) !important;
-            border-color: var(--border-hover) !important;
-            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
-        }
-
-        .mobile-work-item.is-active::before {
-            background: var(--text-primary);
-            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
-            transform: scale(1.08);
-        }
-
-        .mobile-work-item .timeline-logo {
-            width: 52px !important;
-            height: 52px !important;
-            border-radius: 14px !important;
-            flex-shrink: 0;
-        }
-
-        .mobile-work-item.is-active .timeline-logo {
-            border-color: var(--text-primary) !important;
-            box-shadow: 0 0 18px rgba(255, 255, 255, 0.16);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .mobile-work-item .timeline-content {
-            padding-top: 2px !important;
-        }
-
-        .mobile-work-item .timeline-content h3 {
-            font-size: 18px !important;
-            line-height: 1.25;
-            margin-bottom: 6px !important;
-        }
-
-        .mobile-work-item.is-active .timeline-content h3 {
-            color: var(--text-primary) !important;
-        }
-
-        .mobile-work-item .timeline-content p {
-            font-size: 12px !important;
-        }
-
-        /* — SKILLS SECTION — */
-        .skills-section {
-            padding: 120px 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 64px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-        }
-
-        .skill-item {
-            padding: 40px 32px;
-            border: 1px solid var(--border-subtle);
-            background: var(--card-bg);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(24px);
-        }
-
-        .skill-item.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .skill-item:hover {
-            background: var(--card-bg-hover);
-            border-color: var(--border-hover);
-        }
-
-        .skill-num {
-            font-size: 11px;
-            color: var(--text-dim);
-            letter-spacing: 0.15em;
+            display: inline-block;
             margin-bottom: 16px;
         }
 
-        .skill-name {
-            font-size: clamp(18px, 2.5vw, 24px);
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
-        }
-
-        .skill-desc {
-            font-size: 13px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        /* — FACTS STRIP — */
-        .facts-strip {
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-            display: flex;
-            overflow: hidden;
-        }
-
-        .fact-item {
-            flex: 1;
-            padding: 48px 40px;
-            border-right: 1px solid var(--border-subtle);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fact-item:last-child { border-right: none; }
-
-        .fact-item.revealed { opacity: 1; transform: translateY(0); }
-
-        .fact-num {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            color: var(--text-primary);
-            display: block;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .fact-label {
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        /* — CONTACT CTA — */
-        .about-contact {
-            padding: 160px 40px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-contact-heading {
-            font-size: clamp(32px, 6vw, 72px);
+        .about-hero-title {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(32px, 5.5vw, 62px);
             font-weight: 700;
             line-height: 1.1;
             letter-spacing: -0.04em;
             color: var(--text-primary);
             margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        .about-contact-heading.revealed { opacity: 1; transform: translateY(0); }
-
-        .about-contact-sub {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 48px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s 0.15s ease, transform 0.8s 0.15s ease;
-        }
-        .about-contact-sub.revealed { opacity: 1; transform: translateY(0); }
-
-        .about-contact-btns {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s 0.3s ease, transform 0.8s 0.3s ease;
-        }
-        .about-contact-btns.revealed { opacity: 1; transform: translateY(0); }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            border: 1px solid var(--text-primary);
-            background: var(--text-primary);
-            color: var(--bg-color);
+        .about-lead {
             font-family: 'Space Mono', monospace;
-            font-size: 12px;
+            font-size: clamp(17px, 2.1vw, 22px);
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 9999px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: transparent;
+            line-height: 1.6;
             color: var(--text-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 0 24px var(--highlight-glow);
+            margin-bottom: 20px;
         }
 
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            border: 1px solid var(--border-subtle);
-            background: transparent;
-            color: var(--text-muted);
+        .about-text-body {
             font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 9999px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-outline:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-            color: #000000;
-            transform: translateY(-2px);
+            font-size: 14px;
+            line-height: 1.85;
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
-        /* Footer */
-        .about-footer {
-            border-top: 1px solid var(--border-subtle);
-            padding: 32px 40px;
+        .about-pills {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+            margin-bottom: 36px;
+        }
+
+        .about-pill {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            background: #18181b;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-pill:hover {
+            background: #27272a;
+            border-color: rgba(255, 255, 255, 0.32);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="light"] .about-pill {
+            background: #ffffff;
+            border: 1px solid rgba(17, 17, 17, 0.15);
+            color: #111111;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="light"] .about-pill:hover {
+            background: #ebe7dc;
+            border-color: rgba(17, 17, 17, 0.25);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chapter Cards & Editorial Grid */
+        .about-chapter {
+            padding: 70px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .about-chapter-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        @media (max-width: 860px) {
+            .about-chapter-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .about-section-heading {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(24px, 3.2vw, 36px);
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        /* Photo Cards & Gallery */
+        .photo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="light"] .photo-card {
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .photo-card:hover {
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.14);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+            min-height: 0;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-card-caption {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 10px 14px;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+        }
+
+        /* Hero Duo Photo Layout */
+        .hero-portraits {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
         }
 
-        .about-footer p {
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
+        .hero-main-photo {
+            width: 100%;
+            aspect-ratio: 3 / 4 !important;
+            height: auto !important;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            position: relative;
+            display: block !important;
         }
 
-        .footer-back {
+        .hero-main-photo img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+        }
+
+        .hero-sub-photo-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .hero-sub-photo {
+            height: 180px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            position: relative;
+        }
+
+        /* Gallery 2-col & 3-col grids */
+        .photo-gallery-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .photo-gallery-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .photo-gallery-grid-3 .photo-span-2 {
+            grid-column: span 2;
+        }
+
+        .gallery-item {
+            height: 220px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            transition: all 0.35s ease;
+        }
+
+        .gallery-item.tall {
+            height: 280px;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Smooth scroll reveal animation */
+        .about-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .about-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Closing CTA */
+        .about-cta-section {
+            padding: 90px 24px 60px;
+            text-align: center;
+            border-top: none;
+        }
+
+        #photo-sphere-section {
+            border-top: none !important;
+            border-bottom: none !important;
+            padding-top: 110px !important;
+            padding-bottom: 65px !important;
+            margin-top: 0;
+        }
+
+        .about-cta-title {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(28px, 4.5vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .about-cta-body {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 36px;
+        }
+
+        .about-cta-buttons {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: all 0.3s;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-        .footer-back:hover { color: var(--text-primary); transform: translateX(-4px); }
+
+        .about-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #ffffff;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .about-btn-primary:hover {
+            transform: translateY(-3px);
+            background: #ffffff !important;
+            color: #000000 !important;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5), 0 15px 35px -5px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .about-btn-primary i,
+        .about-btn-primary svg {
+            width: 16px;
+            height: 16px;
+            stroke: #000000;
+            color: #000000;
+            transition: transform 0.3s ease;
+        }
+
+        .about-btn-primary:hover i,
+        .about-btn-primary:hover svg {
+            transform: scale(1.15);
+        }
+
+        [data-theme="light"] .about-btn-primary {
+            background: #111111;
+            color: #ffffff;
+            border-color: #111111;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .about-btn-primary:hover {
+            background: #000000 !important;
+            color: #ffffff !important;
+            border-color: #000000 !important;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), 0 15px 35px -5px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        [data-theme="light"] .about-btn-primary i,
+        [data-theme="light"] .about-btn-primary svg {
+            stroke: #ffffff;
+            color: #ffffff;
+        }
+
+        .about-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: rgba(24, 24, 27, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .about-btn-secondary:hover {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border-color: #ffffff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 15px 35px -5px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .about-btn-secondary i,
+        .about-btn-secondary svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease, stroke 0.3s ease, color 0.3s ease;
+        }
+
+        .about-btn-secondary:hover i,
+        .about-btn-secondary:hover svg {
+            stroke: #000000 !important;
+            color: #000000 !important;
+            transform: translateX(4px);
+        }
+
+        [data-theme="light"] .about-btn-secondary {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: #111111;
+            border-color: rgba(17, 17, 17, 0.12);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="light"] .about-btn-secondary:hover {
+            background: #000000 !important;
+            color: #ffffff !important;
+            border-color: #000000 !important;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3), 0 15px 35px -5px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        [data-theme="light"] .about-btn-secondary:hover i,
+        [data-theme="light"] .about-btn-secondary:hover svg {
+            stroke: #ffffff !important;
+            color: #ffffff !important;
+        }
 
         /* ============================================
-           RESPONSIVE
-        ============================================ */
-        @media (max-width: 900px) {
-            .skills-grid { grid-template-columns: 1fr 1fr; }
+           3D PHOTO SPHERE (ref1.mp4)
+           ============================================ */
+        .photo-sphere-container {
+            position: relative;
+            width: 100%;
+            height: 620px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: pan-y;
+            cursor: grab;
+            margin: 0 auto;
+            overflow: visible;
         }
 
-        @media (max-width: 640px) {
-            .skills-grid { grid-template-columns: 1fr; }
-            .facts-strip { flex-direction: column; }
-            .fact-item { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-            .fact-item:last-child { border-bottom: none; }
-            .about-footer { justify-content: center; text-align: center; }
-            .theme-toggle { right: 16px; width: 38px; height: 38px; }
+        .photo-sphere-container:active {
+            cursor: grabbing;
+        }
+
+        .photo-sphere-backdrop-glow {
+            position: absolute;
+            width: 530px;
+            height: 530px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(20px);
+        }
+
+        [data-theme="light"] .photo-sphere-backdrop-glow {
+            background: radial-gradient(circle, rgba(17, 17, 17, 0.06) 0%, rgba(17, 17, 17, 0.015) 45%, transparent 70%);
+        }
+
+        .photo-sphere-viewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 950px;
+            perspective-origin: 50% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .photo-sphere-stage {
+            position: absolute;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+        }
+
+        .sphere-card {
+            position: absolute;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transform-origin: center center;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform, opacity;
+            backface-visibility: visible;
+        }
+
+        /* Portrait cards */
+        .sphere-card--portrait {
+            width: 90px;
+            height: 128px;
+            left: -45px;
+            top: -64px;
+        }
+
+        /* Landscape cards */
+        .sphere-card--landscape {
+            width: 128px;
+            height: 90px;
+            left: -64px;
+            top: -45px;
+        }
+
+        .sphere-card img,
+        .sphere-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        .sphere-card:hover {
+            border-color: #ffffff;
+            box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="light"] .sphere-card {
+            border: 1.5px solid rgba(17, 17, 17, 0.16);
+            box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="light"] .sphere-card:hover {
+            border-color: #111111;
+            box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.25), 0 0 16px rgba(17, 17, 17, 0.18);
         }
 
         @media (max-width: 768px) {
-            .narrative-track {
-                display: none !important;
+            #photo-sphere-section {
+                padding-top: 75px !important;
+                padding-bottom: 50px !important;
             }
-
-            .mobile-about-flow {
-                display: block;
+            .photo-sphere-container {
+                height: 480px;
             }
-
-            .skills-section {
-                padding-bottom: 64px;
+            .photo-sphere-backdrop-glow {
+                width: 330px;
+                height: 330px;
             }
-
-            .skills-section > .chapter-heading {
-                align-self: stretch;
-                width: 100%;
-                box-sizing: border-box;
-                padding-left: 2px;
-                text-align: left !important;
-                margin-left: 0;
-                margin-bottom: 40px !important;
+            .sphere-card--portrait {
+                width: 70px;
+                height: 100px;
+                left: -35px;
+                top: -50px;
+                border-radius: 9px;
             }
-
-            .skills-title-line2 {
-                display: block;
+            .sphere-card--landscape {
+                width: 98px;
+                height: 69px;
+                left: -49px;
+                top: -34.5px;
+                border-radius: 9px;
             }
         }
 
-        /* Timeline Items - Chapter 3 Highlight Interactivity */
-        .timeline-item {
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            opacity: 0.3;
-            transform: scale(0.95);
-            transform-origin: left center;
+        /* Footer */
+        .about-page-footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1060px;
+            margin: 0 auto;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
         }
 
-        .timeline-item.highlighted {
-            opacity: 1;
-            transform: scale(1.15); /* make it big! */
+        .about-page-footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-primary);
+            transition: color 0.2s ease;
         }
 
-        .timeline-item.highlighted .timeline-logo {
-            border-color: var(--text-primary);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1);
+        .about-page-footer a:hover {
+            color: #ef4444;
         }
-
-        .timeline-item.highlighted .timeline-logo i {
-            color: var(--text-primary) !important;
-        }
-
-        .timeline-item.highlighted .timeline-content h3 {
-            color: #ffffff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            height: 2px;
-            background: var(--text-primary);
-            z-index: 100;
-            width: 0%;
-            transition: width 0.05s linear;
-        }
-
     </style>
 </head>
 
 <body>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
-
-    <!-- Top Left Corner: Logo -->
-    <div class="fixed top-6 left-6 md:left-12 z-50 flex items-center h-14">
-        <a href="index.html" class="flex items-center group" aria-label="Rehan Jose Home">
-            <img src="Homepage%20Assets/logo.png" alt="RJ Logo"
-                class="h-8 w-auto object-contain nav-logo transition-transform duration-300 group-hover:scale-105">
-        </a>
-    </div>
-
-    <!-- Center: Pages Navigation Bar -->
-    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block w-full max-w-2xl px-4">
-        <!-- Theme Toggle — floats to the right of the nav pill (hidden) -->
-        <button id="theme-toggle" class="theme-toggle theme-toggle--floating hidden"
-            aria-label="Toggle light/dark mode">
+    <!-- Top Right Corner: Theme Toggle -->
+    <div class="fixed top-6 right-4 sm:right-6 md:right-10 z-50 flex items-center h-12 md:h-14">
+        <button class="theme-toggle theme-toggle--top-right" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
             <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
-            <i data-lucide="sun" class="theme-icon theme-icon-sun  w-4 h-4"></i>
+            <i data-lucide="sun" class="theme-icon theme-icon-sun w-4 h-4"></i>
         </button>
-
-        <nav
-            class="center-nav-bar flex items-center justify-center gap-9 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 w-full transition-all duration-300">
-            <a href="index.html#home" data-section="home"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
-            <a href="about.html"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300 active">About</a>
-            <a href="index.html#projects" data-section="projects"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
-            <a href="index.html#experience" data-section="experience"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Experience</a>
-            <a href="index.html#contact" data-section="contact"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
-        </nav>
     </div>
 
-    <!-- Top Right Corner: Resume Button & Mobile Toggle -->
-    <div class="fixed top-6 right-6 md:right-12 z-50 flex items-center gap-3 h-14">
-        <a href="RehanJoseResume.pdf" target="_blank"
-            class="nav-resume-btn hidden sm:inline-flex items-center gap-2 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 h-14 text-xs font-bold uppercase tracking-widest text-white hover:border-white/30 hover:bg-white hover:text-black hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] transition-all duration-300">
-            <span>Resume</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-        </a>
-        <button id="mobile-menu-toggle"
-            class="md:hidden flex items-center justify-center w-14 h-14 rounded-full bg-zinc-900/30 backdrop-blur-xl border border-white/10 text-white hover:border-white/30 transition-all duration-300"
-            aria-label="Open navigation menu">
-            <i data-lucide="menu" class="w-5 h-5"></i>
-        </button>
+    <!-- Unified Glass Navbar -->
+    <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 pr-16 sm:pr-20 md:px-4 navbar-visible pointer-events-none">
+        <nav
+            class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300 pointer-events-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="index.html" aria-label="Rehan Jose Home" class="flex items-center">
+                        <img src="Homepage%20Assets/logo.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo nav-logo--dark">
+                        <img src="Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo nav-logo--light">
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html#home"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
+                    <a href="about.html"
+                        class="nav-link active text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
+                    <a href="index.html#projects"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
+                    <a href="index.html#contact"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="RehanJoseResume.pdf" target="_blank"
+                        class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                    <button id="mobile-menu-toggle" class="md:hidden text-white" aria-label="Open navigation menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu">
         <div class="mobile-menu-content">
-            <button id="mobile-menu-close" class="mobile-menu-close">
+            <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close menu">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <nav class="mobile-nav">
                 <a href="index.html#home" class="mobile-nav-link">Home</a>
-                <a href="about.html" class="mobile-nav-link">About</a>
+                <a href="about.html" class="mobile-nav-link active">About</a>
                 <a href="index.html#projects" class="mobile-nav-link">Projects</a>
-                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
                 <a href="index.html#contact" class="mobile-nav-link">Contact</a>
                 <a href="RehanJoseResume.pdf" target="_blank" class="mobile-nav-link mobile-nav-resume">
                     <span>Resume</span>
                     <i data-lucide="download" class="w-5 h-5"></i>
                 </a>
             </nav>
+            <div class="mt-8 flex items-center justify-center">
+                <button class="theme-toggle flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase text-white"
+                    aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
+                    <i data-lucide="sun" class="theme-icon theme-icon-sun w-4 h-4"></i>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- ============================================================
-         ABOUT HERO
-    ============================================================ -->
-    <section class="about-hero">
+    <!-- Main Content Container -->
+    <main class="about-page-wrap">
 
-        <!-- Decorative Background Elements -->
-        <div class="hero-decorative-layer">
+        <!-- ============================================
+             HERO SECTION — Who I Am & Overview
+             ============================================ -->
+        <section class="about-chapter about-reveal" style="border-top: none; padding-top: 20px; padding-bottom: 150px;">
+            <div class="about-chapter-grid items-center">
+                <div>
+                    <span class="about-tag">ABOUT ME</span>
+                    <h1 class="about-lead">
+                        Hey, I'm Rehan Jose — a Product Designer with a background in Communication Design, exploring the intersection of user experience, interaction design, and technology.
+                    </h1>
+                    <p class="about-text-body">
+                        I'm naturally curious about how things work and why people do what they do. I find myself noticing little things in everyday experiences, questioning what could be better, and imagining how design could make a difference. For me, the most exciting part of design is turning those observations into ideas that make people's lives a little easier.
+                    </p>
+                    <div class="about-pills">
+                        <span class="about-pill">📍 Kerala, India</span>
+                        <span class="about-pill">🎓 B.Des Communication Design '27</span>
+                        <span class="about-pill">⚡ Product Design &amp; UI/UX</span>
+                        <span class="about-pill">🏀 Athletics &amp; Basketball</span>
+                    </div>
+                </div>
 
-            <!-- Photos -->
-            <div class="hero-photo-wrap left-wrap">
-                <div class="hero-photo-obj">
-                    <img src="About/smollboi.jpg" alt="Young Rehan">
+                <div class="hero-portraits">
+                    <div class="hero-main-photo photo-card">
+                        <img src="About/main.JPG" alt="Rehan Jose">
+                    </div>
                 </div>
             </div>
-            
-            <div class="hero-photo-wrap right-wrap">
-                <div class="hero-photo-obj">
-                    <img src="About/bigboi.jpg" alt="Present Rehan">
+        </section>
+
+        <!-- ============================================
+             EXPERIENCE SECTION — Career & Internships
+             ============================================ -->
+        <section id="experience" class="about-chapter about-reveal">
+            <div class="experience-header-wrapper" style="margin-bottom: 28px;">
+                <span class="about-tag">CAREER &amp; INTERNSHIPS</span>
+                <h2 class="about-section-heading" style="margin-bottom: 8px;">EXPERIENCE</h2>
+                <p class="about-text-body" style="margin-bottom: 0;">Places where I've contributed, designed, and grown</p>
+            </div>
+
+            <div class="experience-list">
+                <!-- Item 1: Al Ramz MEP Designs -->
+                <div class="experience-card is-visible" data-exp-id="alramz" role="button" tabindex="0"
+                    aria-label="View Al Ramz MEP Designs experience details">
+                    <div class="exp-card-left">
+                        <div class="exp-logo-placeholder">
+                            <img src="experience%20logos/Al%20Ramz.png" alt="Al Ramz MEP Designs Logo">
+                        </div>
+                        <div class="exp-info">
+                            <div class="exp-title-row">
+                                <h3 class="exp-company">Al Ramz MEP Designs</h3>
+                                <span class="exp-type-tag">Freelance</span>
+                            </div>
+                            <p class="exp-role">Product Designer &amp; Web Developer</p>
+                        </div>
+                    </div>
+                    <div class="exp-card-right">
+                        <span class="exp-period">Sept. 2026 · Remote</span>
+                        <div class="exp-action-icon">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Xplor AI Mobility -->
+                <div class="experience-card is-visible" data-exp-id="xplor" role="button" tabindex="0"
+                    aria-label="View Xplor AI Mobility experience details">
+                    <div class="exp-card-left">
+                        <div class="exp-logo-placeholder">
+                            <img src="experience%20logos/xplor.png" alt="Xplor AI Mobility Logo">
+                        </div>
+                        <div class="exp-info">
+                            <div class="exp-title-row">
+                                <h3 class="exp-company">Xplor AI Mobility</h3>
+                                <span class="exp-type-tag">Summer Internship</span>
+                            </div>
+                            <p class="exp-role">Product Designer</p>
+                        </div>
+                    </div>
+                    <div class="exp-card-right">
+                        <span class="exp-period">Jun. 2026 – Aug. 2026 · On-site</span>
+                        <div class="exp-action-icon">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: ReflexLabs AI -->
+                <div class="experience-card is-visible" data-exp-id="reflexlabs" role="button" tabindex="0"
+                    aria-label="View ReflexLabs AI experience details">
+                    <div class="exp-card-left">
+                        <div class="exp-logo-placeholder">
+                            <img src="experience%20logos/reflexlabs.png" alt="ReflexLabs AI Logo">
+                        </div>
+                        <div class="exp-info">
+                            <div class="exp-title-row">
+                                <h3 class="exp-company">ReflexLabs AI</h3>
+                                <span class="exp-type-tag">Internship</span>
+                            </div>
+                            <p class="exp-role">UI/UX Designer</p>
+                        </div>
+                    </div>
+                    <div class="exp-card-right">
+                        <span class="exp-period">Nov. 2025 · Remote</span>
+                        <div class="exp-action-icon">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: NIFT Kannur -->
+                <div class="experience-card is-visible" data-exp-id="nift" role="button" tabindex="0"
+                    aria-label="View NIFT Kannur experience details">
+                    <div class="exp-card-left">
+                        <div class="exp-logo-placeholder">
+                            <img src="experience%20logos/nift.png" alt="NIFT Kannur Logo">
+                        </div>
+                        <div class="exp-info">
+                            <div class="exp-title-row">
+                                <h3 class="exp-company">NIFT Kannur</h3>
+                                <span class="exp-type-tag">Student Assistant</span>
+                            </div>
+                            <p class="exp-role">Print &amp; Graphic Team, Converge 2025</p>
+                        </div>
+                    </div>
+                    <div class="exp-card-right">
+                        <span class="exp-period">Jun. 2025 – Sept. 2025 · On-site</span>
+                        <div class="exp-action-icon">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: InAmigos Foundation -->
+                <div class="experience-card is-visible" data-exp-id="inamigos" role="button" tabindex="0"
+                    aria-label="View InAmigos Foundation experience details">
+                    <div class="exp-card-left">
+                        <div class="exp-logo-placeholder">
+                            <img src="experience%20logos/Inamigos.png" alt="InAmigos Foundation Logo">
+                        </div>
+                        <div class="exp-info">
+                            <div class="exp-title-row">
+                                <h3 class="exp-company">InAmigos Foundation</h3>
+                                <span class="exp-type-tag">Internship</span>
+                            </div>
+                            <p class="exp-role">Graphic Designer</p>
+                        </div>
+                    </div>
+                    <div class="exp-card-right">
+                        <span class="exp-period">Jun. 2025 – Jul. 2025 · Remote</span>
+                        <div class="exp-action-icon">
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="about-hero-inner" style="z-index: 2; position: relative; margin-top: -8vh;">
-            <p class="scatter-text" style="display: block; margin-bottom: 24px; text-align: center; color: var(--text-primary); font-size: clamp(40px, 7vw, 80px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;">
-                ABOUT ME
+        <!-- ============================================
+             3D INTERACTIVE PHOTO SPHERE (ref1.mp4)
+             ============================================ -->
+        <section id="photo-sphere-section" class="about-chapter about-reveal" style="border-top: none; padding-top: 110px; padding-bottom: 65px; margin-top: 0;">
+            <div class="photo-sphere-container" id="photo-sphere-container">
+                <div class="photo-sphere-backdrop-glow"></div>
+                <div class="photo-sphere-viewport">
+                    <div class="photo-sphere-stage" id="photo-sphere-stage">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             CLOSING CTA
+             ============================================ -->
+        <section class="about-cta-section about-reveal">
+            <h2 class="about-cta-title">Let's build something great together.</h2>
+            <p class="about-cta-body">
+                Whether it's a project collaboration, internship opportunity, or just a chat about design and ideas — my inbox is always open.
             </p>
-            <p class="about-hero-tagline scatter-text">
-                Hey, I’m Rehan Jose — currently exploring design and shaping my perspective at NIFT Kannur. I work across Product, UI/UX, and Visual Design.<br><br>Let me take you through my space.
-            </p>
-        </div>
+            <div class="about-cta-buttons">
+                <a href="mailto:rehanjose11@gmail.com" class="about-btn-primary">
+                    <span>Get In Touch</span>
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+                <a href="index.html#projects" class="about-btn-secondary">
+                    <span>View Projects</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
 
-        <!-- Scroll Down Indicator -->
-        <div class="scroll-indicator-wrapper">
-            <div class="about-hero-scroll-hint">
-                <div class="scroll-line"></div>
-                <i data-lucide="chevron-down"></i>
-                <span>SCROLL DOWN</span>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <div id="mobile-about-flow" class="mobile-about-flow"></div>
+    <!-- Global Sitemap Footer -->
+    <footer class="portfolio-sitemap-footer">
+        <div class="sitemap-container">
+            <div class="sitemap-grid">
+                <!-- Brand / Bio -->
+                <div class="sitemap-brand">
+                    <a href="index.html" class="sitemap-brand-link" aria-label="Rehan Jose Home">
+                        <img src="Homepage%20Assets/logo.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--dark">
+                        <img src="Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--light">
+                        <span class="sitemap-logo-text">REHAN JOSE</span>
+                    </a>
+                    <div class="sitemap-status-pill">
+                        <span class="sitemap-status-dot"></span>
+                        <span>Available for Opportunities</span>
+                    </div>
+                </div>
 
-    <!-- ============================================================
-         CHAPTER 1 — Origin
-    ============================================================ -->
-    <div class="narrative-track" id="chapter-1-track" style="height: 300vh;">
-        <div class="narrative-sticky" id="chapter-1-sticky">
-            <!-- Floating Photo Cards -->
-            <div id="card-1a" style="position: absolute; top: 12%; left: 8%; transform: rotate(-4deg);" data-rotate="rotate(-4deg)">
-                <div class="float-card organic-float-1" style="position: relative; width: 240px; height: 310px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/2nd/1.jpg" alt="Chapter 1 Photo 1" style="object-fit: cover; width: 100%; height: 100%; display: block;">
+                <!-- Column 1: Navigation -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Navigation</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="index.html#home" class="sitemap-link">Home</a></li>
+                        <li><a href="about.html" class="sitemap-link">About</a></li>
+                        <li><a href="projects.html" class="sitemap-link">Projects Archive</a></li>
+                        <li><a href="#experience" class="sitemap-link">Experience</a></li>
+                        <li><a href="index.html#contact" class="sitemap-link">Contact</a></li>
+                        <li><a href="RehanJoseResume.pdf" target="_blank" class="sitemap-link">Resume <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div id="card-1b" style="position: absolute; bottom: 15%; right: 7%; transform: rotate(5deg);" data-rotate="rotate(5deg)">
-                <div class="float-card organic-float-2" style="position: relative; width: 250px; height: 310px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/2nd/2.JPG" alt="Chapter 1 Photo 2" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-1c" style="position: absolute; top: 12%; right: 6%; transform: rotate(-2deg);" data-rotate="rotate(-2deg)">
-                <div class="float-card organic-float-3" style="position: relative; width: 290px; height: 240px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/2nd/3.JPG" alt="Chapter 1 Photo 3" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
 
-            <div id="card-1d" style="position: absolute; bottom: 10%; left: 10%; transform: rotate(4deg);" data-rotate="rotate(4deg)">
-                <div class="float-card organic-float-4" style="position: relative; width: 230px; height: 300px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/2nd/4.JPG" alt="Chapter 1 Photo 4" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-
-            <!-- Chapter Text -->
-            <div class="chapter-text" id="chapter-1-text">
-                <span class="chapter-label">01 / Origin</span>
-                <h2 class="chapter-heading">Started with questions,<br>built from curiosity.</h2>
-                <p class="chapter-body">
-                    Born and raised in Kerala, I’ve always been curious about how things work — why something feels intuitive, why something doesn’t, and what makes an experience memorable.<br><br>
-                    That curiosity slowly turned into an interest in design, where I began exploring how visuals, interactions, and structure come together to shape the way people experience things.<br><br>
-                    Today, I see design as a way to understand people better and build solutions that actually make a difference.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================================
-         CHAPTER 2 — NIFT
-    ============================================================ -->
-    <div class="narrative-track" id="chapter-2-track" style="height: 300vh;">
-        <div class="narrative-sticky" id="chapter-2-sticky">
-            <!-- Floating Photo Cards -->
-            <div id="card-2a" style="position: absolute; top: 10%; right: 12%; transform: rotate(4deg);" data-rotate="rotate(4deg)">
-                <div class="float-card organic-float-2" style="position: relative; width: 250px; height: 250px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/3rd/Artboard 2_1@3x-100 (1).jpg" alt="Chapter 2 Photo 1" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-2b" style="position: absolute; bottom: 12%; right: 6%; transform: rotate(-5deg);" data-rotate="rotate(-5deg)">
-                <div class="float-card organic-float-4" style="position: relative; width: 340px; height: 160px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/3rd/College.jpeg" alt="Chapter 2 Photo 2" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-2c" style="position: absolute; bottom: 28%; left: 10%; transform: rotate(2deg);" data-rotate="rotate(2deg)">
-                <div class="float-card organic-float-1" style="position: relative; width: 200px; height: 350px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/3rd/IMG_20251127_165031491.jpg" alt="Chapter 2 Photo 3" style="object-fit: cover; width: 100%; height: 100%; display: block;">
+                <!-- Column 3: Connect & Socials -->
+                <div class="sitemap-col">
+                    <h4 class="sitemap-col-title">Connect</h4>
+                    <ul class="sitemap-list">
+                        <li><a href="mailto:rehanjose11@gmail.com" class="sitemap-link">Email <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" rel="noopener noreferrer" class="sitemap-link">LinkedIn <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.behance.net/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">Behance <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://github.com/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">GitHub <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://joserehan.wordpress.com/" target="_blank" rel="noopener noreferrer" class="sitemap-link">WordPress <span class="sitemap-link-external">↗</span></a></li>
+                        <li><a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank" rel="noopener noreferrer" class="sitemap-link">Instagram <span class="sitemap-link-external">↗</span></a></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Chapter Text -->
-            <div class="chapter-text" id="chapter-2-text">
-                <span class="chapter-label">02 / Education</span>
-                <h2 class="chapter-heading">NIFT Kannur sharpened<br>the craft.</h2>
-                <p class="chapter-body">
-                    I’m currently a 3rd year Communication Design student at the National Institute of Fashion Technology, Kannur. Over the past three years, I’ve had the chance to explore different mediums and perspectives.<br><br>
-                    This journey has shaped how I think — understanding how ideas take form and how small decisions impact the overall experience.<br><br>
-                    I approach learning by experimenting, refining, and continuously improving.
-                </p>
+            <!-- Bottom Row: Copyright & Back to Top -->
+            <div class="sitemap-bottom">
+                <p class="sitemap-copyright">Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED</p>
+                <button type="button" class="sitemap-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top ↑</button>
             </div>
         </div>
-    </div>
-
-    <!-- ============================================================
-         CHAPTER 3 — Beyond design
-    ============================================================ -->
-    <div class="narrative-track" id="chapter-4-track" style="height: 250vh;">
-        <div class="narrative-sticky" id="chapter-4-sticky">
-            <!-- Floating Photo Cards from About/5 -->
-            <div id="card-4a" style="position: absolute; top: 16%; left: 8%; transform: rotate(5deg);" data-rotate="rotate(5deg)">
-                <div class="float-card organic-float-1" style="position: relative; width: 280px; height: 210px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/5/IMG_20200613_223904.jpg" alt="About Image 1" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-4b" style="position: absolute; bottom: 14%; right: 8%; transform: rotate(-4deg);" data-rotate="rotate(-4deg)">
-                <div class="float-card organic-float-3" style="position: relative; width: 240px; height: 280px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/5/IMG_20241025_144915301.jpg" alt="About Image 2" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-4c" style="position: absolute; top: 12%; right: 7%; transform: rotate(-6deg);" data-rotate="rotate(-6deg)">
-                <div class="float-card organic-float-2" style="position: relative; width: 260px; height: 260px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/5/IMG_20251009_232355198%20(1).jpg" alt="About Image 3" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-            
-            <div id="card-4d" style="position: absolute; bottom: 20%; left: 12%; transform: rotate(3deg);" data-rotate="rotate(3deg)">
-                <div class="float-card organic-float-4" style="position: relative; width: 230px; height: 300px; border: 6px solid var(--border-subtle); top: auto; left: auto; transform: none;">
-                    <img src="About/5/IMG_2553.jpg" alt="About Image 4" style="object-fit: cover; width: 100%; height: 100%; display: block;">
-                </div>
-            </div>
-
-            <!-- Chapter Text -->
-            <div class="chapter-text" id="chapter-4-text">
-                <span class="chapter-label">03 / Beyond design</span>
-                <h2 class="chapter-heading">Life apart design.</h2>
-                <p class="chapter-body">
-                    Sports have always been a big part of my life. Along with basketball, shot put has been something I’ve pursued seriously over the years. I had the opportunity to compete at the SGFI meet in Sangrur, Punjab, representing Kerala — an experience that pushed me both physically and mentally.<br><br>
-                    Currently, I’m part of the basketball and athletics teams at the National Institute of Fashion Technology, Kannur.<br><br>
-                    Being around sports has shaped the way I think — discipline, consistency, and constantly working to improve. Outside of playing, I closely follow the NBA, along with football and athletics.<br><br>
-                    I also spend time writing my thoughts and exploring photography, capturing moments that often go unnoticed.
-                </p>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- ============================================================
-         CONTACT CTA
-    ============================================================ -->
-    <section class="about-contact" id="about-cta">
-        <h2 class="about-contact-heading" id="cta-heading">
-            Let's build<br>something cool and great!
-        </h2>
-        <p class="about-contact-sub" id="cta-sub">
-            Whether it's a collaboration, a conversation, or just a project<br>
-            you want a second pair of eyes on — I'm here.
-        </p>
-        <div class="about-contact-btns" id="cta-btns" style="justify-content: center;">
-            <a href="index.html#projects" class="btn-outline">
-                See my work
-            </a>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         FOOTER
-    ============================================================ -->
-    <footer class="about-footer">
-        <a href="index.html" class="footer-back">
-            <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
-            Back to home
-        </a>
-        <p>© Rehan Jose 2026. All rights reserved.</p>
     </footer>
 
+    <!-- Experience Details Modal (Connected to script.js) -->
+    <div id="experience-modal" class="coming-soon-modal exp-modal-backdrop" onclick="closeExpModal()">
+        <div class="cs-modal-content exp-modal-card" onclick="event.stopPropagation()">
+            <div class="exp-modal-top">
+                <div class="exp-modal-header-left">
+                    <div class="exp-logo-placeholder exp-modal-logo">
+                        <img id="exp-modal-logo-img" src="experience%20logos/Al%20Ramz.png" alt="Company Logo"
+                            style="display: block;">
+                        <span class="exp-logo-initials" id="exp-modal-initials" style="display: none;">AR</span>
+                    </div>
+                    <div class="exp-modal-titles">
+                        <h2 class="exp-modal-company" id="exp-modal-company">Company Name</h2>
+                        <p class="exp-modal-role" id="exp-modal-role">Role Title</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exp-modal-badges" id="exp-modal-badges">
+                <span class="exp-badge" id="exp-modal-period">Sept. 2026</span>
+                <span class="exp-badge" id="exp-modal-location">Remote</span>
+                <span class="exp-badge exp-badge--type" id="exp-modal-type">Freelance</span>
+            </div>
+
+            <div class="exp-modal-divider"></div>
+
+            <div class="exp-modal-details">
+                <h4 class="exp-modal-subtitle">Highlights &amp; Impact</h4>
+                <ul class="exp-modal-list" id="exp-modal-list">
+                    <!-- Populated via script.js -->
+                </ul>
+            </div>
+
+            <div class="exp-modal-actions">
+                <button class="cs-modal-close-btn" onclick="closeExpModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
     <script>
-        // — Init Lucide icons —
-        lucide.createIcons();
-
-        // — Theme Toggle —
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-                const nextTheme = isLight ? 'dark' : 'light';
-                if (nextTheme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-                localStorage.setItem('portfolio-theme', nextTheme);
-                lucide.createIcons();
-            });
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
 
-        // — Mobile menu —
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileToggle = document.getElementById('mobile-menu-toggle');
-        const mobileClose = document.getElementById('mobile-menu-close');
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-        if (mobileClose && mobileMenu) {
-            mobileClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-        if (mobileMenu) {
-            mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-
-        // — Progress bar —
-        const progressBar = document.getElementById('progress-bar');
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressBar.style.width = pct + '%';
-        });
-
-        function isMobileAboutView() {
-            return window.matchMedia('(max-width: 768px)').matches;
-        }
-        const mobileAboutFlow = document.getElementById('mobile-about-flow');
-        const mobileWorkState = {
-            track: null,
-            items: [],
-        };
-        const mobileRevealState = {
-            observer: null,
-        };
-
-        function ensureMobileRevealObserver() {
-            if (mobileRevealState.observer) return mobileRevealState.observer;
-            if (!('IntersectionObserver' in window)) return null;
-
-            mobileRevealState.observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
+        // Smooth scroll reveal for sections
+        const revealElements = document.querySelectorAll('.about-reveal');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        mobileRevealState.observer.unobserve(entry.target);
                     }
                 });
             }, {
-                root: null,
-                threshold: 0.14,
-                rootMargin: '0px 0px -8% 0px',
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
             });
 
-            return mobileRevealState.observer;
+            revealElements.forEach(el => observer.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('is-visible'));
         }
 
-        function observeMobileReveal(root) {
-            if (!isMobileAboutView()) return;
-            const observer = ensureMobileRevealObserver();
-            if (!observer || !root) return;
-            root.querySelectorAll('.mobile-reveal').forEach((el) => {
-                observer.observe(el);
-            });
-        }
+        // ============================================
+        // 3D INTERACTIVE PHOTO SPHERE (ref1.mp4)
+        // ============================================
+        (function initPhotoSphere() {
+            const stage = document.getElementById('photo-sphere-stage');
+            const container = document.getElementById('photo-sphere-container');
+            if (!stage || !container) return;
 
-        function createMobileCarousel(images) {
-            const carousel = document.createElement('div');
-            carousel.className = 'mobile-carousel';
-
-            const stage = document.createElement('div');
-            stage.className = 'mobile-carousel-stage';
-
-            const slides = [];
-            const dots = [];
-
-            images.forEach((image, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'mobile-carousel-slide' + (index === 0 ? ' is-active' : '');
-
-                const img = document.createElement('img');
-                img.src = image.src;
-                img.alt = image.alt;
-                img.loading = index === 0 ? 'eager' : 'lazy';
-                img.decoding = 'async';
-
-                slide.appendChild(img);
-                stage.appendChild(slide);
-                slides.push(slide);
-            });
-
-            const dotWrap = document.createElement('div');
-            dotWrap.className = 'mobile-carousel-dots';
-
-            images.forEach((_, index) => {
-                const dot = document.createElement('span');
-                dot.className = 'mobile-carousel-dot' + (index === 0 ? ' is-active' : '');
-                dotWrap.appendChild(dot);
-                dots.push(dot);
-            });
-
-            let activeIndex = 0;
-            let timer = null;
-
-            function setActive(nextIndex) {
-                activeIndex = nextIndex;
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('is-active', index === activeIndex);
-                });
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('is-active', index === activeIndex);
-                });
-            }
-
-            function start() {
-                if (timer || slides.length < 2) return;
-                timer = window.setInterval(() => {
-                    setActive((activeIndex + 1) % slides.length);
-                }, 2800);
-            }
-
-            function stop() {
-                if (!timer) return;
-                window.clearInterval(timer);
-                timer = null;
-            }
-
-            carousel.addEventListener('pointerenter', stop);
-            carousel.addEventListener('pointerleave', start);
-            carousel.addEventListener('touchstart', stop, { passive: true });
-            carousel.addEventListener('touchend', start, { passive: true });
-
-            carousel.appendChild(stage);
-            carousel.appendChild(dotWrap);
-            start();
-
-            return carousel;
-        }
-
-        function buildMobileAboutFlow() {
-            if (!isMobileAboutView() || !mobileAboutFlow) return;
-
-            mobileWorkState.track = null;
-            mobileWorkState.items = [];
-
-            const chapterConfigs = [
-                {
-                    trackId: 'chapter-1-track',
-                    key: 'origin',
-                    mode: 'carousel',
-                    imageSelector: '.float-card img',
-                },
-                {
-                    trackId: 'chapter-2-track',
-                    key: 'education',
-                    mode: 'carousel',
-                    imageSelector: '.float-card img',
-                },
-                {
-                    trackId: 'chapter-4-track',
-                    key: 'beyond-design',
-                    mode: 'carousel',
-                    imageSelector: '.float-card img',
-                },
+            const items = [
+                { file: "1000005511 (1).jpg", type: "image", isLandscape: true },
+                { file: "5925C9CD-DAD3-4CF5-8EA1-AB807EFCB174.JPG", type: "image", isLandscape: true },
+                { file: "FB_IMG_1584777296707.jpg", type: "image", isLandscape: true },
+                { file: "IMG-20241115-WA0028.jpg", type: "image", isLandscape: false },
+                { file: "IMG_0975 2.JPG", type: "image", isLandscape: true },
+                { file: "IMG_1054.jpg", type: "image", isLandscape: true },
+                { file: "IMG_1189.JPG", type: "image", isLandscape: true },
+                { file: "IMG_1199.JPG", type: "image", isLandscape: true },
+                { file: "IMG_1511.JPG", type: "image", isLandscape: true },
+                { file: "IMG_20200613_223904.jpg", type: "image", isLandscape: false },
+                { file: "IMG_2553.jpg", type: "image", isLandscape: false },
+                { file: "IMG_3074.JPG", type: "image", isLandscape: true },
+                { file: "IMG_3286.jpg", type: "image", isLandscape: true },
+                { file: "IMG_3328.jpg", type: "image", isLandscape: true },
+                { file: "IMG_3383.MOV", type: "video", isLandscape: false },
+                { file: "IMG_3598.JPG", type: "image", isLandscape: true },
+                { file: "IMG_3834.JPG", type: "image", isLandscape: true },
+                { file: "IMG_4415.JPG", type: "image", isLandscape: true },
+                { file: "IMG_4438.jpg", type: "image", isLandscape: false },
+                { file: "IMG_5354.jpg", type: "image", isLandscape: true },
+                { file: "IMG_5593.MOV", type: "video", isLandscape: false },
+                { file: "IMG_5657.jpg", type: "image", isLandscape: true },
+                { file: "IMG_5943.JPG", type: "image", isLandscape: true },
+                { file: "IMG_6019.JPG", type: "image", isLandscape: true },
+                { file: "Screenshot 2026-10-29 at 2.36.29\u202FAM.png", type: "image", isLandscape: true }
             ];
 
-            mobileAboutFlow.innerHTML = '';
+            const N = items.length;
+            let radius = window.innerWidth < 768 ? 185 : 270;
 
-            chapterConfigs.forEach((config) => {
-                const track = document.getElementById(config.trackId);
-                if (!track) return;
+            const nodes = items.map((item, i) => {
+                const phi = Math.acos(-1 + (2 * i + 1) / N);
+                const theta = Math.sqrt(N * Math.PI) * phi;
+                const scatter = 0.94 + 0.12 * (((i * 7 + 3) % 11) / 10);
 
-                const textBlock = track.querySelector('.chapter-text');
-                const label = textBlock?.querySelector('.chapter-label')?.innerHTML || '';
-                const heading = textBlock?.querySelector('.chapter-heading')?.innerHTML || '';
+                const el = document.createElement('div');
+                el.className = 'sphere-card ' + (item.isLandscape ? 'sphere-card--landscape' : 'sphere-card--portrait');
 
-                const section = document.createElement('section');
-                section.className = 'mobile-chapter';
-                section.id = `mobile-${config.key}`;
-
-                const inner = document.createElement('div');
-                inner.className = 'mobile-chapter-inner';
-
-                const header = document.createElement('div');
-                header.className = 'mobile-chapter-title';
-
-                const labelEl = document.createElement('span');
-                labelEl.className = 'chapter-label';
-                labelEl.innerHTML = label;
-
-                const headingEl = document.createElement('h2');
-                headingEl.className = 'chapter-heading';
-                headingEl.innerHTML = heading;
-
-                header.appendChild(labelEl);
-                header.appendChild(headingEl);
-                header.classList.add('mobile-reveal');
-
-                if (config.mode === 'carousel') {
-                    inner.appendChild(header);
-                    const body = textBlock?.querySelector('.chapter-body')?.innerHTML || '';
-                    const images = [...track.querySelectorAll(config.imageSelector || '')]
-                        .map((img) => ({
-                            src: img.getAttribute('src') || img.src,
-                            alt: img.getAttribute('alt') || '',
-                        }))
-                        .filter((image) => image.src);
-
-                    if (images.length > 0) {
-                        const carousel = createMobileCarousel(images);
-                        carousel.classList.add('mobile-reveal', 'mobile-reveal-delay-1');
-                        inner.appendChild(carousel);
+                const updateOrientation = (w, h) => {
+                    if (w && h) {
+                        const isLand = w >= h;
+                        el.classList.toggle('sphere-card--landscape', isLand);
+                        el.classList.toggle('sphere-card--portrait', !isLand);
                     }
+                };
 
-                    const bodyWrap = document.createElement('div');
-                    bodyWrap.className = 'mobile-chapter-body-wrap';
-                    bodyWrap.classList.add('mobile-reveal', 'mobile-reveal-delay-2');
+                const src = 'About/3dphoto/' + encodeURIComponent(item.file);
 
-                    const bodyEl = document.createElement('p');
-                    bodyEl.className = 'mobile-chapter-body';
-                    bodyEl.innerHTML = body;
-
-                    bodyWrap.appendChild(bodyEl);
-                    inner.appendChild(bodyWrap);
-                    section.appendChild(inner);
-                    mobileAboutFlow.appendChild(section);
-                    observeMobileReveal(section);
-                    return;
-                } else if (config.mode === 'work') {
-                    header.classList.add('mobile-work-header');
-
-                    const workTrack = document.createElement('div');
-                    workTrack.className = 'mobile-work-track';
-
-                    const sticky = document.createElement('div');
-                    sticky.className = 'mobile-work-sticky';
-
-                    const workInner = document.createElement('div');
-                    workInner.className = 'mobile-work-inner';
-
-                    const workList = document.createElement('div');
-                    workList.className = 'mobile-work-list';
-
-                    const items = [];
-
-                    track.querySelectorAll('.timeline-item').forEach((item) => {
-                        const clone = item.cloneNode(true);
-                        clone.classList.remove('highlighted');
-                        clone.classList.add('mobile-work-item');
-                        clone.style.display = 'flex';
-                        clone.style.gap = '14px';
-                        clone.style.alignItems = 'flex-start';
-                        clone.style.padding = '16px';
-                        clone.style.border = '1px solid var(--border-subtle)';
-                        clone.style.borderRadius = '18px';
-                        clone.style.background = 'var(--card-bg)';
-
-                        const logo = clone.querySelector('.timeline-logo');
-                        if (logo) {
-                            logo.style.width = '52px';
-                            logo.style.height = '52px';
-                            logo.style.borderRadius = '14px';
-                            logo.style.flexShrink = '0';
-                        }
-
-                        const content = clone.querySelector('.timeline-content');
-                        if (content) {
-                            content.style.paddingTop = '2px';
-                        }
-
-                        const title = clone.querySelector('h3');
-                        if (title) {
-                            title.style.fontSize = '18px';
-                            title.style.lineHeight = '1.25';
-                            title.style.marginBottom = '6px';
-                        }
-
-                        const role = clone.querySelector('p');
-                        if (role) {
-                            role.style.fontSize = '12px';
-                        }
-
-                        workList.appendChild(clone);
-                        items.push(clone);
+                if (item.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = src;
+                    video.autoplay = true;
+                    video.loop = true;
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.setAttribute('muted', '');
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('preload', 'auto');
+                    video.addEventListener('loadedmetadata', () => {
+                        updateOrientation(video.videoWidth, video.videoHeight);
                     });
-
-                    workInner.appendChild(header);
-                    workInner.appendChild(workList);
-                    sticky.appendChild(workInner);
-                    workTrack.appendChild(sticky);
-                    inner.appendChild(workTrack);
-                    section.appendChild(inner);
-
-                    mobileWorkState.track = workTrack;
-                    mobileWorkState.items = items;
-                    mobileAboutFlow.appendChild(section);
-                    workList.classList.add('mobile-reveal', 'mobile-reveal-delay-1');
-                    observeMobileReveal(section);
-                    updateMobileWorkHighlight();
-                    return;
-                }
-            });
-
-            updateMobileWorkHighlight();
-        }
-
-        function updateMobileWorkHighlight() {
-            if (!isMobileAboutView() || !mobileWorkState.track || mobileWorkState.items.length === 0) return;
-
-            const scrollY = window.scrollY;
-            const vh = window.innerHeight;
-            const trackTop = mobileWorkState.track.offsetTop;
-            const trackHeight = mobileWorkState.track.offsetHeight;
-            const maxScroll = Math.max(1, trackHeight - vh);
-            const progress = clamp((scrollY - trackTop) / maxScroll, 0, 1);
-            const activeIndex = Math.min(mobileWorkState.items.length - 1, Math.floor(progress * mobileWorkState.items.length));
-
-            mobileWorkState.track.style.setProperty('--mobile-work-progress', `${Math.max(0, progress) * 100}%`);
-            mobileWorkState.items.forEach((item, index) => {
-                item.classList.toggle('is-active', index === activeIndex);
-            });
-        }
-
-        buildMobileAboutFlow();
-        window.addEventListener('resize', () => {
-            if (isMobileAboutView() && mobileAboutFlow && mobileAboutFlow.childElementCount === 0) {
-                buildMobileAboutFlow();
-            }
-        });
-
-        // ——————————————————————————————————————————————
-        // HERO WORD SCATTERING INIT
-        // ——————————————————————————————————————————————
-        const heroTaglines = document.querySelectorAll('.scatter-text');
-        const heroLetters = [];
-        const heroPhotoWraps = document.querySelectorAll('.hero-photo-wrap');
-        const heroDecorativeLayer = document.querySelector('.hero-decorative-layer');
-        heroTaglines.forEach(heroTagline => {
-            const segments = heroTagline.innerHTML.split(/(<br\s*\/?>)/i);
-            heroTagline.innerHTML = '';
-            
-            segments.forEach(seg => {
-                if (seg.toLowerCase().startsWith('<br')) {
-                    heroTagline.appendChild(document.createElement('br'));
-                    return;
-                }
-                const words = seg.trim().split(/\s+/);
-                if (!words[0]) return; // empty string
-                
-                words.forEach(word => {
-                    const wordSpan = document.createElement('span');
-                    wordSpan.style.display = 'inline-block';
-                    for(let i=0; i<word.length; i++) {
-                        const letterSpan = document.createElement('span');
-                        letterSpan.style.display = 'inline-block';
-                        letterSpan.style.willChange = 'transform';
-                        letterSpan.textContent = word[i];
-                        
-                        letterSpan.dataset.tx = (Math.random() - 0.5) * 150; // vw spread
-                        letterSpan.dataset.ty = (Math.random() - 0.5) * 150; // vh spread
-                        letterSpan.dataset.tz = Math.random() * 500 + 100;   // depth spread
-                        letterSpan.dataset.rx = (Math.random() - 0.5) * 720;
-                        letterSpan.dataset.ry = (Math.random() - 0.5) * 720;
-                        letterSpan.dataset.rz = (Math.random() - 0.5) * 720;
-                        
-                        wordSpan.appendChild(letterSpan);
-                        heroLetters.push(letterSpan);
-                    }
-                    heroTagline.appendChild(wordSpan);
-                    heroTagline.appendChild(document.createTextNode(' '));
-                });
-            });
-        });
-
-        // ——————————————————————————————————————————————
-        // SCROLL NARRATIVE ENGINE
-        // Each chapter: cards drift in on entry, text reveals, cards drift out on exit
-        // ——————————————————————————————————————————————
-        const chapters = [
-            {
-                trackId: 'chapter-1-track',
-                stickyId: 'chapter-1-sticky',
-                textId: 'chapter-1-text',
-                cards: [
-                    { id: 'card-1a', entryX: -120, entryY: -60, exitX: 140, exitY: 80 },
-                    { id: 'card-1b', entryX: 140, entryY: 100, exitX: -120, exitY: -60 },
-                    { id: 'card-1c', entryX: 80, entryY: -120, exitX: -100, exitY: 80 },
-                    { id: 'card-1d', entryX: -100, entryY: 120, exitX: 120, exitY: -80 },
-                ]
-            },
-            {
-                trackId: 'chapter-2-track',
-                stickyId: 'chapter-2-sticky',
-                textId: 'chapter-2-text',
-                cards: [
-                    { id: 'card-2a', entryX: -100, entryY: -80, exitX: 120, exitY: 60 },
-                    { id: 'card-2b', entryX: 120, entryY: 80, exitX: -100, exitY: -80 },
-                    { id: 'card-2c', entryX: -80, entryY: 100, exitX: 100, exitY: -80 },
-                ]
-            },
-            {
-                trackId: 'chapter-4-track',
-                stickyId: 'chapter-4-sticky',
-                textId: 'chapter-4-text',
-                cards: [
-                    { id: 'card-4a' },
-                    { id: 'card-4b' },
-                    { id: 'card-4c' },
-                    { id: 'card-4d' },
-                ]
-            },
-        ];
-
-        function lerp(a, b, t) { return a + (b - a) * t; }
-        function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
-        function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-        function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
-        function easeInExpo(t) { return t === 0 ? 0 : Math.pow(2, 10 * t - 10); }
-
-        // ——— ZOOM-FROM-CENTER SCROLL ENGINE ———
-        // Each chapter: text panel + cards zoom in from a tiny centre
-        // vanishing point on entry, then blast past the viewer on exit.
-
-        function updateChapters() {
-            const scrollY = window.scrollY;
-            const vh = window.innerHeight;
-
-            // Hero scroll indicator fade out
-            const scrollHintInner = document.querySelector('.about-hero-scroll-hint');
-            if (scrollHintInner) {
-                // Fade out based on scroll depth (e.g., within the first 25% of viewport height)
-                const fadeProgress = clamp(scrollY / (vh * 0.25), 0, 1);
-                scrollHintInner.style.opacity = 1 - fadeProgress;
-            }
-
-            // Hero blast-out effect (Scatter letters instead of simple zoom)
-            const heroInner = document.querySelector('.about-hero-inner');
-            if (heroInner && heroLetters.length > 0) {
-                const heroProgress = clamp(scrollY / (vh * 0.5), 0, 1);
-                
-                if (heroProgress > 0) {
-                    // translateY(scrollY) perfectly counteracts the scroll, locking it to the centre of the window
-                    heroInner.style.transform = `translateY(${scrollY}px)`;
-                    
-                    // Fade out container near the end of scatter
-                    const containerOpacity = 1 - clamp((heroProgress - 0.6) / 0.4, 0, 1);
-                    heroInner.style.opacity = containerOpacity;
-                    
-                    // Ease the scatter out explosively
-                    const easedScramble = 1 - Math.pow(1 - heroProgress, 3);
-                    
-                    heroLetters.forEach(letter => {
-                        const tx = letter.dataset.tx * easedScramble;
-                        const ty = letter.dataset.ty * easedScramble;
-                        const tz = letter.dataset.tz * easedScramble;
-                        const rx = letter.dataset.rx * easedScramble;
-                        const ry = letter.dataset.ry * easedScramble;
-                        const rz = letter.dataset.rz * easedScramble;
-                        
-                        // No text colour boost or glow, just the pure scatter
-                        letter.style.transform = `translate3d(${tx}vw, ${ty}vh, ${tz}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
-                    });
-
-                    // Fade hero photos with the same initial scroll phase as scatter text.
-                    if (!isMobileAboutView()) {
-                        const photoOpacity = 1 - heroProgress;
-                        heroPhotoWraps.forEach((photo) => {
-                            photo.style.opacity = String(photoOpacity);
-                        });
-                        if (heroDecorativeLayer) {
-                            heroDecorativeLayer.style.opacity = String(photoOpacity);
-                        }
-                    }
+                    el.appendChild(video);
+                    video.play().catch(() => {});
                 } else {
-                    heroInner.style.transform = '';
-                    heroInner.style.opacity = '';
-                    heroLetters.forEach(letter => letter.style.transform = 'translateZ(0)');
-                    heroPhotoWraps.forEach((photo) => {
-                        photo.style.opacity = '';
-                    });
-                    if (heroDecorativeLayer) {
-                        heroDecorativeLayer.style.opacity = '';
-                    }
-                }
-            }
-
-            if (isMobileAboutView()) {
-                updateMobileWorkHighlight();
-                return;
-            }
-
-            chapters.forEach(ch => {
-                const track = document.getElementById(ch.trackId);
-                if (!track) return;
-                const trackTop = track.offsetTop;
-                const trackHeight = track.offsetHeight;
-
-                const raw = (scrollY - trackTop) / (trackHeight - vh);
-                const progress = clamp(raw, 0, 1);
-
-                // Skip if way out of view
-                const distFromView = trackTop - scrollY;
-                if (distFromView > vh * 1.2 || distFromView < -trackHeight) return;
-
-                const textEl = document.getElementById(ch.textId);
-
-                // ——————————————————————————
-                // ZOOM-FROM-CENTER PHASES
-                // ——————————————————————————
-
-                let textOpacity, textScale;
-                const entryEnd = 0.35;
-                const peakEnd = 0.60;
-
-                if (progress < entryEnd) {
-                    const t = easeOutExpo(progress / entryEnd);
-                    textScale = lerp(0.08, 1, t);
-                    textOpacity = clamp(t * 2.5, 0, 1);   // fade in quickly
-                } else if (progress < peakEnd) {
-                    textScale = 1;
-                    textOpacity = 1;
-                } else {
-                    const blastDuration = 1 - peakEnd;
-                    const t = easeInExpo((progress - peakEnd) / blastDuration);
-                    textScale = lerp(1, 3.5, t);           // blast outward
-                    textOpacity = 1 - clamp(t * 1.6, 0, 1);
-                }
-
-                textEl.style.opacity = textOpacity;
-                textEl.style.transform = `translate(-50%, -50%) scale(${textScale})`;
-
-                // Cards: zoom from centre to their corner position on entry,
-                //        zoom back toward centre on exit (following the text blast)
-                ch.cards.forEach((c, i) => {
-                    const card = document.getElementById(c.id);
-                    if (!card) return;
-
-                    // Each card has a stored offset (set from CSS top/left/right/bottom)
-                    // We read those once and interpolate from 0,0 → position on entry
-                    const stagger = i * 0.04;
-                    let cardOpacity, cardScale, tx = 0, ty = 0;
-
-                    if (progress < 0.35 + stagger) {
-                        const t = easeOutExpo(clamp((progress - stagger * 0.5) / (0.35), 0, 1));
-                        cardScale = lerp(0.05, 1, t);
-                        cardOpacity = clamp(t * 2, 0, 1);
-                    } else if (progress < 0.62) {
-                        cardScale = 1;
-                        cardOpacity = 1;
-                        // Gentle organic float
-                        const floatPhase = progress * Math.PI * 2;
-                        tx = Math.sin(floatPhase + i * 1.3) * 4;
-                        ty = Math.cos(floatPhase + i * 0.8) * 3;
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = 'Memory';
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    if (img.complete && img.naturalWidth) {
+                        updateOrientation(img.naturalWidth, img.naturalHeight);
                     } else {
-                        const t = easeInExpo((progress - 0.62) / 0.38);
-                        cardScale = lerp(1, 1.2, t);       // slight scale up as they move away
-                        cardOpacity = 1 - clamp(t * 1.5, 0, 1);
-                        
-                        const dirX = parseFloat(card.dataset.dirx || "1");
-                        tx = dirX * lerp(0, window.innerWidth * 0.4, t); 
-                        ty = lerp(0, -60, t); // slight upward drift
+                        img.addEventListener('load', () => {
+                            updateOrientation(img.naturalWidth, img.naturalHeight);
+                        });
                     }
+                    el.appendChild(img);
+                }
 
-                    const baseRotate = card.dataset.rotate || 'rotate(0deg)';
-                    card.style.opacity = cardOpacity;
-                    card.style.transform = `translate(${tx}px, ${ty}px) ${baseRotate} scale(${cardScale})`;
-                    // Clear out margins in case they were previously set
-                    card.style.marginLeft = '0px';
-                    card.style.marginTop = '0px';
+                stage.appendChild(el);
+
+                return {
+                    el,
+                    baseX: Math.cos(theta) * Math.sin(phi) * scatter,
+                    baseY: Math.sin(theta) * Math.sin(phi) * scatter,
+                    baseZ: Math.cos(phi) * scatter,
+                    isHovered: false
+                };
+            });
+
+            let hoveredCard = null;
+
+            nodes.forEach(node => {
+                node.el.addEventListener('pointerenter', () => {
+                    node.isHovered = true;
+                    hoveredCard = node;
+                });
+                node.el.addEventListener('pointerleave', () => {
+                    node.isHovered = false;
+                    if (hoveredCard === node) hoveredCard = null;
                 });
             });
-        }
 
-        // IntersectionObserver for scroll-reveal sections
-        const revealEls = document.querySelectorAll('.skill-item, .fact-item, #cta-heading, #cta-sub, #cta-btns');
-        const revealIO = new IntersectionObserver((entries) => {
-            entries.forEach((entry, i) => {
-                if (entry.isIntersecting) {
-                    // Stagger delay based on sibling index
-                    const siblings = [...entry.target.parentElement.children];
-                    const idx = siblings.indexOf(entry.target);
-                    setTimeout(() => {
-                        entry.target.classList.add('revealed');
-                    }, idx * 80);
-                    revealIO.unobserve(entry.target);
-                }
+            let rotX = 0.12;
+            let rotY = 0;
+            let velX = 0;
+            let velY = 0.0035; // smooth ambient auto-spin
+            let isDragging = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            window.addEventListener('resize', () => {
+                radius = window.innerWidth < 768 ? 185 : 270;
+            }, { passive: true });
+
+            container.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                container.setPointerCapture(e.pointerId);
+                lastX = e.clientX;
+                lastY = e.clientY;
+                velX = 0;
+                velY = 0;
             });
-        }, { threshold: 0.15 });
 
-        revealEls.forEach(el => revealIO.observe(el));
+            window.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - lastX;
+                const dy = e.clientY - lastY;
+                lastX = e.clientX;
+                lastY = e.clientY;
 
-        // Run scroll handler
-        window.addEventListener('scroll', updateChapters, { passive: true });
-        updateChapters(); // initial run
+                const sensitivity = 0.0045;
+                velY = dx * sensitivity;
+                velX = -dy * sensitivity;
 
-        // Capture each card's base rotation for zoom engine reuse
-        chapters.forEach(ch => {
-            ch.cards.forEach(c => {
-                const card = document.getElementById(c.id);
-                if (card) {
-                    const rotMatch = card.style.transform.match(/rotate\([^)]+\)/);
-                    card.dataset.rotate = rotMatch ? rotMatch[0] : 'rotate(0deg)';
-                    
-                    // Determine which side of the screen it's on
-                    const rect = card.getBoundingClientRect();
-                    card.dataset.dirx = (rect.left + rect.width / 2) < (window.innerWidth / 2) ? "-1" : "1";
-                    
-                    card.style.opacity = '0';
-                    card.style.transformOrigin = 'center center';
-                }
+                rotY += velY;
+                rotX += velX;
             });
-        });
+
+            function endDrag() {
+                isDragging = false;
+            }
+            window.addEventListener('pointerup', endDrag);
+            window.addEventListener('pointercancel', endDrag);
+
+            const perspective = 950;
+
+            function render() {
+                if (!isDragging) {
+                    if (hoveredCard) {
+                        // Decelerate to near standstill when inspecting a card
+                        velX *= 0.85;
+                        velY = velY * 0.85 + 0.0004 * 0.15;
+                    } else {
+                        // Smooth momentum decay returning gently to ambient drift
+                        velX *= 0.93;
+                        velY = velY * 0.93 + 0.003 * 0.07;
+                    }
+                    rotX += velX;
+                    rotY += velY;
+                }
+
+                // Limit vertical tilt
+                rotX = Math.max(-1.1, Math.min(1.1, rotX));
+
+                const cosY = Math.cos(rotY);
+                const sinY = Math.sin(rotY);
+                const cosX = Math.cos(rotX);
+                const sinX = Math.sin(rotX);
+
+                for (let i = 0; i < N; i++) {
+                    const node = nodes[i];
+                    const x0 = node.baseX * radius;
+                    const y0 = node.baseY * radius;
+                    const z0 = node.baseZ * radius;
+
+                    // Y rotation
+                    const x1 = x0 * cosY + z0 * sinY;
+                    const z1 = -x0 * sinY + z0 * cosY;
+
+                    // X rotation
+                    const y2 = y0 * cosX - z1 * sinX;
+                    const z2 = y0 * sinX + z1 * cosX;
+
+                    const depthRatio = (z2 + radius) / (2 * radius); // 0 (back) to 1 (front)
+                    const baseScale = perspective / (perspective - z2);
+                    const scale = node.isHovered ? baseScale * 1.38 : baseScale;
+                    const opacity = node.isHovered ? 1 : (0.28 + 0.72 * Math.max(0, Math.min(1, depthRatio)));
+                    const zIndex = node.isHovered ? 9999 : Math.round((z2 + radius) * 10);
+
+                    node.el.style.transform = `translate3d(${x1.toFixed(2)}px, ${y2.toFixed(2)}px, ${z2.toFixed(2)}px) scale(${scale.toFixed(3)})`;
+                    node.el.style.opacity = opacity.toFixed(2);
+                    node.el.style.zIndex = zIndex;
+                }
+
+                requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+        })();
     </script>
 </body>
 

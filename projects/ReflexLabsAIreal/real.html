@@ -16,7 +16,7 @@
     }
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles.css?v=21">
 <link rel="stylesheet" href="style.css?v=2">
 <style>
 /* Scoped Mobile Menu & Nav Styles */
@@ -60,9 +60,6 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
 }
 .mobile-nav-link:hover::before { transform: translateY(-50%) scaleX(1); }
 @media (max-width: 768px) {
-    /* Fix calculated margins that cause overflow on mobile */
-    div[style*="calc(50%"] { margin-left: auto !important; margin-right: auto !important; width: 100% !important; }
-    
     /* Global scroll lock */
     html, body { overflow-x: hidden !important; width: 100% !important; position: relative !important; }
     
@@ -113,17 +110,15 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
     </div>
 
     <!-- Center: Pages Navigation Bar -->
-    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block w-full max-w-2xl px-4">
+    <div id="navbar-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 navbar-visible hidden md:block">
         <nav
-            class="center-nav-bar flex items-center justify-center gap-9 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 w-full transition-all duration-300">
+            class="center-nav-bar flex items-center justify-center gap-7 bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-8 py-3 h-14 transition-all duration-300">
             <a href="../../index.html#home"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
             <a href="../../about.html"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
             <a href="../../index.html#projects"
                 class="nav-link active px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
-            <a href="../../index.html#experience"
-                class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Experience</a>
             <a href="../../index.html#contact"
                 class="nav-link px-2 py-1 text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
         </nav>
@@ -151,7 +146,6 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
                 <a href="../../index.html#home" class="mobile-nav-link">Home</a>
                 <a href="../../about.html" class="mobile-nav-link">About</a>
                 <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
-                <a href="../../index.html#experience" class="mobile-nav-link">Experience</a>
                 <a href="../../index.html#contact" class="mobile-nav-link">Contact</a>
             </nav>
         </div>
@@ -201,7 +195,7 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
 <!-- ══════════════════════════════════
   INTERNSHIP CONTEXT
 ══════════════════════════════════ -->
-<div style="padding:60px 64px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+<div class="internship-banner">
   <div style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);white-space:nowrap;">Internship Project</div>
   <div style="width:40px;height:1px;background:var(--border);flex-shrink:0;"></div>
   <p style="font-family:'Space Mono',monospace;font-size:16px;color:var(--muted);line-height:1.8;letter-spacing:0.04em;max-width:860px;margin:12px auto 0 auto;">This project was done during a <strong style="color:var(--white);font-weight:600;">UI/UX Design Internship at ReflexLabs AI</strong>. The work reflects real-world constraints — a brief, a one-month timeline, and deliverables that were reviewed and implemented by the brand.</p>
@@ -859,18 +853,18 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
   <h2 class="big-text" style="max-width:700px;margin-bottom:16px;margin-left:auto;margin-right:auto;text-align:center;">The <span class="o">orange pixel</span> comes alive.</h2>
   <p class="body-text" style="margin-bottom:32px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto;">High fidelity screens for the homepage and team page — Sudo Var, orange on black, pixel-grid motifs carrying the brand identity through every section.</p>
 
-  <!-- Mockups full-bleed wrapper to ensure true centering -->
-  <div style="margin-left:-64px; margin-right:-64px; padding:0 64px; text-align:center;">
+  <!-- Mockups wrapper to ensure true centering -->
+  <div style="text-align:center;">
 
     <!-- Homepage mockup -->
     <p style="font-family:'Space Mono',monospace;font-size:22px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-top:40px;margin-bottom:12px;">Homepage</p>
-    <div style="max-width:1000px; margin:0 auto 56px calc(50% - 474px);">
+    <div style="max-width:1000px; margin:0 auto 56px auto;">
       <img src="highfidelitymock.png" alt="High Fidelity Hero" style="width:100%; height:auto; display:block; border-radius:6px;">
     </div>
 
     <!-- Team Pages mockup -->
     <p style="font-family:'Space Mono',monospace;font-size:22px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:24px;">Team Pages</p>
-    <div style="display:flex; gap:24px; max-width:1100px; margin:0 auto 16px auto;">
+    <div style="display:flex; gap:24px; max-width:1000px; margin:0 auto 16px auto;">
       <img src="teaminside11.png" alt="Team Inside 1" style="width:50%; height:auto; display:block; border-radius:6px;">
       <img src="teaminside22.png" alt="Team Inside 2" style="width:50%; height:auto; display:block; border-radius:6px;">
     </div>
@@ -1011,6 +1005,58 @@ a.fixed.top-6.right-4, a.fixed.top-6.right-4 * {
     </div>
   </div>
 </section>
+
+<!-- Global Sitemap Footer -->
+<footer class="portfolio-sitemap-footer">
+    <div class="sitemap-container">
+        <div class="sitemap-grid">
+            <!-- Brand / Bio -->
+                <div class="sitemap-brand">
+                    <a href="../../index.html" class="sitemap-brand-link" aria-label="Rehan Jose Home">
+                        <img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--dark">
+                        <img src="../../Homepage%20Assets/rehanlogoblack.png" alt="RJ Logo" class="sitemap-logo-img sitemap-logo-img--light">
+                        <span class="sitemap-logo-text">REHAN JOSE</span>
+                    </a>
+                    <div class="sitemap-status-pill">
+                        <span class="sitemap-status-dot"></span>
+                        <span>Available for Opportunities</span>
+                    </div>
+                </div>
+
+            <!-- Column 1: Navigation -->
+            <div class="sitemap-col">
+                <h4 class="sitemap-col-title">Navigation</h4>
+                <ul class="sitemap-list">
+                    <li><a href="../../index.html#home" class="sitemap-link">Home</a></li>
+                    <li><a href="../../about.html" class="sitemap-link">About</a></li>
+                    <li><a href="../../projects.html" class="sitemap-link">Projects Archive</a></li>
+                    <li><a href="../../about.html#experience" class="sitemap-link">Experience</a></li>
+                    <li><a href="../../index.html#contact" class="sitemap-link">Contact</a></li>
+                    <li><a href="../../RehanJoseResume.pdf" target="_blank" class="sitemap-link">Resume <span class="sitemap-link-external">↗</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Connect & Socials -->
+            <div class="sitemap-col">
+                <h4 class="sitemap-col-title">Connect</h4>
+                <ul class="sitemap-list">
+                    <li><a href="mailto:rehanjose11@gmail.com" class="sitemap-link">Email <span class="sitemap-link-external">↗</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" rel="noopener noreferrer" class="sitemap-link">LinkedIn <span class="sitemap-link-external">↗</span></a></li>
+                    <li><a href="https://www.behance.net/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">Behance <span class="sitemap-link-external">↗</span></a></li>
+                    <li><a href="https://github.com/rehanjose" target="_blank" rel="noopener noreferrer" class="sitemap-link">GitHub <span class="sitemap-link-external">↗</span></a></li>
+                    <li><a href="https://joserehan.wordpress.com/" target="_blank" rel="noopener noreferrer" class="sitemap-link">WordPress <span class="sitemap-link-external">↗</span></a></li>
+                    <li><a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank" rel="noopener noreferrer" class="sitemap-link">Instagram <span class="sitemap-link-external">↗</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Copyright & Back to Top -->
+        <div class="sitemap-bottom">
+            <p class="sitemap-copyright">Designed and Built from scratch &middot; &copy; REHAN JOSE 2026 &middot; ALL RIGHTS RESERVED</p>
+            <button type="button" class="sitemap-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top ↑</button>
+        </div>
+    </div>
+</footer>
 
 <script>
     lucide.createIcons();
