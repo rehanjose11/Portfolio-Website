@@ -38,7 +38,7 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=36">
+    <link rel="stylesheet" href="styles.css?v=37">
 
     <style>
         /* Scoped About Page Editorial Styles */
@@ -49,9 +49,40 @@
             padding: 220px 24px 80px;
         }
 
+        .about-hero-section {
+            border-top: none !important;
+            padding-top: 20px;
+            padding-bottom: 150px;
+        }
+
         @media (max-width: 768px) {
             .about-page-wrap {
                 padding-top: 160px;
+            }
+            .about-hero-section {
+                padding-top: 10px;
+                padding-bottom: 50px;
+            }
+            .hero-portraits {
+                max-width: 380px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .about-cta-section {
+                padding: 60px 16px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .about-btn-primary,
+            .about-btn-secondary {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 24px;
             }
         }
 
@@ -728,7 +759,7 @@
         <!-- ============================================
              HERO SECTION — Who I Am & Overview
              ============================================ -->
-        <section class="about-chapter about-reveal" style="border-top: none; padding-top: 20px; padding-bottom: 150px;">
+        <section class="about-chapter about-hero-section about-reveal">
             <div class="about-chapter-grid items-center">
                 <div>
                     <span class="about-tag">ABOUT ME</span>
@@ -1135,6 +1166,7 @@
             });
 
             let hoveredCard = null;
+            let dragDist = 0;
 
             nodes.forEach(node => {
                 node.el.addEventListener('pointerenter', () => {
@@ -1145,6 +1177,26 @@
                     node.isHovered = false;
                     if (hoveredCard === node) hoveredCard = null;
                 });
+                // Touch tap support for mobile devices
+                node.el.addEventListener('click', (e) => {
+                    if (dragDist > 10) return; // ignore swipes
+                    e.stopPropagation();
+                    if (hoveredCard === node) {
+                        node.isHovered = false;
+                        hoveredCard = null;
+                    } else {
+                        if (hoveredCard) hoveredCard.isHovered = false;
+                        node.isHovered = true;
+                        hoveredCard = node;
+                    }
+                });
+            });
+
+            container.addEventListener('click', () => {
+                if (hoveredCard) {
+                    hoveredCard.isHovered = false;
+                    hoveredCard = null;
+                }
             });
 
             let rotX = 0.12;
@@ -1161,6 +1213,7 @@
 
             container.addEventListener('pointerdown', (e) => {
                 isDragging = true;
+                dragDist = 0;
                 container.setPointerCapture(e.pointerId);
                 lastX = e.clientX;
                 lastY = e.clientY;
@@ -1172,10 +1225,11 @@
                 if (!isDragging) return;
                 const dx = e.clientX - lastX;
                 const dy = e.clientY - lastY;
+                dragDist += Math.abs(dx) + Math.abs(dy);
                 lastX = e.clientX;
                 lastY = e.clientY;
 
-                const sensitivity = 0.0045;
+                const sensitivity = window.innerWidth < 768 ? 0.006 : 0.0045;
                 velY = dx * sensitivity;
                 velX = -dy * sensitivity;
 
