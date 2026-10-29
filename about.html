@@ -38,7 +38,7 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=37">
+    <link rel="stylesheet" href="styles.css?v=38">
 
     <style>
         /* Scoped About Page Editorial Styles */
@@ -563,6 +563,7 @@
             width: 0;
             height: 0;
             transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .sphere-card {
@@ -577,6 +578,7 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
             will-change: transform, opacity;
             backface-visibility: visible;
+            transform: translateZ(0);
         }
 
         /* Portrait cards */
@@ -779,7 +781,7 @@
 
                 <div class="hero-portraits">
                     <div class="hero-main-photo photo-card">
-                        <img src="About/main.JPG" alt="Rehan Jose">
+                        <img src="About/main.JPG" alt="Rehan Jose" fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
@@ -1072,6 +1074,7 @@
         (function initPhotoSphere() {
             const stage = document.getElementById('photo-sphere-stage');
             const container = document.getElementById('photo-sphere-container');
+            const sphereSection = document.getElementById('photo-sphere-section');
             if (!stage || !container) return;
 
             const items = [
@@ -1089,13 +1092,13 @@
                 { file: "IMG_3074.JPG", type: "image", isLandscape: true },
                 { file: "IMG_3286.jpg", type: "image", isLandscape: true },
                 { file: "IMG_3328.jpg", type: "image", isLandscape: true },
-                { file: "IMG_3383.MOV", type: "video", isLandscape: false },
+                { file: "IMG_3383.mp4", type: "video", isLandscape: false },
                 { file: "IMG_3598.JPG", type: "image", isLandscape: true },
                 { file: "IMG_3834.JPG", type: "image", isLandscape: true },
                 { file: "IMG_4415.JPG", type: "image", isLandscape: true },
                 { file: "IMG_4438.jpg", type: "image", isLandscape: false },
                 { file: "IMG_5354.jpg", type: "image", isLandscape: true },
-                { file: "IMG_5593.MOV", type: "video", isLandscape: false },
+                { file: "IMG_5593.mp4", type: "video", isLandscape: false },
                 { file: "IMG_5657.jpg", type: "image", isLandscape: true },
                 { file: "IMG_5943.JPG", type: "image", isLandscape: true },
                 { file: "IMG_6019.JPG", type: "image", isLandscape: true },
@@ -1104,6 +1107,7 @@
 
             const N = items.length;
             let radius = window.innerWidth < 768 ? 185 : 270;
+            const videoElements = [];
 
             const nodes = items.map((item, i) => {
                 const phi = Math.acos(-1 + (2 * i + 1) / N);
@@ -1132,11 +1136,12 @@
                     video.playsInline = true;
                     video.setAttribute('muted', '');
                     video.setAttribute('playsinline', '');
-                    video.setAttribute('preload', 'auto');
+                    video.setAttribute('preload', 'metadata');
                     video.addEventListener('loadedmetadata', () => {
                         updateOrientation(video.videoWidth, video.videoHeight);
                     });
                     el.appendChild(video);
+                    videoElements.push(video);
                     video.play().catch(() => {});
                 } else {
                     const img = document.createElement('img');
@@ -1168,13 +1173,19 @@
             let hoveredCard = null;
             let dragDist = 0;
 
+            function setCardHover(node, isHov) {
+                if (node.isHovered === isHov) return;
+                node.isHovered = isHov;
+                node.el.style.zIndex = isHov ? '9999' : '';
+            }
+
             nodes.forEach(node => {
                 node.el.addEventListener('pointerenter', () => {
-                    node.isHovered = true;
+                    setCardHover(node, true);
                     hoveredCard = node;
                 });
                 node.el.addEventListener('pointerleave', () => {
-                    node.isHovered = false;
+                    setCardHover(node, false);
                     if (hoveredCard === node) hoveredCard = null;
                 });
                 // Touch tap support for mobile devices
@@ -1182,11 +1193,11 @@
                     if (dragDist > 10) return; // ignore swipes
                     e.stopPropagation();
                     if (hoveredCard === node) {
-                        node.isHovered = false;
+                        setCardHover(node, false);
                         hoveredCard = null;
                     } else {
-                        if (hoveredCard) hoveredCard.isHovered = false;
-                        node.isHovered = true;
+                        if (hoveredCard) setCardHover(hoveredCard, false);
+                        setCardHover(node, true);
                         hoveredCard = node;
                     }
                 });
@@ -1194,7 +1205,7 @@
 
             container.addEventListener('click', () => {
                 if (hoveredCard) {
-                    hoveredCard.isHovered = false;
+                    setCardHover(hoveredCard, false);
                     hoveredCard = null;
                 }
             });
@@ -1244,8 +1255,15 @@
             window.addEventListener('pointercancel', endDrag);
 
             const perspective = 950;
+            let isVisible = true;
+            let rafId = null;
 
             function render() {
+                if (!isVisible) {
+                    rafId = null;
+                    return;
+                }
+
                 if (!isDragging) {
                     if (hoveredCard) {
                         // Decelerate to near standstill when inspecting a card
@@ -1286,17 +1304,45 @@
                     const baseScale = perspective / (perspective - z2);
                     const scale = node.isHovered ? baseScale * 1.38 : baseScale;
                     const opacity = node.isHovered ? 1 : (0.28 + 0.72 * Math.max(0, Math.min(1, depthRatio)));
-                    const zIndex = node.isHovered ? 9999 : Math.round((z2 + radius) * 10);
 
-                    node.el.style.transform = `translate3d(${x1.toFixed(2)}px, ${y2.toFixed(2)}px, ${z2.toFixed(2)}px) scale(${scale.toFixed(3)})`;
+                    node.el.style.transform = `translate3d(${x1.toFixed(1)}px, ${y2.toFixed(1)}px, ${z2.toFixed(1)}px) scale(${scale.toFixed(3)})`;
                     node.el.style.opacity = opacity.toFixed(2);
-                    node.el.style.zIndex = zIndex;
                 }
 
-                requestAnimationFrame(render);
+                rafId = requestAnimationFrame(render);
             }
 
-            requestAnimationFrame(render);
+            function startLoop() {
+                if (!rafId && isVisible) {
+                    rafId = requestAnimationFrame(render);
+                }
+            }
+
+            function stopLoop() {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+            }
+
+            if (sphereSection && 'IntersectionObserver' in window) {
+                const sphereObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        isVisible = entry.isIntersecting;
+                        if (isVisible) {
+                            startLoop();
+                            videoElements.forEach(v => v.play().catch(() => {}));
+                        } else {
+                            stopLoop();
+                            videoElements.forEach(v => v.pause());
+                        }
+                    });
+                }, { threshold: 0.05 });
+                sphereObserver.observe(sphereSection);
+            } else {
+                isVisible = true;
+                startLoop();
+            }
         })();
     </script>
 </body>
