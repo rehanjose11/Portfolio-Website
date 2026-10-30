@@ -828,10 +828,19 @@ body::after {
 }
 
 @media (max-width: 1024px) {
+    .hero-section {
+        padding-top: 116px !important;
+    }
+
     .hero-container {
         flex-direction: column;
         min-height: auto;
         gap: 48px;
+        margin-top: 0 !important;
+    }
+
+    .photo-caption {
+        display: none !important;
     }
 
     .hero-welcome-left,
@@ -880,7 +889,7 @@ body::after {
 
 @media (max-width: 640px) {
     .hero-section {
-        padding: 96px 24px 80px;
+        padding: 116px 24px 80px !important;
     }
 
     /* ── MOBILE: re-order all hero elements into a single centered block ── */
@@ -890,6 +899,12 @@ body::after {
         gap: 20px;
         padding: 0 16px;
         min-height: auto;
+        margin-top: 0 !important;
+        margin-bottom: 24px !important;
+    }
+
+    .photo-caption {
+        display: none !important;
     }
 
     /* Force all hero children out of absolute positioning */
@@ -3800,20 +3815,56 @@ body::after {
 
 @media (max-width: 600px) {
     .portfolio-sitemap-footer {
-        padding: 48px 20px 32px;
-        margin-top: 60px;
+        padding: 30px 18px 22px !important;
+        margin-top: 36px !important;
     }
     .sitemap-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px 20px !important;
     }
     .sitemap-brand {
-        grid-column: span 1;
+        grid-column: span 2 !important;
+        margin-bottom: 2px !important;
+    }
+    .sitemap-brand-link {
+        margin-bottom: 6px !important;
+    }
+    .sitemap-logo-img {
+        height: 22px !important;
+    }
+    .sitemap-logo-text {
+        font-size: 13px !important;
+    }
+    .sitemap-status-pill {
+        padding: 3px 9px !important;
+        font-size: 10.5px !important;
+    }
+    .sitemap-col-title {
+        font-size: 11px !important;
+        margin-bottom: 8px !important;
+        letter-spacing: 0.08em !important;
+    }
+    .sitemap-list {
+        gap: 4px !important;
+    }
+    .sitemap-link {
+        font-size: 12px !important;
+        padding: 2px 0 !important;
+        line-height: 1.4 !important;
     }
     .sitemap-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+        margin-top: 20px !important;
+        padding-top: 14px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+    .sitemap-copyright {
+        font-size: 10px !important;
+        line-height: 1.4 !important;
+    }
+    .sitemap-back-to-top {
+        font-size: 11px !important;
     }
 }
 
