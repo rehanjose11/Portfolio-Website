@@ -1090,7 +1090,7 @@ document.querySelectorAll('.experience-card').forEach(card => {
 });
 
 // --- EXPERIENCE SECTION SCROLL REVEAL ANIMATION ---
-const expHeader = document.querySelector('#experience .projects-header-left');
+const expHeader = document.querySelector('#experience .projects-header-left, #experience .experience-header-wrapper');
 const expCardElements = document.querySelectorAll('.experience-card');
 
 // Observe the header separately
@@ -1105,7 +1105,7 @@ if (expHeader) {
     }, {
         root: null,
         rootMargin: '0px 0px -30px 0px',
-        threshold: 0.2
+        threshold: 0.15
     });
     headerObserver.observe(expHeader);
 }
@@ -1115,8 +1115,13 @@ if (expCardElements.length > 0) {
     const cardObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+                const card = entry.target;
+                card.classList.add('is-visible');
+                // Clear transitionDelay after animation finishes so hover is instant
+                setTimeout(() => {
+                    card.style.transitionDelay = '0ms';
+                }, 750);
+                observer.unobserve(card);
             }
         });
     }, {
@@ -1127,7 +1132,7 @@ if (expCardElements.length > 0) {
 
     expCardElements.forEach((card, index) => {
         // Stagger via transition-delay so each card slides in slightly after the previous
-        card.style.transitionDelay = `${index * 80}ms`;
+        card.style.transitionDelay = `${index * 90}ms`;
         cardObserver.observe(card);
     });
 }

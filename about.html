@@ -38,7 +38,7 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css?v=38">
+    <link rel="stylesheet" href="styles.css?v=39">
 
     <style>
         /* Scoped About Page Editorial Styles */
@@ -46,22 +46,22 @@
             width: 100%;
             max-width: 1060px;
             margin: 0 auto;
-            padding: 220px 24px 80px;
+            padding: 110px 24px 80px;
         }
 
         .about-hero-section {
             border-top: none !important;
-            padding-top: 20px;
-            padding-bottom: 150px;
+            padding-top: 0;
+            padding-bottom: 100px;
         }
 
         @media (max-width: 768px) {
             .about-page-wrap {
-                padding-top: 160px;
+                padding-top: 90px;
             }
             .about-hero-section {
-                padding-top: 10px;
-                padding-bottom: 50px;
+                padding-top: 0;
+                padding-bottom: 45px;
             }
             .hero-portraits {
                 max-width: 380px;
@@ -540,6 +540,14 @@
             pointer-events: none;
             z-index: 1;
             filter: blur(20px);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #photo-sphere-section.is-visible .photo-sphere-backdrop-glow {
+            opacity: 1;
+            transform: scale(1);
         }
 
         [data-theme="light"] .photo-sphere-backdrop-glow {
@@ -799,7 +807,7 @@
 
             <div class="experience-list">
                 <!-- Item 1: Al Ramz MEP Designs -->
-                <div class="experience-card is-visible" data-exp-id="alramz" role="button" tabindex="0"
+                <div class="experience-card" data-exp-id="alramz" role="button" tabindex="0"
                     aria-label="View Al Ramz MEP Designs experience details">
                     <div class="exp-card-left">
                         <div class="exp-logo-placeholder">
@@ -822,7 +830,7 @@
                 </div>
 
                 <!-- Item 2: Xplor AI Mobility -->
-                <div class="experience-card is-visible" data-exp-id="xplor" role="button" tabindex="0"
+                <div class="experience-card" data-exp-id="xplor" role="button" tabindex="0"
                     aria-label="View Xplor AI Mobility experience details">
                     <div class="exp-card-left">
                         <div class="exp-logo-placeholder">
@@ -845,7 +853,7 @@
                 </div>
 
                 <!-- Item 3: ReflexLabs AI -->
-                <div class="experience-card is-visible" data-exp-id="reflexlabs" role="button" tabindex="0"
+                <div class="experience-card" data-exp-id="reflexlabs" role="button" tabindex="0"
                     aria-label="View ReflexLabs AI experience details">
                     <div class="exp-card-left">
                         <div class="exp-logo-placeholder">
@@ -868,7 +876,7 @@
                 </div>
 
                 <!-- Item 4: NIFT Kannur -->
-                <div class="experience-card is-visible" data-exp-id="nift" role="button" tabindex="0"
+                <div class="experience-card" data-exp-id="nift" role="button" tabindex="0"
                     aria-label="View NIFT Kannur experience details">
                     <div class="exp-card-left">
                         <div class="exp-logo-placeholder">
@@ -891,7 +899,7 @@
                 </div>
 
                 <!-- Item 5: InAmigos Foundation -->
-                <div class="experience-card is-visible" data-exp-id="inamigos" role="button" tabindex="0"
+                <div class="experience-card" data-exp-id="inamigos" role="button" tabindex="0"
                     aria-label="View InAmigos Foundation experience details">
                     <div class="exp-card-left">
                         <div class="exp-logo-placeholder">
@@ -1042,7 +1050,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="script.js?v=39"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') {
@@ -1159,6 +1167,8 @@
                     el.appendChild(img);
                 }
 
+                el.style.opacity = '0';
+                el.style.transform = 'translate3d(0, 0, 0) scale(0)';
                 stage.appendChild(el);
 
                 return {
@@ -1257,11 +1267,24 @@
             const perspective = 950;
             let isVisible = true;
             let rafId = null;
+            let hasRevealed = false;
+            let revealStartTime = null;
+            const REVEAL_DURATION = 1400; // ms
 
-            function render() {
+            function render(now) {
                 if (!isVisible) {
                     rafId = null;
                     return;
+                }
+
+                if (!now) now = performance.now();
+
+                let revealProgress = 1;
+                if (hasRevealed && revealStartTime) {
+                    const elapsed = now - revealStartTime;
+                    revealProgress = Math.min(1, Math.max(0, elapsed / REVEAL_DURATION));
+                } else if (!hasRevealed) {
+                    revealProgress = 0;
                 }
 
                 if (!isDragging) {
@@ -1269,6 +1292,10 @@
                         // Decelerate to near standstill when inspecting a card
                         velX *= 0.85;
                         velY = velY * 0.85 + 0.0004 * 0.15;
+                    } else if (revealProgress < 1) {
+                        // Smoothly transition from reveal spin impulse to ambient drift
+                        velX *= 0.94;
+                        velY = velY * 0.94 + 0.0035 * 0.06;
                     } else {
                         // Smooth momentum decay returning gently to ambient drift
                         velX *= 0.93;
@@ -1288,9 +1315,31 @@
 
                 for (let i = 0; i < N; i++) {
                     const node = nodes[i];
-                    const x0 = node.baseX * radius;
-                    const y0 = node.baseY * radius;
-                    const z0 = node.baseZ * radius;
+
+                    let curRadius = radius;
+                    let scaleMult = 1;
+                    let revealAlpha = 1;
+
+                    if (revealProgress < 1) {
+                        // Stagger cards from center in an organic spiral bloom
+                        const nodeStagger = (i / N) * 0.35;
+                        const localP = Math.min(1, Math.max(0, (revealProgress - nodeStagger) / (1 - 0.35)));
+
+                        // Smooth quintic ease-out for radius expansion
+                        const easeOutQuint = 1 - Math.pow(1 - localP, 5);
+                        curRadius = radius * easeOutQuint;
+
+                        // Tactile spring overshoot for card scale
+                        scaleMult = localP < 1
+                            ? Math.max(0, 1 + 1.2 * Math.pow(localP - 1, 3) + 0.5 * Math.pow(localP - 1, 2))
+                            : 1;
+
+                        revealAlpha = Math.min(1, localP * 1.5);
+                    }
+
+                    const x0 = node.baseX * curRadius;
+                    const y0 = node.baseY * curRadius;
+                    const z0 = node.baseZ * curRadius;
 
                     // Y rotation
                     const x1 = x0 * cosY + z0 * sinY;
@@ -1302,8 +1351,9 @@
 
                     const depthRatio = (z2 + radius) / (2 * radius); // 0 (back) to 1 (front)
                     const baseScale = perspective / (perspective - z2);
-                    const scale = node.isHovered ? baseScale * 1.38 : baseScale;
-                    const opacity = node.isHovered ? 1 : (0.28 + 0.72 * Math.max(0, Math.min(1, depthRatio)));
+                    const scale = node.isHovered ? baseScale * 1.38 : (baseScale * scaleMult);
+                    const baseOpacity = node.isHovered ? 1 : (0.28 + 0.72 * Math.max(0, Math.min(1, depthRatio)));
+                    const opacity = baseOpacity * revealAlpha;
 
                     node.el.style.transform = `translate3d(${x1.toFixed(1)}px, ${y2.toFixed(1)}px, ${z2.toFixed(1)}px) scale(${scale.toFixed(3)})`;
                     node.el.style.opacity = opacity.toFixed(2);
@@ -1330,6 +1380,12 @@
                     entries.forEach(entry => {
                         isVisible = entry.isIntersecting;
                         if (isVisible) {
+                            if (!hasRevealed) {
+                                hasRevealed = true;
+                                revealStartTime = performance.now();
+                                velY = 0.016; // Elegant reveal rotational glide
+                                velX = -0.003;
+                            }
                             startLoop();
                             videoElements.forEach(v => v.play().catch(() => {}));
                         } else {
@@ -1337,10 +1393,12 @@
                             videoElements.forEach(v => v.pause());
                         }
                     });
-                }, { threshold: 0.05 });
+                }, { threshold: 0.08 });
                 sphereObserver.observe(sphereSection);
             } else {
                 isVisible = true;
+                hasRevealed = true;
+                revealStartTime = performance.now();
                 startLoop();
             }
         })();
