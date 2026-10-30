@@ -57,17 +57,23 @@
 
         .about-hero-section {
             border-top: none !important;
-            padding-top: 0;
-            padding-bottom: 120px;
+            padding-top: 0 !important;
+            padding-bottom: clamp(180px, 22vh, 260px);
+            min-height: calc(100vh - 110px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         @media (max-width: 768px) {
             .about-page-wrap {
-                padding-top: 90px;
+                padding-top: 98px !important;
             }
             .about-hero-section {
-                padding-top: 0;
-                padding-bottom: 60px;
+                padding-top: 0 !important;
+                padding-bottom: 50px;
+                min-height: auto !important;
+                display: block !important;
             }
             .about-hero-grid {
                 display: flex !important;
@@ -80,12 +86,13 @@
             .about-tag {
                 order: 1 !important;
                 align-self: flex-start !important;
-                margin-bottom: 20px !important;
+                margin-top: 0 !important;
+                margin-bottom: 16px !important;
             }
             .hero-portraits {
                 order: 2 !important;
                 max-width: 320px !important;
-                margin: 4px auto 32px auto !important;
+                margin: 4px auto 28px auto !important;
                 width: 100% !important;
             }
             .about-lead {
@@ -97,8 +104,8 @@
             }
             .about-pills {
                 order: 5 !important;
-                margin-top: 24px !important;
-                margin-bottom: 36px !important;
+                margin-top: 20px !important;
+                margin-bottom: 32px !important;
             }
             .about-cta-section {
                 padding: 60px 16px 40px;
